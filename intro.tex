@@ -1,0 +1,27 @@
+\section{Introduction}
+
+The design an analysis of scalable algorithms has become an important research area over the past two decades. This is particularly important in data analysis, where even polynomial running time might not be enough to handle proverbial \emph{big data} sets.
+One of the main approaches to deal with the scalability issue is to compress or sketch large data sets into smaller, more manageable ones. The aim of such compression methods is to preserve the properties of the original data, up to some small error, while significantly reducing the number of data points.
+
+Among the most popular and successful paradigms in this line of research are \emph{coresets}. Informally, given a data set $A$, a coreset $S\subset A$ with respect to a given set of queries $Q$ and query function $f: A\times Q \rightarrow \mathbb{R}_{\geq 0}$ approximates the behaviour of $A$ for all queries up to some multiplicative distortion $D$ via
+$$ \sup_{q\in Q} \max\left( \frac{f(S,q)}{f(A,q)},\frac{f(A,q)}{f(S,q)}\right) \leq D.$$
+Coresets have been applied to a number of problems such as computational geometry \cite{AHV05,Chan09}, linear algebra \cite{IndykMGR20,maalouf2019fast}, and machine learning \cite{MRM21,MunteanuSSW18}. But the by far most intensively studied an arguably most successful applications of the coreset framework are $k$-clustering problem.
+
+Here we are given $n$ points $A$ in some metric space with distance function $\dist$ and aim to find $k$ centers $C$ such that 
+$$\cost(C):= \frac{1}{n} \sum_{p\in A}  \min_{c\in C} \dist^z(p,c)$$
+is minimized. The most popular variant of this problem is probably the $k$-means problem in $d$-dimensional Euclidean space where $z=2$ and $\dist(x,y) = \sqrt{\sum_{i=1}^d (x_i-y_i)^2}$.
+In a long line of work originated more than 15 years ago\cite{BecchettiBC0S19,BravermanJKW21,Chen09,FL11,FeldmanSS20,
+HaM04,HaK07,huang2020coresets,BravermanJKW21,LS10,SohlerW18}, the size of coresets has been steadily improved with the current state of the art yielding a coreset of $\tilde{O}(k\varepsilon^{-4})$ points for a distortion $D\leq (1+\varepsilon)$ due to Cohen-Addad, Saulpic, and Schwiegelshohn \cite{Cohen-AddadSS21}.
+
+While we have a good grasp of the theoretical guarantees of these algorithms, our understanding of the empirical performance is somewhat lacking.
+This is due to two main reasons.
+\begin{itemize}
+\item Experiments are geared towards optimization: Often experiments on coresets are conducted as follows. First, compute coreset(s) with the available algorithm(s). Then run an optimization algorithm. The \emph{best} coreset algorithm is considered to be the one resulting in the clustering with smallest cost. 
+\item Evaluating the quality of a coreset is hard: Given two point sets $A$ and $B$, it is hard to determine the distortion when considering $B$ as a candidate coreset of $A$ with respect to $k$-clustering problems in most metrics. Thus, while we can default to the worst case guarantees from theory, it is difficult to compare the output of two coreset algorithms for a given data set.
+\end{itemize}
+
+These two reasons are related. Due to the difficulty of evaluating coresets, comparing the outcome of an optimization algorithm is a simple and reasonable alternative inasmuch as no large cost clustering becomes a low cost clustering if the coreset computation was successful. Nevertheless, this method of comparison has the drawback that it is more likely to measure the performance of the underlying optimization problem, rather than evaluating coresets.
+
+Thus, the purpose of this paper is to propose a benchmark for $k$-means coresets in Euclidean spaces and use it to empirically evaluate current coreset algorithms.
+We argue why this benchmark has properties that make it both hard for all known coreset constructions. In addition, we also show how to efficiently estimate the distortion of a candidate coreset on the benchmark.
+

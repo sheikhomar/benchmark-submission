@@ -1,0 +1,120 @@
+\begin{thebibliography}{10}
+
+\bibitem{AHV05}
+Pankaj~K. Agarwal, Sariel Har-Peled, and Kasturi~R. Varadarajan.
+\newblock Geometric approximation via coresets.
+\newblock In {\em Combinatorial and computational geometry, MSRI}, pages 1--30.
+  University Press, 2005.
+
+\bibitem{BecchettiBC0S19}
+Luca Becchetti, Marc Bury, Vincent Cohen{-}Addad, Fabrizio Grandoni, and Chris
+  Schwiegelshohn.
+\newblock Oblivious dimension reduction for \emph{k}-means: beyond subspaces
+  and the johnson-lindenstrauss lemma.
+\newblock In {\em Proceedings of the 51st Annual {ACM} {SIGACT} Symposium on
+  Theory of Computing, {STOC} 2019, Phoenix, AZ, USA, June 23-26, 2019}, pages
+  1039--1050, 2019.
+
+\bibitem{BravermanJKW21}
+Vladimir Braverman, Shaofeng~H.{-}C. Jiang, Robert Krauthgamer, and Xuan Wu.
+\newblock Coresets for clustering in excluded-minor graphs and beyond.
+\newblock In D{\'{a}}niel Marx, editor, {\em Proceedings of the 2021 {ACM-SIAM}
+  Symposium on Discrete Algorithms, {SODA} 2021, Virtual Conference, January 10
+  - 13, 2021}, pages 2679--2696. {SIAM}, 2021.
+
+\bibitem{Chan09}
+Timothy~M. Chan.
+\newblock Dynamic coresets.
+\newblock {\em Discret. Comput. Geom.}, 42(3):469--488, 2009.
+
+\bibitem{Chen09}
+Ke~Chen.
+\newblock On coresets for k-median and k-means clustering in metric and
+  {E}uclidean spaces and their applications.
+\newblock {\em {SIAM} J. Comput.}, 39(3):923--947, 2009.
+
+\bibitem{Cohen-AddadSS21}
+Vincent Cohen{-}Addad, David Saulpic, and Chris Schwiegelshohn.
+\newblock A new coreset framework for clustering.
+\newblock In Samir Khuller and Virginia~Vassilevska Williams, editors, {\em
+  {STOC} '21: 53rd Annual {ACM} {SIGACT} Symposium on Theory of Computing,
+  Virtual Event, Italy, June 21-25, 2021}, pages 169--182. {ACM}, 2021.
+
+\bibitem{FL11}
+Dan Feldman and Michael Langberg.
+\newblock A unified framework for approximating and clustering data.
+\newblock In {\em Proceedings of the 43rd {ACM} Symposium on Theory of
+  Computing, {STOC} 2011, San Jose, CA, USA, 6-8 June 2011}, pages 569--578,
+  2011.
+
+\bibitem{FeldmanSS20}
+Dan Feldman, Melanie Schmidt, and Christian Sohler.
+\newblock Turning big data into tiny data: Constant-size coresets for k-means,
+  pca, and projective clustering.
+\newblock {\em {SIAM} J. Comput.}, 49(3):601--657, 2020.
+
+\bibitem{HaK07}
+Sariel Har{-}Peled and Akash Kushal.
+\newblock Smaller coresets for k-median and k-means clustering.
+\newblock {\em Discrete {\&} Computational Geometry}, 37(1):3--19, 2007.
+
+\bibitem{HaM04}
+Sariel Har{-}Peled and Soham Mazumdar.
+\newblock On coresets for k-means and k-median clustering.
+\newblock In {\em Proceedings of the 36th Annual {ACM} Symposium on Theory of
+  Computing, Chicago, IL, USA, June 13-16, 2004}, pages 291--300, 2004.
+
+\bibitem{huang2020coresets}
+Lingxiao Huang and Nisheeth~K. Vishnoi.
+\newblock Coresets for clustering in euclidean spaces: importance sampling is
+  nearly optimal.
+\newblock In Konstantin Makarychev, Yury Makarychev, Madhur Tulsiani, Gautam
+  Kamath, and Julia Chuzhoy, editors, {\em Proccedings of the 52nd Annual {ACM}
+  {SIGACT} Symposium on Theory of Computing, {STOC} 2020, Chicago, {IL}, USA,
+  June 22-26, 2020}, pages 1416--1429. {ACM}, 2020.
+
+\bibitem{IndykMGR20}
+Piotr Indyk, Sepideh Mahabadi, Shayan~Oveis Gharan, and Alireza Rezaei.
+\newblock Composable core-sets for determinant maximization problems via
+  spectral spanners.
+\newblock In Shuchi Chawla, editor, {\em Proceedings of the 2020 {ACM-SIAM}
+  Symposium on Discrete Algorithms, {SODA} 2020, Salt Lake City, UT, USA,
+  January 5-8, 2020}, pages 1675--1694. {SIAM}, 2020.
+
+\bibitem{LS10}
+Michael Langberg and Leonard~J. Schulman.
+\newblock Universal $\varepsilon$-approximators for integrals.
+\newblock In {\em Proceedings of the Twenty-First Annual {ACM-SIAM} Symposium
+  on Discrete Algorithms, {SODA} 2010, Austin, Texas, USA, January 17-19,
+  2010}, pages 598--607, 2010.
+
+\bibitem{maalouf2019fast}
+Alaa Maalouf, Ibrahim Jubran, and Dan Feldman.
+\newblock Fast and accurate least-mean-squares solvers.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  8307--8318, 2019.
+
+\bibitem{MRM21}
+Tung Mai, Anup~B. Rao, and Cameron Musco.
+\newblock Coresets for classification - simplified and strengthened.
+\newblock {\em CoRR}, abs/2106.04254, 2021.
+
+\bibitem{MunteanuSSW18}
+Alexander Munteanu, Chris Schwiegelshohn, Christian Sohler, and David~P.
+  Woodruff.
+\newblock On coresets for logistic regression.
+\newblock In Samy Bengio, Hanna~M. Wallach, Hugo Larochelle, Kristen Grauman,
+  Nicol{\`{o}} Cesa{-}Bianchi, and Roman Garnett, editors, {\em Advances in
+  Neural Information Processing Systems 31: Annual Conference on Neural
+  Information Processing Systems 2018, NeurIPS 2018, December 3-8, 2018,
+  Montr{\'{e}}al, Canada}, pages 6562--6571, 2018.
+
+\bibitem{SohlerW18}
+Christian Sohler and David~P. Woodruff.
+\newblock Strong coresets for k-median and subspace approximation: Goodbye
+  dimension.
+\newblock In {\em 59th {IEEE} Annual Symposium on Foundations of Computer
+  Science, {FOCS} 2018, Paris, France, October 7-9, 2018}, pages 802--813,
+  2018.
+
+\end{thebibliography}

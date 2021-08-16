@@ -1,0 +1,295 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%  ltexpprt_twocolumn.tex  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is ltexpprt_twocolumn.tex, an example file for use with the SIAM LaTeX2E
+% Preprint Series macros. It is designed to provide two-column output.
+% Please take the time to read the following comments, as they document
+% how to use these macros. This file can be composed and printed out for
+% use as sample output.
+
+% Any comments or questions regarding these macros should be directed to:
+%
+%                 Donna Witzleben
+%                 SIAM
+%                 3600 University City Science Center
+%                 Philadelphia, PA 19104-2688
+%                 USA
+%                 Telephone: (215) 382-9800
+%                 Fax: (215) 386-7999
+%                 e-mail: witzleben@siam.org
+
+
+% This file is to be used as an example for style only. It should not be read
+% for content.
+
+%%%%%%%%%%%%%%% PLEASE NOTE THE FOLLOWING STYLE RESTRICTIONS %%%%%%%%%%%%%%%
+
+%%  1. There are no new tags.  Existing LaTeX tags have been formatted to match
+%%     the Preprint series style.
+%%
+%%  2. Do not change the margins or page size!  Do not change from the default
+%%     text font!
+%%
+%%  3. You must use \cite in the text to mark your reference citations and
+%%     \bibitem in the listing of references at the end of your chapter. See
+%%     the examples in the following file. If you are using BibTeX, please
+%%     supply the bst file with the manuscript file.
+%%
+%%  4. This macro is set up for two levels of headings (\section and
+%%     \subsection). The macro will automatically number the headings for you.
+%%
+%%  5. No running heads are to be used for this volume.
+%%
+%%  6. Theorems, Lemmas, Definitions, Equations, etc. are to be double numbered,
+%%     indicating the section and the occurrence of that element
+%%     within that section. (For example, the first theorem in the second
+%%     section would be numbered 2.1. The macro will
+%%     automatically do the numbering for you.
+%%
+%%  7. Figures and Tables must be single-numbered.
+%%     Use existing LaTeX tags for these elements.
+%%     Numbering will be done automatically.
+%%
+%%  8. Page numbering is no longer included in this macro.
+%%     Pagination will be set by the program committee.
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\documentclass{article}
+
+% Comment out the line below if using A4 paper size
+\usepackage[letterpaper]{geometry}
+
+\usepackage{ltexpprt}
+\usepackage{hyperref}
+
+\usepackage{amsfonts}           % \mathbb
+\usepackage{amssymb}             % proof
+\usepackage{xspace}             % \xspace
+\usepackage{graphicx}
+\usepackage{adjustbox}          % \adjustbox 
+\usepackage{multicol}            
+\usepackage{url}
+\usepackage{enumerate, enumitem}  %enumerate environment with optional argument
+\usepackage{subcaption}
+\usepackage[usenames]{xcolor} % for coordinating edits
+\newcommand{\sout}[1]{\st{#1}}
+%% \usepackage{hyperref}
+\usepackage{amsmath, hyperref, nicefrac}
+\usepackage[capitalize]{cleveref}
+\usepackage{thm-restate}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+
+\colorlet{darkgreen}{green!45!black}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\etal}{et al.\xspace}
+\newcommand{\dist}{\text{dist}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\opt}{\text{OPT}}
+\newcommand{\cost}{\text{cost}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\greedy}{\mathcal{A}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\bvf}{\mathbf{f}}
+\newcommand{\bp}{\mathbf{p}}
+
+\newcommand{\by}{\mathbf{p}}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\pr}{\mathbb{P}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\bI}{\bar{I}_i}
+\newcommand{\cand}{\mathbb{C}}
+%\newcommand{\greedy}{\mathfrak{c}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\poly}{\text{poly}}
+\newcommand{\alg}{\greedy}
+\newcommand{\centers}{\mathcal{C}}
+\newcommand{\coreset}{\Omega}
+\newcommand{\offset}{F}
+\newcommand{\weight}{f}
+\newcommand{\inner}{R_I}
+\newcommand{\out}{R_O}
+\newcommand{\main}{R_M}
+\newcommand{\size}{\Gamma}
+\newcommand{\polylog}{\text{polylog}}
+
+\newcommand{\valuedelta}{\frac{\log^2 1/\eps}{2^{O(z\log z)}\min(\eps^2, \eps^z)}\left(k \log |\cand| + \log \log (1/\eps) + \log(1/\pi)\right)}
+
+
+
+\begin{document}
+
+%
+\newcommand\relatedversion{}
+\renewcommand\relatedversion{\thanks{The full version of the paper can be accessed at \protect\url{https://arxiv.org/abs/1902.09310}}} % Replace URL with link to full paper or comment out this line
+
+
+%\setcounter{chapter}{2} % If you are doing your chapter as chapter one,
+%\setcounter{section}{3} % comment these two lines out.
+
+\title{\Large Variance Bound}
+\author{}
+
+
+\date{}
+
+\maketitle
+
+% Copyright Statement
+% When submitting your final paper to a SIAM proceedings, it is requested that you include
+% the appropriate copyright in the footer of the paper.  The copyright added should be
+% consistent with the copyright selected on the copyright form submitted with the paper.
+% Please note that "20XX" should be changed to the year of the meeting.
+
+% Default Copyright Statement
+%\fancyfoot[R]{\scriptsize{Copyright \textcopyright\ 20XX by SIAM\\
+%Unauthorized reproduction of this article is prohibited}}
+
+% Depending on which copyright you agree to when you sign the copyright form, the copyright
+% can be changed to one of the following after commenting out the default copyright statement
+% above.
+
+%\fancyfoot[R]{\scriptsize{Copyright \textcopyright\ 20XX\\
+%Copyright for this paper is retained by authors}}
+
+%\fancyfoot[R]{\scriptsize{Copyright \textcopyright\ 20XX\\
+%Copyright retained by principal author's organization}}
+
+%\pagenumbering{arabic}
+%\setcounter{page}{1}%Leave this line commented out.
+
+\begin{abstract} \small\baselineskip=9pt \end{abstract}
+
+Define the basic cost estimator for a solution $\calS$
+$$ E_{\calS}:= \frac{1}{|\Omega|}\sum_{p\in \Omega} \frac{\cost(\greedy)}{\cost(p,\greedy)}\cost(p,\calS).$$
+
+It's expectation is $\cost(\calS)$. We would like to show that the maximum error is less than $\varepsilon\cdot \cost(\calS)$ factor by considering the following expectation:
+
+$$\mathbb{E}_{\coreset}\sup_{\calS}\left[\frac{|E_{\calS} - \cost(\calS)|}{\cost(\greedy)+\cost(\calS)}\right]$$
+
+Using the symmetrization argument, we have 
+$$\mathbb{E}_{\coreset}\sup_{\calS}\left[\frac{|E_{\calS} - \cost(\calS)|}{\cost(\greedy)+\cost(\calS)}\right]\leq O(1)\cdot \mathbb{E}_{\coreset}\mathbb{E}_{g}\sup_{\calS}\left[\frac{\frac{1}{|\Omega|}\sum_{p\in \Omega} \frac{\cost(\greedy)}{\cost(p,\greedy)}\cost(p,\calS) \cdot g_p}{\cost(\greedy)+\cost(\calS)}\right]$$
+
+
+The way we analyse this so far is to first only condition on $\coreset$, with whatever properties it might have, and essentially only use the randomness of $g$ to bound the supremum:
+
+$$ \mathbb{E}_{\coreset}\mathbb{E}_{g}\sup_{\calS}\left[\frac{\frac{1}{|\Omega|}\sum_{p\in \Omega} \frac{\cost(\greedy)}{\cost(p,\greedy)}\cost(p,\calS) \cdot g_p}{\cost(\greedy)+\cost(\calS)}\right] = \mathbb{E}_{\coreset}\mathbb{E}_{g}\sup_{\calS}\left[\left.\frac{\frac{1}{|\Omega|}\sum_{p\in \Omega} \frac{\cost(\greedy)}{\cost(p,\greedy)}\cost(p,\calS) \cdot g_p}{\cost(\greedy)+\cost(\calS)}~\right\vert~\coreset\right]$$
+
+Whether or not we want to do chaining, we will eventually have to bound the variance of  $\frac{\frac{1}{|\Omega|}\sum_{p\in \Omega} \frac{\cost(\greedy)}{\cost(p,\greedy)}\cost(p,\calS) \cdot g_p}{\cost(\greedy)+\cost(\calS)}$. Since each is a Gaussian, the sum is a Gaussian with variance
+
+$$ \sum_{p\in \Omega} \left(\frac{\cost(\greedy)}{\cost(p,\greedy)\cdot |\coreset|}\cdot\frac{\cost(p,\calS)}{\cost(\greedy)+\cost(\calS)}\right)^2$$
+
+Here, I am no going to give a variance bound, assuming the following
+\begin{enumerate}
+\item All points in a cluster cost the same, up to constants
+\item All clusters cost the same, up to constants
+\item Conditioned on $\coreset$, we sample $\sum_{p\in \coreset\cap C} \frac{\cost(\greedy)}{\cost(p,\greedy)\cdot |\coreset|} = O(|C|)$ for all clusters $C$ of $\greedy$.
+\item All clusters cost in $\calS$ roughly $2^i$ times their cost in $\greedy$.
+\end{enumerate}
+
+Define the clusters that satisfy condition 4 to be $L_i$ and let $|Li|=\alpha\cdot k$ be the number of clusters that satisfy the fourth condition. 
+
+\begin{eqnarray*}
+& & \sum_{p\in \Omega} \left(\frac{\cost(\greedy)}{\cost(p,\greedy)\cdot |\coreset|}\cdot\frac{\cost(p,\calS)}{\cost(\greedy)+\cost(\calS)}\right)^2 \\
+\left(\frac{\cost(p,\calS)}{\cost(p,\greedy)}\approx 2^i\right)& \leq & \frac{1}{|\coreset|}\cost(\greedy)\cdot 2^i \cdot\left(\frac{1}{\cost(\greedy)+\cost(\calS)}\right)^2 \sum_{p\in \Omega} \frac{\cost(\greedy)}{\cost(p,\greedy)\cdot |\coreset|}\cdot\cost(p,\calS) \\
+\text{Uniform Cost}& \leq & \frac{1}{|\coreset|}\cost(\greedy)\cdot 2^i \cdot\left(\frac{1}{\cost(\greedy)+\cost(\calS)}\right)^2 \sum_{C\in L_i}\frac{\cost(C,\calS)}{|C|}\sum_{p\in\Omega \cap C} \frac{\cost(\greedy)}{\cost(p,\greedy)\cdot |\coreset|} \\
+\text{Condition on }\coreset& \leq & \frac{1}{|\coreset|}\cost(\greedy)\cdot 2^i \cdot\left(\frac{1}{\cost(\greedy)+\cost(\calS)}\right)^2 \sum_{C\in L_i}\frac{\cost(C,\calS)}{|C|}\cdot |C|\\
+& \leq & \frac{1}{|\coreset|}\cost(\greedy)\cdot 2^i \cdot\left(\frac{1}{\cost(\greedy)+\cost(\calS)}\right)^2 \cost(\calS)\\
+\end{eqnarray*}
+
+This gives us a bound of $\frac{2^i}{|\coreset|}\leq \frac{\varepsilon^{-z}}{|\coreset|}$, if we ignore constants. Note that it doesn't depend on the space, however I doubt that using the space would give us much.
+
+To get the alternative bound of $\frac{k}{|\coreset|}$, we can observe that $\alpha\geq 1/k$, as at least one cluster is in $L_i$, otherwise we wouldn't be considering it. Then using $\cost(\calS) \approx \alpha\cdot 2^i\cdot \greedy$
+
+\begin{eqnarray*}
+& &\cost(\greedy)\cdot 2^i \cdot\left(\frac{1}{\cost(\greedy)+\cost(\calS)}\right)^2 \cost(\calS) \\
+&\leq & \cost^2(\greedy)\cdot 2^i \cdot\frac{1}{\cost^2(\greedy)(1+\alpha 2^i)^2} \cdot \alpha\cdot 2^i \\
+&\leq &  \frac{\alpha \cdot2^{2i}}{\alpha^2 \cdot 2^{2i}} \leq  \frac{1}{\alpha} \leq k
+\end{eqnarray*}
+
+All of this is without the variance reduction $-q$ trick. But maybe this gives a bit of an idea what one could play with. Unless we modify the estimator (for example using the $q$ vector), this will cost us either an additional $k$ or and additional $\varepsilon^{-z}$ factor when doing chaining, assuming we can build the nets. In this case, building the nets is also doable (but also completely disjoint from obtaining the variance bound). 
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+
+%\begin{thebibliography}{99}
+%
+%%\bibitem{GUIDE}
+%%R.~E. Bank, {\em PLTMG  users' guide, edition 5.0}, tech. report,
+%%  Department of Mathematics, University of California, San Diego, CA, 1988.
+%
+%%\bibitem{HBMG}
+%%R.~E. Bank, T.~F. Dupont, and H.~Yserentant, {\em The hierarchical basis
+%%  multigrid method}, Numer. Math., 52 (1988), pp.~427--458.
+%
+%\bibitem{BANKSMITH}
+%R.~E. Bank and R.~K. Smith, {\em General sparse elimination requires no
+%  permanent integer storage}, SIAM J. Sci. Stat. Comput., 8 (1987),
+%  pp.~574--584.
+%
+%\bibitem{EISENSTAT}
+%S.~C. Eisenstat, M.~C. Gursky, M.~Schultz, and A.~Sherman, {\em
+%  Algorithms and data structures for sparse symmetric gaussian elimination},
+%  SIAM J. Sci. Stat. Comput., 2 (1982), pp.~225--237.
+%
+%\bibitem{GEORGELIU}
+%A.~George and J.~Liu, {\em Computer Solution of Large Sparse Positive
+%  Definite Systems}, Prentice Hall, Englewood Cliffs, NJ, 1981.
+%
+%\bibitem{LAW}
+%K.~H. Law and S.~J. Fenves, {\em A node addition model for symbolic
+%  factorization}, ACM TOMS, 12 (1986), pp.~37--50.
+%
+%\bibitem{LIU}
+%J.~W.~H. Liu, {\em A compact row storage scheme for cholesky factors
+%  using elimination trees}, ACM TOMS, 12 (1986), pp.~127--148.
+%
+%\bibitem{LIU2}
+%\sameauthor , {\em The role of
+%  elimination trees in sparse factorization}, Tech. Report CS-87-12,Department
+%  of Computer Science, York University, Ontario, Canada, 1987.
+%
+%\bibitem{ROSE72}
+%D.~J. Rose, {\em A graph theoretic study of the numeric solution of
+%  sparse positive definite systems}, in Graph Theory and Computing, Academic  Press, New
+%York, 1972.
+%
+%\bibitem{ROSE76}
+%D.~J. Rose, R.~E. Tarjan, and G.~S. Lueker, {\em Algorithmic aspects of
+%  vertex elimination on graphs}, SIAM J. Comput., 5 (1976), pp.~226--283.
+%
+%\bibitem{ROSEWHITTEN}
+%D.~J. Rose and G.~F. Whitten, {\em A recursive analysis of disection
+%  strategies}, in Sparse Matrix Computations, Academic Press, New York, 1976.
+%
+%\bibitem{SCHREIBER}
+%R.~Schrieber, {\em A new implementation of sparse gaussian elimination},
+%  ACM TOMS, 8 (1982), pp.~256--276.
+%
+%\end{thebibliography}
+\end{document}
+
+% End of ltexpprt.tex 
