@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.26)  17 AUG 2021 21:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.26)  17 AUG 2021 21:37
 entering extended mode
 **./main.tex
 (main.tex
@@ -826,17 +826,6 @@ Underfull \hbox (badness 1558) in paragraph at lines 13--15
  []
 
 
-Underfull \hbox (badness 3271) in paragraph at lines 13--15
-\OT1/cmr/m/n/10 rithm [[]] com-putes a set of cen-ters $\OML/cmm/m/it/10 K$ \OT
-1/cmr/m/n/10 by
- []
-
-
-Underfull \hbox (badness 2617) in paragraph at lines 13--15
-\OT1/cmr/m/n/10 it-er-a-tively sam-pling a point pro-por-tion-ate to
- []
-
-
 Underfull \hbox (badness 1275) in paragraph at lines 15--16
 \OT1/cmr/m/n/10 ity clus-ter-ing al-go-rithm BIRCH [[]] with the
  []
@@ -872,30 +861,94 @@ Underfull \hbox (badness 1019) in paragraph at lines 22--30
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [3] [4]) (evaluation.tex
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 8--8
 [][][][]$\OT1/cmtt/m/n/8 https : / / archive . ics . uci . edu / ml / datasets 
 / US + Census +
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
 [][][][]$\OT1/cmtt/m/n/8 http : / / homepages . uni-[]paderborn . de / frahling
  /
  []
 
 
-Underfull \hbox (badness 3977) in paragraph at lines 9--17
- \OT1/cmr/bx/n/10 4.2 Datasets[][] \OT1/cmr/m/n/10 We use three com-mon real-wo
+Underfull \hbox (badness 3977) in paragraph at lines 6--14
+ \OT1/cmr/bx/n/10 4.1 Datasets[][] \OT1/cmr/m/n/10 We use three com-mon real-wo
 rld
  []
 
 [5]
-<figures/results-Benchmark-1.0.pdf, id=227, 724.75455pt x 405.81047pt>
+<figures/results-Tower.pdf, id=215, 949.47699pt x 407.75525pt>
+File: figures/results-Tower.pdf Graphic file (type pdf)
+<use figures/results-Tower.pdf>
+Package pdftex.def Info: figures/results-Tower.pdf  used on input line 104.
+(pdftex.def)             Requested size: 319.797pt x 137.33458pt.
+<figures/results-Census.pdf, id=216, 750.99321pt x 407.75525pt>
+File: figures/results-Census.pdf Graphic file (type pdf)
+<use figures/results-Census.pdf>
+Package pdftex.def Info: figures/results-Census.pdf  used on input line 108.
+(pdftex.def)             Requested size: 246.0pt x 133.56415pt.
+<figures/results-Census+PCA.pdf, id=217, 750.99321pt x 407.75525pt>
+File: figures/results-Census+PCA.pdf Graphic file (type pdf)
+<use figures/results-Census+PCA.pdf>
+Package pdftex.def Info: figures/results-Census+PCA.pdf  used on input line 111
+.
+(pdftex.def)             Requested size: 246.0pt x 133.56415pt.
+<figures/results-Covertype.pdf, id=218, 741.17528pt x 407.75525pt>
+File: figures/results-Covertype.pdf Graphic file (type pdf)
+<use figures/results-Covertype.pdf>
+Package pdftex.def Info: figures/results-Covertype.pdf  used on input line 115.
+
+(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
+<figures/results-Covertype+PCA.pdf, id=219, 741.17528pt x 407.75525pt>
+File: figures/results-Covertype+PCA.pdf Graphic file (type pdf)
+<use figures/results-Covertype+PCA.pdf>
+Package pdftex.def Info: figures/results-Covertype+PCA.pdf  used on input line 
+118.
+(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
+<figures/results-Benchmark-1.0.pdf, id=220, 726.44838pt x 407.75525pt>
 File: figures/results-Benchmark-1.0.pdf Graphic file (type pdf)
 <use figures/results-Benchmark-1.0.pdf>
 Package pdftex.def Info: figures/results-Benchmark-1.0.pdf  used on input line 
-108.
-(pdftex.def)             Requested size: 246.0pt x 137.73843pt.
+122.
+(pdftex.def)             Requested size: 246.0pt x 138.08119pt.
+<figures/results-Benchmark-2.0.pdf, id=221, 741.17528pt x 407.75525pt>
+File: figures/results-Benchmark-2.0.pdf Graphic file (type pdf)
+<use figures/results-Benchmark-2.0.pdf>
+Package pdftex.def Info: figures/results-Benchmark-2.0.pdf  used on input line 
+125.
+(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--127
+
+ []
+
+
+Overfull \hbox (13.33331pt too wide) in paragraph at lines 104--127
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--127
+
+ []
+
+
+Overfull \hbox (13.33331pt too wide) in paragraph at lines 104--127
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--127
+
+ []
+
+
+Overfull \hbox (13.33331pt too wide) in paragraph at lines 104--127
+[][][][] 
+ []
+
 ) (conclusion.tex) (main.bbl
 Underfull \hbox (badness 1616) in paragraph at lines 16--21
 \OT1/cmr/m/it/9 of the Eigh-teenth An-nual ACM-SIAM Sym-po-sium
@@ -912,9 +965,6 @@ Underfull \hbox (badness 1694) in paragraph at lines 73--78
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6]
 Underfull \hbox (badness 1694) in paragraph at lines 80--84
 []\OT1/cmr/m/n/9 Vincent Cohen-Addad, David Saulpic, and Chris
  []
@@ -922,7 +972,32 @@ Underfull \hbox (badness 1694) in paragraph at lines 80--84
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [6]
+[7 <./figures/results-Tower.pdf> <./figures/results-Census.pdf
 
+pdfTeX warning: pdflatex (file ./figures/results-Census.pdf): PDF inclusion: mu
+ltiple pdfs with page group included in a single page
+> <./figures/results-Census+PCA.pdf
+
+pdfTeX warning: pdflatex (file ./figures/results-Census+PCA.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+> <./figures/results-Covertype.pdf
+
+pdfTeX warning: pdflatex (file ./figures/results-Covertype.pdf): PDF inclusion:
+ multiple pdfs with page group included in a single page
+> <./figures/results-Covertype+PCA.pdf
+
+pdfTeX warning: pdflatex (file ./figures/results-Covertype+PCA.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+> <./figures/results-Benchmark-1.0.pdf
+
+pdfTeX warning: pdflatex (file ./figures/results-Benchmark-1.0.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+> <./figures/results-Benchmark-2.0.pdf
+
+pdfTeX warning: pdflatex (file ./figures/results-Benchmark-2.0.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+>]
 Underfull \hbox (badness 10000) in paragraph at lines 144--151
 []\OT1/cmr/m/n/9 Lingxiao Huang, Shaofeng H.-C. Jiang, and
  []
@@ -935,7 +1010,7 @@ Underfull \hbox (badness 3646) in paragraph at lines 170--176
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7 <./figures/results-Benchmark-1.0.pdf>]
+
 Underfull \hbox (badness 1406) in paragraph at lines 198--204
 []\OT1/cmr/m/n/9 Sepideh Ma-habadi, Kon-stantin Makarychev, Yury
  []
@@ -943,26 +1018,25 @@ Underfull \hbox (badness 1406) in paragraph at lines 198--204
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
+ [8]
 Underfull \hbox (badness 1515) in paragraph at lines 266--272
 \OT1/cmr/m/n/9 In Matthias Muller-Hannemann and Re-nato Fon-
  []
 
-) [8] (main.aux)
+) [9
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+] (main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7C9E5DAD1631861D7D90B3C453DDC3D8;1412.
+(rerunfilecheck)             Checksum: 139BE96D69816AE82D7B6AE26291FAF9;1304.
  ) 
 Here is how much of TeX's memory you used:
- 16390 strings out of 479321
- 265157 string characters out of 2855152
- 610627 words of memory out of 3000000
- 33470 multiletter control sequences out of 15000+600000
- 417937 words of font info for 86 fonts, out of 8000000 for 9000
+ 16427 strings out of 479321
+ 266446 string characters out of 2855152
+ 610666 words of memory out of 3000000
+ 33503 multiletter control sequences out of 15000+600000
+ 417769 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,12n,131p,1084b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,12n,131p,1084b,495s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\t
 crm0700.pk> <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
 /dpi600\tcrm0600.pk> <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
@@ -992,14 +1066,13 @@ fb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
 /cm/cmsy8.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/font
 s/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/au672776/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/au672776/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/au672776/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/doublestroke/dsrom10.pfb><C:/U
-sers/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols
-/msbm10.pfb>
-Output written on main.pdf (8 pages, 407841 bytes).
+MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/au672776/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/doublestroke/dsrom10.pfb><C:/Users/au67277
+6/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+
+Output written on main.pdf (9 pages, 479593 bytes).
 PDF statistics:
- 410 PDF objects out of 1000 (max. 8388607)
- 80 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 640 PDF objects out of 1000 (max. 8388607)
+ 79 named destinations out of 1000 (max. 500000)
+ 108 words of extra memory for PDF output out of 10000 (max. 10000000)
 
