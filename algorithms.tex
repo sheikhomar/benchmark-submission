@@ -2,13 +2,12 @@
 
 Though the algorithms vary in details, coreset constructions come in one of the following two flavours:
 \begin{enumerate}
-\item Movement-based constructions: Such algorithms compute a clustering with $T$ points such that $\cost_A(T)\ll \opt$. The coreset guarantee then follows as a consequence of the triangle inequality. Popular examples from theory include~\cite{FrahlS2005,HaM04}. 
+\item Movement-based constructions: Such algorithms compute a clustering with $T$ points such that $\cost_A(T)\ll \opt$, where $\opt$ is the cost of an optimal $k$-means clustering. The coreset guarantee then follows as a consequence of the triangle inequality. These algorithms all have an exponential dependency on the dimension $d$, and therefore have been overtaken by sampling-based methods. Nevertheless, these constructions are more robust to various constrained clustering formulations~\cite{HuangJV19,SSS19} and continue to be popular. Examples from theory include~\cite{FrahlS2005,HaM04}. 
 \item Importance sampling: Points are sampled proportionate to their sensitivity which for a point $p$ is defined as $sens(p):=\sup_{C} \frac{\min_{c\in C} \dist^2(p,c)}{\cost_A(C)}$ and weighted by their inverse sampling probability. In terms of theoretical performance, sensitivity sampling has largely replaced movement based constructions, see for example~\cite{FeldmanL11,LangbergS10}.  
 \end{enumerate}
 
 Of course, there exist algorithms that draw on techniques from both, see for example~\cite{Cohen-AddadSS21}. In what follows, we will survey implementations of various coreset constructions that we will evaluate later.
 
-\chris{This sucks. Explain better.}
 
 \begin{description}
 \item[StreamKM++~\cite{AckermannMRSLS12}] The popular $k$-means++ algorithm~\cite{ArV07} computes a set of centers $K$ by iteratively sampling a point proportionate to $\min_{q\in K} \dist^2(p,q)$ and adding it to $K$. The procedure terminates once the desired number of centers has been reached. The first center is typically picked uniformly at random.

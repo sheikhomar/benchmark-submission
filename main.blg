@@ -5,7 +5,11 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: plain.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-Repeated entry---line 6250 of file references.bib
+Repeated entry---line 670 of file references.bib
+ : @inproceedings{HuangJV19
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 6340 of file references.bib
  : @inproceedings{KappmeierS015
  :                             ,
 I'm skipping whatever remains of this entry
@@ -13,10 +17,10 @@ A bad cross reference---entry "BecchettiBC0S19"
 refers to entry "DBLP:conf/stoc/2019", which doesn't exist
 A bad cross reference---entry "SohlerW18"
 refers to entry "DBLP:conf/focs/2018", which doesn't exist
-A bad cross reference---entry "ArV07"
-refers to entry "DBLP:conf/soda/2007", which doesn't exist
 A bad cross reference---entry "SSS19"
 refers to entry "DBLP:conf/waoa/2019", which doesn't exist
+A bad cross reference---entry "ArV07"
+refers to entry "DBLP:conf/soda/2007", which doesn't exist
 A bad cross reference---entry "MahabadiMMR18"
 refers to entry "DBLP:conf/stoc/2018", which doesn't exist
 Warning--I didn't find a database entry for "DBLP:conf/waoa/2019"
@@ -24,45 +28,45 @@ Warning--I didn't find a database entry for "DBLP:conf/stoc/2019"
 Warning--I didn't find a database entry for "DBLP:conf/soda/2007"
 Warning--I didn't find a database entry for "DBLP:conf/stoc/2018"
 Warning--I didn't find a database entry for "DBLP:conf/focs/2018"
-You've used 35 entries,
+You've used 40 entries,
             2118 wiz_defined-function locations,
-            734 strings with 12177 characters,
-and the built_in function-call counts, 16207 in all, are:
-= -- 1638
-> -- 687
-< -- 27
-+ -- 264
-- -- 223
-* -- 1043
-:= -- 2393
-add.period$ -- 113
-call.type$ -- 35
-change.case$ -- 204
+            771 strings with 13588 characters,
+and the built_in function-call counts, 18848 in all, are:
+= -- 1906
+> -- 794
+< -- 34
++ -- 302
+- -- 255
+* -- 1217
+:= -- 2774
+add.period$ -- 132
+call.type$ -- 40
+change.case$ -- 229
 chr.to.int$ -- 0
-cite$ -- 35
-duplicate$ -- 711
-empty$ -- 1309
-format.name$ -- 223
-if$ -- 3635
+cite$ -- 40
+duplicate$ -- 832
+empty$ -- 1527
+format.name$ -- 255
+if$ -- 4242
 int.to.chr$ -- 0
-int.to.str$ -- 35
-missing$ -- 35
-newline$ -- 178
-num.names$ -- 88
-pop$ -- 255
+int.to.str$ -- 40
+missing$ -- 40
+newline$ -- 203
+num.names$ -- 108
+pop$ -- 289
 preamble$ -- 1
-purify$ -- 169
+purify$ -- 189
 quote$ -- 0
-skip$ -- 617
+skip$ -- 722
 stack$ -- 0
-substring$ -- 1208
-swap$ -- 313
-text.length$ -- 27
+substring$ -- 1410
+swap$ -- 376
+text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 140
+type$ -- 160
 warning$ -- 0
-while$ -- 168
-width$ -- 37
-write$ -- 396
-(There were 6 error messages)
+while$ -- 198
+width$ -- 42
+write$ -- 457
+(There were 7 error messages)

@@ -1,3 +1,133 @@
 \section{Hardness of Coreset Evaluation and a Benchmark}
 
-In this section, we first show that it is in general co-NP hard to evaluate the coreset distortion, given two point sets $A$ and $B$.
+In this section, we first show that it is in general co-NP hard to evaluate the coreset distortion, given two point sets $A$ and $B$. Thereafter we describe the benchmark and it's properties.
+
+
+\begin{proposition}
+Given two point sets $A$ and $B$ in $\mathbb{R}^d$ and a sufficiently small (constant) $\varepsilon>0$, it is co-NP hard to decide whether $A$ is a $(k,\varepsilon)$-coreset of $B$.
+\end{proposition}
+\begin{proof}
+First, we recall that for some $\varepsilon_0$ and candidate clustering cost $V$, it is NP-hard to decide whether there exists a clustering with cost in $[V,(1+\varepsilon_0)\cdot V]$.
+Therefore, it is co-NP-hard to decide whether there exists a set of centers $C$ such that $\cost_A(C) \geq (1+\varepsilon_0)\cdot \cost_B(C)$.
+\end{proof}
+
+We remark that the possible values for $\varepsilon_0$ are determined by the current APX-hardness results. Assuming NP$\neq$P, $\varepsilon_0\approx 1.07$ and assuming UCG, $\varepsilon_0 \approx 1.17$~\cite{Cohen-AddadSL21,Cohen-AddadS19} for $k$-means in Euclidean spaces.
+
+\subsection{Benchmark Construction}
+
+In this section, we describe our benchmark. The benchmark has a parameters $\alpha$ which controls the number of points and dimensions.
+For a given value of $k$ the benchmark consists of $n=k^\alpha$ points and $d=\alpha \cdot k$ rows.
+It is recursively constructed as follows.
+
+Denote by $\mathds{1}_k$ the $k$-dimensional all $1$ vector and by $v_i$ the $k$ dimensional vector with entries $(v_i)_j = \begin{cases}-\frac{1}{k} & \text{if } i\neq j\\
+\frac{k-1}{k} & \text{if } i= j\end{cases}$.
+For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i^{\ell} = \begin{bmatrix}
+(v_i^{\ell-1})_1 \cdot \mathds{1}_k \\
+(v_i^{\ell-1})_2 \cdot \mathds{1}_k \\
+\vdots \\
+(v_i^{\ell-1})_1 \cdot \mathds{1}_k
+\end{bmatrix}$. Finally, set the column $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, of $A$ to be $k^{a}$ stacks of $v_b^{\alpha-a}$.
+
+To get a better feel for the construction, we have given two example inputs in \cref{fig1}.
+\begin{figure*}[h]
+\begin{center}
+$$ 
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} &-\frac{1}{2} & \frac{1}{2} \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  & -\frac{1}{2} & \frac{1}{2} \\
+\end{bmatrix} ~~~~~~~~
+\begin{bmatrix}
+\frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
+\frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
+\frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
+ -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
+-\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
+-\frac{1}{3} & \frac{2}{3} &  -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
+-\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
+-\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
+-\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
+\end{bmatrix} 
+$$
+\end{center}
+\label{fig1}
+\caption{Benchmark construction for $k=2$ and $\alpha=3$ (left) and $k=3$ and $\alpha=2$ (right).}
+\end{figure*}
+\chris{TODO: Omar could you please rearrange the matrix on the right side in the figure such that it is consistent with the notation? We are generating them left to right, this matrix is written right to left.}
+
+We now summarize the key properties of the benchmark.
+To this end, we require a few notions.
+Let $A$ be the input matrix. We slightly abuse notation an refer to $A_i$ as both the $i$th point as well as the $i$th row of the matrix $A$.
+For a clustering $\mathcal{C}=\{C_1,\ldots ,C_k\}$, we define that the $n\times k$ indicator matrix $\tilde X$ induced by $\mathcal{C}$ via
+$$ \tilde X_{i,j} = \begin{cases}1 & \text{if } A_i\in C_j \\
+0 & \text{else.} \end{cases}$$
+Furthermore, we will also use the $n\times k$ normalized clustering matrix $ X$ defined as
+$$ \tilde X_{i,j} = \begin{cases}\frac{1}{\sqrt{|C_i|}} & \text{if } A_i\in C_j \\
+0 & \text{else.} \end{cases}$$
+We also recall the following lemma which will allow us to express the $k$-means cost of a clustering $\mathcal{C}$ with optimally chosen centers in terms of the cost of $X$ and $A$.
+\begin{lemma}[Folklore]
+Let $A$ be an arbitrary set of points and let $\mu(A) = \frac{1}{|A|}\sum_{p\in A} p$ be the mean. Then for any point $c$
+$$ \sum_{p\in A} \|p-c\|^2 = \sum_{p\in A} \|p-\mu(A)\|^2 + |A|\cdot \|\mu(A)-c\|^2.$$
+\end{lemma}
+This lemma proves that for any given cluster $C_j$, the mean is the optimal choice of center. 
+We also note that any two distinct columns of $X$ are orthogonal. Furthermore $\mathbf{1}\mathbf{1}^TA$ copies the mean into every entry of $A$. Combining these two observations, we see that the matrix $XX^TA$ maps the $i$th row of $A$ onto the mean of the cluster it is assigned to. Finally, define the Frobenius norm of an $n\times d$ $A$ by $\|A\|_F = \sqrt{\sum_{i=1}^n\sum_{j=1}^d A_{i,j}^2}$. Then the $k$-means cost of the clustering $\mathcal{C}$ is precisely
+$$\|A-XX^TA\|_F^2.$$
+
+Finally, we require the following distance measure on clusterings as proposed by Meila~\cite{Meila05,Meila06}. Given two clusterings $\mathcal{C}$ and $\mathcal{C'}$, the $k\times k$ confusion matrix $M$ is defined as
+$$ M_{i,j} = |C_i\cap C'_j|.$$
+Furthermore for the indicator matrices $\tilde X$ and $\tilde X'$ induced by $\mathcal{C}$ and $\mathcal{C'}$ we have the identity $M=\tilde X^T {\tilde X'}$.
+Denote by $\Pi_k$ the set of all permutations over $k$ elements. Then the distance between  $\mathcal{C}$ and $\mathcal{C'}$ is defined as
+$$d(\mathcal{C},\mathcal{C'}) = 1-\frac{1}{n}\underset{\max}{\pi\in \Pi_k} \sum_{i=1}^k M_{i,\pi(i)}.$$
+Observe that for clusters that are identical, their distance is $0$. The maximum distance between any two $k$ clusterings is always $\frac{k-1}{k}$.
+
+
+We are now ready to state the desired properties of our benchmark. The benchmark was designed to generate many clusterings such that
+\begin{enumerate}
+\item The distance between these clustering is maximized.
+\item The clusterings have equal cost.
+\item The clusterings are induced by a set of centers in $\mathbb{R}^d$.
+\end{enumerate}
+
+The first and second property ensure that (equally good) solutions we use for evaluation are spread out through the solution space. In other words, we are less likely to only focus on a set of solutions $\mathcal{S}$ for which a low distortion on one $S\in\mathcal{S}$ implies a low distortion for all elements of $\mathcal{S}$.
+The third property is important as these are the only clusterings the (standard) coreset guarantee has to apply to. 
+
+
+The solutions we consider as given as follows. For the columns $a\cdot k+1,\ldots (a+1)\cdot k$, we define the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ with 
+$A_i\in C_j^a$ if and only if $A_{i,j} > 0$. Let $\tilde X^a$ and $X^{a}$ denote the indicator matrix and clustering matrix, respectively, as induced by $\mathcal{C}^{a}$.
+
+
+\begin{fact}
+For $a\neq a'$, we have $d(\mathcal{C}^{a},\mathcal{C}^{a'}) = 1-1/k$.
+\end{fact}
+\begin{proof}
+Consider an arbitrary vector $v_i^{\ell}$. By construction, the positive entries of $v_i^{\ell}$ range from $k^{\ell-1}\cdot i+1$ to $k^{\ell-1}\cdot (i+1)$. Similarly, the positive entries for the vector $v_j^{\ell-1}$ range from range from $k^{\ell-2}\cdot j+1$ to $k^{\ell-2}\cdot (j+1)$. Therefore, concatenating $v_j^{\ell-1}$ $k$ times into a vector $v'$, $v'$ and $v_i^{\ell}$ can share at most one positive coordinate. Inductively, the same holds true for any concatenation of vectors $v_j^{\ell-h}$.
+Thus, the two clusters induced by the columns formed by concatenating the vectors $v$ can share only a $1/k$ fraction of the points. Since each cluster consists of exactly $k^{\alpha}/k$ = $k^{\alpha-1}$ points, the confusion matrix $M$ only has entries $\frac{n}{k^2}$ and for any permutation $\pi$, we have $d(\mathcal{C}^{a},\mathcal{C}^{a'}) = 1-1/k$.
+\end{proof}
+
+\begin{fact}
+For all $a,a'\in \{0,\ldots \alpha-1\}$, we have 
+$$\|A-X^{a}(X^{a})^TA\|_F^2=(\alpha-1)\cdot (k-1)\cdot k^{\alpha-1}.$$
+\end{fact}
+\begin{proof}
+Without loss of generality, assume $a=0$; the proof otherwise holds by rearranging rows and columns of $A$ due to the preceding fact. We first note that for any point $A_i \in C_i$, the coordinates $A_{i,\ell}$ are identical for $\ell <k$. Furthermore for the column $\ell\geq k$, we have by construction $\sum_{A_i\in C_j} A_{i,\ell} = k^{\alpha-1}\cdot \frac{k-1}{k} + (k^{\alpha}-k^{\alpha-1})\frac{1}{k}=k^{\alpha-1}\cdot (\frac{k-1}{k} - (k-1)\frac{1}{k}) = 0.$ Therefore, the mean of $C_j$ satisfies $\mu(C_j)_{\ell} = \begin{cases}A_{i,\ell} &\text{if }\ell<k \\
+0 &\text{else.}\end{cases}$. Thus, $(A-X^{a}(X^{a})^TA)_{i,\ell} =\begin{cases}A_{i,\ell}&\text{if }\ell\geq k\\ 0 & \text{if }\ell<k\end{cases}$ and the cost is $(\alpha-1)\cdot k\cdot \left( k^{\alpha-1} \cdot \left(\frac{k-1}{k}\right)^2 + k^{\alpha}-k^{\alpha-1}\cdot \left(\frac{1}{k}\right)^2\right) = (\alpha-1)(k-1)k^{\alpha-1}.$
+\end{proof}
+
+Finally, we show that the means for the clustering $\mathcal{C}^{a}$ also induce $\mathcal{C}^{a}$.
+
+\begin{fact}
+For a clustering $\mathcal{C}^{a}$, let $\mu(C_j^{a})$ denote the mean of cluster $C_j^a$. Then every point of is assigned to its closest center.
+\end{fact}
+\begin{proof}
+Again, we assume without loss of generality $a=0$.
+Let $A_i$ be an arbitrary point of cluster $C_{h}^{a}$ and consider the mean $\mu(C_j^a)_{\ell} = \begin{cases}A_{i,\ell} &\text{if }\ell<k \\
+0 &\text{else.}\end{cases}$ of cluster $C_j^a$. By definition, the positive coordinates of $A_i$ are not equal to the positive coordinates of $\mu(C_j^a)$. The only difference in coordinates between the means of $\mu(C_j^a)$ and $\mu(C_h^a)$ are the first $k$ coordinates, as the rest are $0$.
+But here the coordinates of $\mu(C_h^a)$ and $A_i$ are identical, hence $\mu(C_j^a)$ cannot be closer to $A_i$.
+\end{proof}
+
+

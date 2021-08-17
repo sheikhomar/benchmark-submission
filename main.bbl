@@ -55,6 +55,20 @@ Michael~B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina
   Theory of Computing, {STOC} 2015, Portland, OR, USA, June 14-17, 2015}, pages
   163--172, 2015.
 
+\bibitem{Cohen-AddadS19}
+Vincent Cohen{-}Addad and Karthik~C. S.
+\newblock Inapproximability of clustering in lp metrics.
+\newblock In David Zuckerman, editor, {\em 60th {IEEE} Annual Symposium on
+  Foundations of Computer Science, {FOCS} 2019, Baltimore, Maryland, USA,
+  November 9-12, 2019}, pages 519--539. {IEEE} Computer Society, 2019.
+
+\bibitem{Cohen-AddadSL21}
+Vincent Cohen{-}Addad, Karthik~C. S., and Euiwoong Lee.
+\newblock On approximability of clustering problems without candidate centers.
+\newblock In D{\'{a}}niel Marx, editor, {\em Proceedings of the 2021 {ACM-SIAM}
+  Symposium on Discrete Algorithms, {SODA} 2021, Virtual Conference, January 10
+  - 13, 2021}, pages 2635--2648. {SIAM}, 2021.
+
 \bibitem{Cohen-AddadSS21}
 Vincent Cohen{-}Addad, David Saulpic, and Chris Schwiegelshohn.
 \newblock A new coreset framework for clustering.
@@ -126,6 +140,15 @@ Sariel Har{-}Peled and Soham Mazumdar.
 \newblock In {\em Proceedings of the 36th Annual {ACM} Symposium on Theory of
   Computing, Chicago, IL, USA, June 13-16, 2004}, pages 291--300, 2004.
 
+\bibitem{HuangJV19}
+Lingxiao Huang, Shaofeng~H.{-}C. Jiang, and Nisheeth~K. Vishnoi.
+\newblock Coresets for clustering with fairness constraints.
+\newblock In Hanna~M. Wallach, Hugo Larochelle, Alina Beygelzimer, Florence
+  d'Alch{\'{e}}{-}Buc, Emily~B. Fox, and Roman Garnett, editors, {\em Advances
+  in Neural Information Processing Systems 32: Annual Conference on Neural
+  Information Processing Systems 2019, NeurIPS 2019, December 8-14, 2019,
+  Vancouver, BC, Canada}, pages 7587--7598, 2019.
+
 \bibitem{huang2020coresets}
 Lingxiao Huang and Nisheeth~K. Vishnoi.
 \newblock Coresets for clustering in euclidean spaces: importance sampling is
@@ -183,6 +206,23 @@ Sepideh Mahabadi, Konstantin Makarychev, Yury Makarychev, and Ilya~P.
 Tung Mai, Anup~B. Rao, and Cameron Musco.
 \newblock Coresets for classification - simplified and strengthened.
 \newblock {\em CoRR}, abs/2106.04254, 2021.
+
+\bibitem{Meila05}
+Marina Meila.
+\newblock Comparing clusterings: an axiomatic view.
+\newblock In Luc~De Raedt and Stefan Wrobel, editors, {\em Machine Learning,
+  Proceedings of the Twenty-Second International Conference {(ICML} 2005),
+  Bonn, Germany, August 7-11, 2005}, volume 119 of {\em {ACM} International
+  Conference Proceeding Series}, pages 577--584. {ACM}, 2005.
+
+\bibitem{Meila06}
+Marina Meila.
+\newblock The uniqueness of a good optimum for k-means.
+\newblock In William~W. Cohen and Andrew~W. Moore, editors, {\em Machine
+  Learning, Proceedings of the Twenty-Third International Conference {(ICML}
+  2006), Pittsburgh, Pennsylvania, USA, June 25-29, 2006}, volume 148 of {\em
+  {ACM} International Conference Proceeding Series}, pages 625--632. {ACM},
+  2006.
 
 \bibitem{MunteanuSSW18}
 Alexander Munteanu, Chris Schwiegelshohn, Christian Sohler, and David~P.
