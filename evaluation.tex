@@ -3,7 +3,7 @@ In this section, we describe our experimental evaluation of four widely used alg
 
 
 \subsection{Algorithms}
-The evaluated algorithms include \texttt{SensitivitySample}~\cite{cohen2021new}, \texttt{GroupSample}~\cite{cohen2021new}, \texttt{BICO}~\cite{FGSSS13}, and Basic Clustering (\texttt{BC}). BICO is a streaming algorithm that leverages BIRCH's data structure to compute coreset solutions fast. \texttt{SensitivitySample} constructs coresets by sampling original points in proportion to their cost. \texttt{GroupSample} is another importance sampling-based algorithm which associates points to rings, groups the ring points and then performs the sampling inside the groups. \texttt{BC} uses $k$-means++ where $k$ is the number of target samples in the coreset. We implemented \texttt{SensitivitySample}, \texttt{GroupSample} and \texttt{BC} in C++17. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. 
+The evaluated algorithms include \texttt{SensitivitySample}~\cite{cohen2021new}, \texttt{GroupSample}~\cite{cohen2021new}, \texttt{BICO}~\cite{FGSSS13}, and \texttt{StreamKM++}~\cite{AckermannMRSLS12}. BICO is a streaming algorithm that leverages BIRCH's data structure to compute coreset solutions fast. \texttt{SensitivitySample} constructs coresets by sampling original points in proportion to their cost. \texttt{GroupSample} is another importance sampling-based algorithm which associates points to rings, groups the ring points and then performs the sampling inside the groups. \texttt{BC} uses $k$-means++ where $k$ is the number of target samples in the coreset. We implemented \texttt{SensitivitySample}, \texttt{GroupSample} and \texttt{StreamKM++} in C++17. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. 
 
 \subsection{Datasets}
 We use three common real-world datasets for evaluating $k$-means coresets 
@@ -13,7 +13,7 @@ We use three common real-world datasets for evaluating $k$-means coresets
 \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}
 ---
 and several instances of the proposed benchmark. 
-The \textit{Census} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. \textit{Covertype} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{ackermann2012streamkmpp}. \textit{Tower} is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. This dataset consists of 4,915,200 rows and 3 columns. To evaluate how denoising effects the quality of the output, we apply SVD on \textit{Census}, \textit{Covertype}, and \textit{Tower} dataset using the $k$ largest singular values. Note that we do not reduce the number of dimensions of the original datasets. 
+The \textit{Census} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. \textit{Covertype} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{AckermannMRSLS12}. \textit{Tower} is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. This dataset consists of 4,915,200 rows and 3 columns. To evaluate how denoising effects the quality of the output, we apply SVD on \textit{Census} and \textit{Covertype} using the $k$ largest singular values. Note that we do not reduce the number of dimensions of the original datasets. 
 
 
 %
@@ -97,4 +97,10 @@ As for the benchmark dataset, instances can be generated via three parameters; t
 \end{table}
 
 \subsection{Algorithm Parameters}
-We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{FGSSS13, ackermann2012streamkmpp}. For the target coreset size, we used $200k$ for all our experiments. On \textit{Census} and \textit{Covertype}, we used $k$ values $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$ as in. On the benchmark instances, we settled on $k \in \{10, 20, 30, 40, 50\}$ as a reasonable trade-off between running time and dataset size.
+We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{FGSSS13, AckermannMRSLS12}. For the target coreset size, we used $200k$ for all our experiments. On \textit{Census} and \textit{Covertype}, we used $k$ values $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$ as in. On the benchmark instances, we settled on $k \in \{10, 20, 30, 40, 50\}$ as a reasonable trade-off between running time and dataset size.
+
+
+
+\subsection{Results}
+
+
