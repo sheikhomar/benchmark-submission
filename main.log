@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.26)  10 AUG 2021 14:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.26)  17 AUG 2021 15:21
 entering extended mode
 **./main.tex
 (main.tex
@@ -660,32 +660,53 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \ALC@tlm=\skip73
 \algorithmicindent=\skip74
 )
+(C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.st
+y
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen259
+\lightrulewidth=\dimen260
+\cmidrulewidth=\dimen261
+\belowrulesep=\dimen262
+\belowbottomsep=\dimen263
+\aboverulesep=\dimen264
+\abovetopsep=\dimen265
+\cmidrulesep=\dimen266
+\cmidrulekern=\dimen267
+\defaultaddspace=\dimen268
+\@cmidla=\count322
+\@cmidlb=\count323
+\@aboverulesep=\dimen269
+\@belowrulesep=\dimen270
+\@thisruleclass=\count324
+\@lastruleclass=\count325
+\@thisrulewidth=\dimen271
+)
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
 pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count322
+\l__color_backend_stack_int=\count326
 \l__pdf_internal_box=\box101
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -721,7 +742,7 @@ LaTeX Font Info:    ... okay on input line 141.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 141.
+Package hyperref Info: Link coloring OFF on input line 144.
 
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -734,11 +755,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 titlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count323
+\c@section@level=\count327
 )
-LaTeX Info: Redefining \ref on input line 141.
-LaTeX Info: Redefining \pageref on input line 141.
-LaTeX Info: Redefining \nameref on input line 141.
+LaTeX Info: Redefining \ref on input line 144.
+LaTeX Info: Redefining \pageref on input line 144.
+LaTeX Info: Redefining \nameref on input line 144.
  (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
@@ -747,16 +768,16 @@ LaTeX Info: Redefining \nameref on input line 141.
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
 .mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count324
-\scratchdimen=\dimen259
+\scratchcounter=\count328
+\scratchdimen=\dimen272
 \scratchbox=\box102
-\nofMPsegments=\count325
-\nofMParguments=\count326
+\nofMPsegments=\count329
+\nofMParguments=\count330
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count327
-\MPscratchDim=\dimen260
-\MPnumerator=\count328
-\makeMPintoPDFobject=\count329
+\MPscratchCnt=\count331
+\MPscratchDim=\dimen273
+\MPnumerator=\count332
+\makeMPintoPDFobject=\count333
 \everyMPtoPDFconversion=\toks33
 )
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
@@ -772,20 +793,20 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 158
+LaTeX Font Info:    Trying to load font information for U+msa on input line 162
 .
 
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 158
+LaTeX Font Info:    Trying to load font information for U+msb on input line 162
 .
 
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (intro.tex
-Underfull \hbox (badness 1715) in paragraph at lines 11--15
+Underfull \hbox (badness 1715) in paragraph at lines 11--13
 \OT1/cmr/m/n/10 Eu-clidean space where $\OML/cmm/m/it/10 z \OT1/cmr/m/n/10 = 2$
  and $[](\OML/cmm/m/it/10 x; y\OT1/cmr/m/n/10 ) =
  []
@@ -794,59 +815,157 @@ Underfull \hbox (badness 1715) in paragraph at lines 11--15
 
 
 ])
-(preliminaries.tex) (algorithms.tex) (benchmark.tex
+(preliminaries.tex) (algorithms.tex
+Underfull \hbox (badness 1558) in paragraph at lines 14--16
+[]\OT1/cmr/m/n/10 The pop-u-lar $\OML/cmm/m/it/10 k$\OT1/cmr/m/n/10 -means++ al
+-go-
+ []
+
+
+Underfull \hbox (badness 3271) in paragraph at lines 14--16
+\OT1/cmr/m/n/10 rithm [[]] com-putes a set of cen-ters $\OML/cmm/m/it/10 K$ \OT
+1/cmr/m/n/10 by
+ []
+
+
+Underfull \hbox (badness 2617) in paragraph at lines 14--16
+\OT1/cmr/m/n/10 it-er-a-tively sam-pling a point pro-por-tion-ate to
+ []
+
+
+Underfull \hbox (badness 1275) in paragraph at lines 16--17
+\OT1/cmr/m/n/10 ity clus-ter-ing al-go-rithm BIRCH [[]] with the
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+[]\OT1/cmr/m/n/10 Feldman,
+ []
+
+
+Underfull \hbox (badness 4181) in paragraph at lines 30--31
+\OT1/cmr/m/n/10 Schmidt, and Sohler [[]] showed that pro-
+ []
+
+) (benchmark.tex
 Underfull \hbox (badness 4084) in paragraph at lines 1--1
 []\OT1/cmr/bx/n/10 Hardness of Core-set Eval-u-a-tion and a
  []
 
-) (evaluation.tex) (conclusion.tex) (main.bbl
-Underfull \hbox (badness 1694) in paragraph at lines 37--42
+) (evaluation.tex
+Underfull \vbox (badness 6396) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[][][][]$\OT1/cmtt/m/n/8 https : / / archive . ics . uci . edu / ml / datasets 
+/ US + Census +
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[][][][]$\OT1/cmtt/m/n/8 http : / / homepages . uni-[]paderborn . de / frahling
+ /
+ []
+
+
+Underfull \hbox (badness 3977) in paragraph at lines 9--17
+ \OT1/cmr/bx/n/10 4.2 Datasets[][] \OT1/cmr/m/n/10 We use three com-mon real-wo
+rld
+ []
+
+[3]) (conclusion.tex) (main.bbl
+Underfull \hbox (badness 1616) in paragraph at lines 16--21
+\OT1/cmr/m/it/9 of the Eigh-teenth An-nual ACM-SIAM Sym-po-sium
+ []
+
+
+Underfull \hbox (badness 1596) in paragraph at lines 50--57
+[]\OT1/cmr/m/n/9 Michael B. Co-hen, Sam El-der, Cameron Musco,
+ []
+
+
+Underfull \hbox (badness 1694) in paragraph at lines 59--64
 []\OT1/cmr/m/n/9 Vincent Cohen-Addad, David Saulpic, and Chris
  []
 
 
-Underfull \vbox (badness 1558) has occurred while \output is active []
+Underfull \hbox (badness 1694) in paragraph at lines 66--70
+[]\OT1/cmr/m/n/9 Vincent Cohen-Addad, David Saulpic, and Chris
+ []
 
-) [2]
-(main.aux)
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
+Underfull \hbox (badness 3646) in paragraph at lines 147--153
+[]\OT1/cmr/m/n/9 Jan-Philipp W. Kapp-meier, Daniel R. Schmidt,
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1406) in paragraph at lines 175--181
+[]\OT1/cmr/m/n/9 Sepideh Ma-habadi, Kon-stantin Makarychev, Yury
+ []
+
+
+Underfull \hbox (badness 1515) in paragraph at lines 226--232
+\OT1/cmr/m/n/9 In Matthias Muller-Hannemann and Re-nato Fon-
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5])
+[6
+
+] (main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E6A4FE74AB5E059CC3E85D7615647CF8;530.
+(rerunfilecheck)             Checksum: A90DCB96304B9E22E972D22A4253713D;1239.
  ) 
 Here is how much of TeX's memory you used:
- 16161 strings out of 479321
- 261555 string characters out of 2855152
- 580365 words of memory out of 3000000
- 33317 multiletter control sequences out of 15000+600000
- 415982 words of font info for 75 fonts, out of 8000000 for 9000
+ 16303 strings out of 479321
+ 263614 string characters out of 2855152
+ 585178 words of memory out of 3000000
+ 33417 multiletter control sequences out of 15000+600000
+ 415813 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,13n,131p,521b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,11n,131p,1084b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\t
 crm0700.pk> <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
 /dpi600\tcrm0600.pk> <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
-nappen/ec/dpi600\tcrm0800.pk> <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/au672776/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/au672776/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/au67277
-6/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/U
-sers/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
-12.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmmi7.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmmi9.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/au672776/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/au672776/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/au672776
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/User
-s/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pf
-b><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmsy7.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/au672776/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/au672776/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/au672776/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (2 pages, 228251 bytes).
+nappen/ec/dpi600\tcrm1000.pk><C:/Users/au672776/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/au672776/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/au672776/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/au67
+2776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C
+:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mmi5.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmmi7.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmmi8.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/au672776/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/au672776/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/au672
+776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/U
+sers/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6
+.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr7.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmr8.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/au672776/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/au672776/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/au672776/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/
+au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmti10.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmti9.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/au672776/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/au672776/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (6 pages, 343679 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
- 25 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 311 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

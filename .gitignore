@@ -18,3 +18,13 @@ main.log
 main.out
 main.pdf
 main.synctex.gz
+main.pdf
+*.log
+*.log
+main.aux
+main.bbl
+main.blg
+main.log
+main.out
+main.pdf
+main.synctex.gz

@@ -8,6 +8,8 @@ Though the algorithms vary in details, coreset constructions come in one of the 
 
 Of course, there exist algorithms that draw on techniques from both, see for example~\cite{Cohen-AddadSS21}. In what follows, we will survey implementations of various coreset constructions that we will evaluate later.
 
+\chris{This sucks. Explain better.}
+
 \begin{description}
 \item[StreamKM++~\cite{AckermannMRSLS12}] The popular $k$-means++ algorithm~\cite{ArV07} computes a set of centers $K$ by iteratively sampling a point proportionate to $\min_{q\in K} \dist^2(p,q)$ and adding it to $K$. The procedure terminates once the desired number of centers has been reached. The first center is typically picked uniformly at random.
 The StreamKM++ paper runs the $k$-means++ algorithms for $T$ iterations, where $T$ is the desired coreset size. At the end, every point $q$ in $K$ is weighted by the number of points in $A$ closest to it. While the construction has elements of important sampling, the analysis is largely movement-based.

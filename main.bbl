@@ -62,6 +62,12 @@ Vincent Cohen{-}Addad, David Saulpic, and Chris Schwiegelshohn.
   {STOC} '21: 53rd Annual {ACM} {SIGACT} Symposium on Theory of Computing,
   Virtual Event, Italy, June 21-25, 2021}, pages 169--182. {ACM}, 2021.
 
+\bibitem{cohen2021new}
+Vincent Cohen-Addad, David Saulpic, and Chris Schwiegelshohn.
+\newblock A new coreset framework for clustering.
+\newblock In {\em Proceedings of the 53rd Annual ACM SIGACT Symposium on Theory
+  of Computing}, pages 169--182, 2021.
+
 \bibitem{ElkinFN17}
 Michael Elkin, Arnold Filtser, and Ofer Neiman.
 \newblock Terminal embeddings.
