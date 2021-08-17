@@ -182,9 +182,11 @@ Unauthorized reproduction of this article is prohibited}}
 %\setcounter{page}{1}%Leave this line commented out.
 
 \begin{abstract}  
-Coresets are among the most popular paradigms for summarizing data. In particular, there exist many highly performance coresets for clustering problems such as $k$-means in both theory and practice. Curiously, there exists little work on comparing the quality of available $k$-means coresets. 
+Coresets are among the most popular paradigms for summarizing data. In particular, there exist many high performance coresets for clustering problems such as $k$-means in both theory and practice. Curiously, there exists little work on comparing the quality of available $k$-means coresets. 
 
-In this paper we perform such an evaluation. First, we show that it is computationally hard to compare the quality of not only two different coreset algorithms, but also of two different output of a (randomized) coreset algorithm. To this end, we propose and analyse a benchmark for coreset evaluation. Using this benchmark and real-world data sets, we conduct an exhaustive evaluation of the most commonly used coreset implementations.
+In this paper we perform such an evaluation. First, we show that it is computationally hard to compare the quality of not only two different coreset algorithms, but also of two different output of a (randomized) coreset algorithm.
+In order to perform an empirical evaluation, we therefore have to work with heuristics. 
+To this end, we propose and analyse a benchmark for coreset comparison. Using this benchmark and real-world data sets, we conduct an exhaustive evaluation of the most commonly used coreset implementations.
 \end{abstract}
 
 \input{intro}

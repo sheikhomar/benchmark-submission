@@ -1,10 +1,23 @@
 \begin{thebibliography}{10}
 
+\bibitem{AckermannMRSLS12}
+Marcel~R. Ackermann, Marcus M{\"{a}}rtens, Christoph Raupach, Kamil Swierkot,
+  Christiane Lammersen, and Christian Sohler.
+\newblock Streamkm++: {A} clustering algorithm for data streams.
+\newblock {\em {ACM} Journal of Experimental Algorithmics}, 17(1), 2012.
+
 \bibitem{AHV05}
 Pankaj~K. Agarwal, Sariel Har-Peled, and Kasturi~R. Varadarajan.
 \newblock Geometric approximation via coresets.
 \newblock In {\em Combinatorial and computational geometry, MSRI}, pages 1--30.
   University Press, 2005.
+
+\bibitem{ArV07}
+David Arthur and Sergei Vassilvitskii.
+\newblock k-means++: the advantages of careful seeding.
+\newblock In {\em Proceedings of the Eighteenth Annual {ACM-SIAM} Symposium on
+  Discrete Algorithms, {SODA} 2007, New Orleans, Louisiana, USA, January 7-9,
+  2007}, pages 1027--1035, 2007.
 
 \bibitem{BecchettiBC0S19}
 Luca Becchetti, Marc Bury, Vincent Cohen{-}Addad, Fabrizio Grandoni, and Chris
@@ -33,12 +46,26 @@ Ke~Chen.
   {E}uclidean spaces and their applications.
 \newblock {\em {SIAM} J. Comput.}, 39(3):923--947, 2009.
 
+\bibitem{CEMMP15}
+Michael~B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina
+  Persu.
+\newblock Dimensionality reduction for k-means clustering and low rank
+  approximation.
+\newblock In {\em Proceedings of the Forty-Seventh Annual {ACM} on Symposium on
+  Theory of Computing, {STOC} 2015, Portland, OR, USA, June 14-17, 2015}, pages
+  163--172, 2015.
+
 \bibitem{Cohen-AddadSS21}
 Vincent Cohen{-}Addad, David Saulpic, and Chris Schwiegelshohn.
 \newblock A new coreset framework for clustering.
 \newblock In Samir Khuller and Virginia~Vassilevska Williams, editors, {\em
   {STOC} '21: 53rd Annual {ACM} {SIGACT} Symposium on Theory of Computing,
   Virtual Event, Italy, June 21-25, 2021}, pages 169--182. {ACM}, 2021.
+
+\bibitem{ElkinFN17}
+Michael Elkin, Arnold Filtser, and Ofer Neiman.
+\newblock Terminal embeddings.
+\newblock {\em Theor. Comput. Sci.}, 697:1--36, 2017.
 
 \bibitem{FL11}
 Dan Feldman and Michael Langberg.
@@ -47,11 +74,40 @@ Dan Feldman and Michael Langberg.
   Computing, {STOC} 2011, San Jose, CA, USA, 6-8 June 2011}, pages 569--578,
   2011.
 
+\bibitem{FeldmanL11}
+Dan Feldman and Michael Langberg.
+\newblock A unified framework for approximating and clustering data.
+\newblock In {\em Proceedings of the 43rd {ACM} Symposium on Theory of
+  Computing, {STOC} 2011, San Jose, CA, USA, 6-8 June 2011}, pages 569--578,
+  2011.
+
+\bibitem{FSS13}
+Dan Feldman, Melanie Schmidt, and Christian Sohler.
+\newblock Turning big data into tiny data: Constant-size coresets for
+  \emph{k}-means, {PCA} and projective clustering.
+\newblock In {\em Proceedings of the Twenty-Fourth Annual {ACM-SIAM} Symposium
+  on Discrete Algorithms, {SODA} 2013, New Orleans, Louisiana, USA, January
+  6-8, 2013}, pages 1434--1453, 2013.
+
 \bibitem{FeldmanSS20}
 Dan Feldman, Melanie Schmidt, and Christian Sohler.
 \newblock Turning big data into tiny data: Constant-size coresets for k-means,
   pca, and projective clustering.
 \newblock {\em {SIAM} J. Comput.}, 49(3):601--657, 2020.
+
+\bibitem{FGSSS13}
+Hendrik Fichtenberger, Marc Gill{\'{e}}, Melanie Schmidt, Chris Schwiegelshohn,
+  and Christian Sohler.
+\newblock {BICO:} {BIRCH} meets coresets for k-means clustering.
+\newblock In {\em Algorithms - {ESA} 2013 - 21st Annual European Symposium,
+  Sophia Antipolis, France, September 2-4, 2013. Proceedings}, pages 481--492,
+  2013.
+
+\bibitem{FrahlS2005}
+Gereon Frahling and Christian Sohler.
+\newblock Coresets in dynamic geometric data streams.
+\newblock In {\em Proceedings of the 37th Annual {ACM} Symposium on Theory of
+  Computing ({STOC})}, pages 209--217, 2005.
 
 \bibitem{HaK07}
 Sariel Har{-}Peled and Akash Kushal.
@@ -81,7 +137,22 @@ Piotr Indyk, Sepideh Mahabadi, Shayan~Oveis Gharan, and Alireza Rezaei.
   Symposium on Discrete Algorithms, {SODA} 2020, Salt Lake City, UT, USA,
   January 5-8, 2020}, pages 1675--1694. {SIAM}, 2020.
 
+\bibitem{KappmeierS015}
+Jan{-}Philipp~W. Kappmeier, Daniel~R. Schmidt, and Melanie Schmidt.
+\newblock Solving k-means on high-dimensional big data.
+\newblock In Evripidis Bampis, editor, {\em Experimental Algorithms - 14th
+  International Symposium, {SEA} 2015, Paris, France, June 29 - July 1, 2015,
+  Proceedings}, volume 9125 of {\em Lecture Notes in Computer Science}, pages
+  259--270. Springer, 2015.
+
 \bibitem{LS10}
+Michael Langberg and Leonard~J. Schulman.
+\newblock Universal $\varepsilon$-approximators for integrals.
+\newblock In {\em Proceedings of the Twenty-First Annual {ACM-SIAM} Symposium
+  on Discrete Algorithms, {SODA} 2010, Austin, Texas, USA, January 17-19,
+  2010}, pages 598--607, 2010.
+
+\bibitem{LangbergS10}
 Michael Langberg and Leonard~J. Schulman.
 \newblock Universal $\varepsilon$-approximators for integrals.
 \newblock In {\em Proceedings of the Twenty-First Annual {ACM-SIAM} Symposium
@@ -93,6 +164,14 @@ Alaa Maalouf, Ibrahim Jubran, and Dan Feldman.
 \newblock Fast and accurate least-mean-squares solvers.
 \newblock In {\em Advances in Neural Information Processing Systems}, pages
   8307--8318, 2019.
+
+\bibitem{MahabadiMMR18}
+Sepideh Mahabadi, Konstantin Makarychev, Yury Makarychev, and Ilya~P.
+  Razenshteyn.
+\newblock Nonlinear dimension reduction via outer bi-lipschitz extensions.
+\newblock In {\em Proceedings of the 50th Annual {ACM} {SIGACT} Symposium on
+  Theory of Computing, {STOC} 2018, Los Angeles, CA, USA, June 25-29, 2018},
+  pages 1088--1101, 2018.
 
 \bibitem{MRM21}
 Tung Mai, Anup~B. Rao, and Cameron Musco.
@@ -109,6 +188,20 @@ Alexander Munteanu, Chris Schwiegelshohn, Christian Sohler, and David~P.
   Information Processing Systems 2018, NeurIPS 2018, December 3-8, 2018,
   Montr{\'{e}}al, Canada}, pages 6562--6571, 2018.
 
+\bibitem{NaN18}
+Shyam Narayanan and Jelani Nelson.
+\newblock Optimal terminal dimensionality reduction in euclidean space.
+\newblock In Moses Charikar and Edith Cohen, editors, {\em Proceedings of the
+  51st Annual {ACM} {SIGACT} Symposium on Theory of Computing, {STOC} 2019,
+  Phoenix, AZ, USA, June 23-26, 2019}, pages 1064--1069. {ACM}, 2019.
+
+\bibitem{SSS19}
+Melanie Schmidt, Chris Schwiegelshohn, and Christian Sohler.
+\newblock Fair coresets and streaming algorithms for fair k-means.
+\newblock In {\em Approximation and Online Algorithms - 17th International
+  Workshop, {WAOA} 2019, Munich, Germany, September 12-13, 2019, Revised
+  Selected Papers}, pages 232--251, 2019.
+
 \bibitem{SohlerW18}
 Christian Sohler and David~P. Woodruff.
 \newblock Strong coresets for k-median and subspace approximation: Goodbye
@@ -116,5 +209,32 @@ Christian Sohler and David~P. Woodruff.
 \newblock In {\em 59th {IEEE} Annual Symposium on Foundations of Computer
   Science, {FOCS} 2018, Paris, France, October 7-9, 2018}, pages 802--813,
   2018.
+
+\bibitem{SoW18}
+Christian Sohler and David~P. Woodruff.
+\newblock Strong coresets for k-median and subspace approximation: Goodbye
+  dimension.
+\newblock {\em CoRR}, abs/1809.02961, 2018.
+
+\bibitem{VenkatasubramanianW11}
+Suresh Venkatasubramanian and Qiushi Wang.
+\newblock The johnson-lindenstrauss transform: An empirical study.
+\newblock In Matthias M{\"{u}}ller{-}Hannemann and Renato Fonseca~F. Werneck,
+  editors, {\em Proceedings of the Thirteenth Workshop on Algorithm Engineering
+  and Experiments, {ALENEX} 2011, Holiday Inn San Francisco Golden Gateway, San
+  Francisco, California, USA, January 22, 2011}, pages 164--173. {SIAM}, 2011.
+
+\bibitem{Wei16}
+Dennis Wei.
+\newblock A constant-factor bi-criteria approximation guarantee for k-means++.
+\newblock In Daniel~D. Lee, Masashi Sugiyama, Ulrike von Luxburg, Isabelle
+  Guyon, and Roman Garnett, editors, {\em Advances in Neural Information
+  Processing Systems 29: Annual Conference on Neural Information Processing
+  Systems 2016, December 5-10, 2016, Barcelona, Spain}, pages 604--612, 2016.
+
+\bibitem{ZRL97}
+Tian Zhang, Raghu Ramakrishnan, and Miron Livny.
+\newblock {BIRCH:} {A} new data clustering algorithm and its applications.
+\newblock {\em Data Min. Knowl. Discov.}, 1(2):141--182, 1997.
 
 \end{thebibliography}
