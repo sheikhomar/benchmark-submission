@@ -95,3 +95,6 @@ As for the benchmark dataset, instances can be generated via three parameters; t
 	\end{center}
 % 	}
 \end{table}
+
+\subsection{Algorithm Parameters}
+We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{FGSSS13, ackermann2012streamkmpp}. For the target coreset size, we used $200k$ for all our experiments. On \textit{Census} and \textit{Covertype}, we used $k$ values $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$ as in. On the benchmark instances, we settled on $k \in \{10, 20, 30, 40, 50\}$ as a reasonable trade-off between running time and dataset size.
