@@ -1,4 +1,5 @@
 \section{Hardness of Coreset Evaluation and a Benchmark}
+\label{sec:benchmark}
 
 In this section, we first show that it is in general co-NP hard to evaluate the coreset distortion, given two point sets $A$ and $B$. Thereafter we describe the benchmark and it's properties.
 
@@ -28,9 +29,8 @@ For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i
 (v_i^{\ell-1})_1 \cdot \mathds{1}_k
 \end{bmatrix}$. Finally, set the column $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, of $A$ to be $k^{\alpha-a}$ stacks of $v_b^{a+1}$.
 
-\omar{For me, it is a bit more clear if we used $v^1_i$ instead of $v_i$. Then we change $1 < \ell \leq \alpha$}
 
-To get a better feel for the construction, we have given two example inputs in \cref{fig1}.
+To get a better feel for the construction, we have given two example inputs in Figure 1.
 \begin{figure*}[h]
 \begin{center}
 $$ 

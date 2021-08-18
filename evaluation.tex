@@ -1,5 +1,11 @@
 \section{Experiments} \label{sec:experiments}
-In this section, we describe our experimental evaluation of four widely used algorithms on real-world datasets and our benchmark. The goal is to assess the quality of the generated $k$-means coresets. On that account, we measure the distortion. In addition, we want to measure how noise reduction affects the coreset quality. For that, we create PCA transformed version for each of the real-world datasets. As the evaluated algorithms are randomized, we repeat each experiment ten times, reporting the mean distortion and cost.
+
+We now present the empirical evaluation of these corsets.
+We ran two kinds of experiments. On real-world data sets, we merely computed a coreset $\Omega$, followed by running $k$-means++ on $\Omega$. 
+The $k$-means++ algorithm was repeated 10 times, each yielding a solution $\calS_i$, and as the best lower bound on the distortion we used the largest ratio $\max_i\left(\max\left(\frac{\cost_A(\calS_i)}{\cost_{\Omega}(\calS_i)},\frac{\cost_{\Omega}(\calS_i)}{\cost_A(\calS_i)}\right)\right)$.
+For the benchmark, we used the evaluation as proposed in Section~\ref{sec:benchmark}. In addition, we also determined the distortion via simply running the $k$-means++ algorithm. 
+
+Except for BICO, which is deterministic, this experiment was repeated for each coreset algorithm $10$ times. We aggregated the reported distortions by taking the median over all $10$ evaluations. In addition, we also preprocessed the data using the dimension reduction techniques described in Section~\ref{sec:algorithms}.
 
 
 \subsection{Datasets}
@@ -102,6 +108,8 @@ We followed the same experimental procedure with respect to the choice of parame
 \subsection{Setup}
 We implemented Sensitivity Sampling, Group Sampling and StreamKM++ in C++17 using Boost and Blaze libraries. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. We used gcc 9.3.0 to compile the source code.
 The experiments were performed on an Intel i7 machine (8 core, 3.4 GHz and 32 GB RAM) and an Intel i9 server (14 core, 3.3 GHz and 256 GB RAM).
+
+\subsection{Results}
 
 \begin{figure*}
   \includegraphics[width=.65\linewidth]{figures/distortions-Tower.pdf}
