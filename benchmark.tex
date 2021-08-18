@@ -16,7 +16,7 @@ We remark that the possible values for $\varepsilon_0$ are determined by the cur
 \subsection{Benchmark Construction}
 
 In this section, we describe our benchmark. The benchmark has a parameters $\alpha$ which controls the number of points and dimensions.
-For a given value of $k$ the benchmark consists of $n=k^\alpha$ points and $d=\alpha \cdot k$ rows.
+For a given value of $k$ the benchmark consists of $n=k^\alpha$ points and $d=\alpha \cdot k$ dimensions.
 It is recursively constructed as follows.
 
 Denote by $\mathds{1}_k$ the $k$-dimensional all $1$ vector and by $v_i$ the $k$ dimensional vector with entries $(v_i)_j = \begin{cases}-\frac{1}{k} & \text{if } i\neq j\\
@@ -27,6 +27,8 @@ For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i
 \vdots \\
 (v_i^{\ell-1})_1 \cdot \mathds{1}_k
 \end{bmatrix}$. Finally, set the column $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, of $A$ to be $k^{a}$ stacks of $v_b^{\alpha-a}$.
+
+\omar{For me, it is a bit more clear if we used $v^1_i$ instead of $v_i$. Then we change $1 < \ell \leq \alpha$}
 
 To get a better feel for the construction, we have given two example inputs in \cref{fig1}.
 \begin{figure*}[h]
@@ -59,6 +61,7 @@ $$
 \caption{Benchmark construction for $k=2$ and $\alpha=3$ (left) and $k=3$ and $\alpha=2$ (right).}
 \end{figure*}
 \chris{TODO: Omar could you please rearrange the matrix on the right side in the figure such that it is consistent with the notation? We are generating them left to right, this matrix is written right to left.}
+\omar{I tried to follow recursive formula for $k=3$ and $\alpha=2$ and arrived at the matrix in the figure. I think, the formula matches with the matrix in figure 1.}
 
 We now summarize the key properties of the benchmark.
 To this end, we require a few notions.
@@ -67,7 +70,7 @@ For a clustering $\mathcal{C}=\{C_1,\ldots ,C_k\}$, we define that the $n\times 
 $$ \tilde X_{i,j} = \begin{cases}1 & \text{if } A_i\in C_j \\
 0 & \text{else.} \end{cases}$$
 Furthermore, we will also use the $n\times k$ normalized clustering matrix $ X$ defined as
-$$ \tilde X_{i,j} = \begin{cases}\frac{1}{\sqrt{|C_i|}} & \text{if } A_i\in C_j \\
+$$ X_{i,j} = \begin{cases}\frac{1}{\sqrt{|C_i|}} & \text{if } A_i\in C_j \\
 0 & \text{else.} \end{cases}$$
 We also recall the following lemma which will allow us to express the $k$-means cost of a clustering $\mathcal{C}$ with optimally chosen centers in terms of the cost of $X$ and $A$.
 \begin{lemma}[Folklore]
@@ -97,7 +100,7 @@ The first and second property ensure that (equally good) solutions we use for ev
 The third property is important as these are the only clusterings the (standard) coreset guarantee has to apply to. 
 
 
-The solutions we consider as given as follows. For the columns $a\cdot k+1,\ldots (a+1)\cdot k$, we define the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ with 
+The solutions we consider are given as follows. For the columns $a\cdot k+1,\ldots (a+1)\cdot k$, we define the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ with 
 $A_i\in C_j^a$ if and only if $A_{i,j} > 0$. Let $\tilde X^a$ and $X^{a}$ denote the indicator matrix and clustering matrix, respectively, as induced by $\mathcal{C}^{a}$.
 
 
