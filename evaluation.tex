@@ -6,7 +6,7 @@ In this section, we describe our experimental evaluation of four widely used alg
 We use three common real-world datasets for evaluating $k$-means coresets 
 ---
 \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}},
-\textit{Covertype}\footnote{https://archive.ics.uci.edu/ml/datasets/covertype}, and 
+\textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}}, and 
 \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}
 ---
 and several instances of the proposed benchmark. 
@@ -99,7 +99,9 @@ We followed the same experimental procedure with respect to the choice of parame
 
 
 
-\subsection{Results}
+\subsection{Setup}
+We implemented Sensitivity Sampling, Group Sampling and StreamKM++ in C++17 using Boost and Blaze libraries. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. We used gcc 9.3.0 to compile the source code.
+The experiments were performed on an Intel i7 machine (8 core, 3.4 GHz and 32 GB RAM) and an Intel i9 server (14 core, 3.3 GHz and 256 GB RAM).
 
 \begin{figure*}
   \includegraphics[width=.65\linewidth]{figures/distortions-Tower.pdf}
