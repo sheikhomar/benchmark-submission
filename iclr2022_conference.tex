@@ -7,6 +7,52 @@
 
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage[capitalize]{cleveref}
+
+\usepackage{hyperref}
+
+\usepackage{amsthm}
+\usepackage{amsfonts}           % \mathbb
+\usepackage{amssymb}             % proof
+\usepackage{xspace}             % \xspace
+\usepackage{graphicx}
+\usepackage{adjustbox}          % \adjustbox 
+\usepackage{multicol}            
+\usepackage{url}
+\usepackage{enumerate, enumitem}  %enumerate environment with optional argument
+\usepackage{subcaption}
+% \usepackage[usenames]{xcolor} % for coordinating edits
+\newcommand{\sout}[1]{\st{#1}}
+\usepackage{hyperref}
+\usepackage{amsmath, hyperref, nicefrac}
+\usepackage[capitalize]{cleveref}
+\usepackage{thm-restate}
+\usepackage{parskip}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{dsfont}
+\newcommand\dsone{\mathds{1}}
+
+
+
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{fact}{Fact}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{cond}{Condition}[section]
+\newtheorem{property}{Property}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\newtheorem{Conjecture}{Conjecture}[section]
+%\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Definition}{Definition}[section]
+\newtheorem{Lemma}{Lemma}[section]
+\newtheorem{Remark}{Remark}[section]
+
+
+
 
 
 \title{An Empirical Evaluation of $k$-Means Coresets}
@@ -43,8 +89,64 @@ Address \\
 % puts 3 of 4 authors names on the first line, and the last on the second
 % line, try using \AND instead of \And before the third author name.
 
+
+\colorlet{darkgreen}{green!45!black}
+
+% \newcommand{\R}{\mathbb{R}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\etal}{et al.\xspace}
+\newcommand{\dist}{\text{dist}}
+% \newcommand{\eps}{\varepsilon}
+\newcommand{\opt}{\text{OPT}}
+\newcommand{\cost}{\text{cost}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\bvf}{\mathbf{f}}
+\newcommand{\bp}{\mathbf{p}}
+
+\newcommand{\by}{\mathbf{p}}
+
+% \newcommand{\E}{\mathbb{E}}
+\newcommand{\pr}{\mathbb{P}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\bI}{\bar{I}_i}
+\newcommand{\cand}{\mathbb{C}}
+\newcommand{\greedy}{\mathfrak{c}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\poly}{\text{poly}}
+\newcommand{\alg}{\greedy}
+\newcommand{\centers}{\mathcal{C}}
+\newcommand{\coreset}{\Omega}
+\newcommand{\offset}{F}
+\newcommand{\weight}{f}
+\newcommand{\inner}{R_I}
+\newcommand{\out}{R_O}
+\newcommand{\main}{R_M}
+\newcommand{\size}{\Gamma}
+\newcommand{\polylog}{\text{polylog}}
+
+\newcommand{\valuedelta}{\frac{\log^2 1/\eps}{2^{O(z\log z)}\min(\eps^2, \eps^z)}\left(k \log |\cand| + \log \log (1/\eps) + \log(1/\pi)\right)}
+
+\newcommand\chris[1]{\textcolor{blue}{Chris: #1}}
+\newcommand\omar[1]{\textcolor{green!60!black}{Omar: #1}}
+
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
+
+
 
 %\iclrfinalcopy % Uncomment for camera-ready version, but NOT for submission.
 \begin{document}
@@ -69,9 +171,9 @@ To this end, we propose and analyse a benchmark for coreset comparison. Using th
 
 \input{benchmark}
 
-\input{evaluation}
+% \input{evaluation}
 
-\input{conclusion}
+% \input{conclusion}
 
 
 % \subsubsection*{Acknowledgments}
