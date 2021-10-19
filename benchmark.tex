@@ -16,7 +16,7 @@ We remark that the possible values for $\varepsilon_0$ are determined by the cur
 
 \subsection{Benchmark Construction}
 
-In this section, we describe our benchmark. The benchmark has a parameters $\alpha$ which controls the number of points and dimensions.
+In this section, we describe our benchmark. The benchmark has a parameter $\alpha$ which controls the number of points and dimensions.
 For a given value of $k$ the benchmark consists of $n=k^\alpha$ points and $d=\alpha \cdot k$ dimensions.
 It is recursively constructed as follows.
 
@@ -76,7 +76,7 @@ $$
 
 We now summarize the key properties of the benchmark.
 To this end, we require a few notions.
-Let $A$ be the input matrix. We slightly abuse notation an refer to $A_i$ as both the $i$th point as well as the $i$th row of the matrix $A$.
+Let $A$ be the input matrix. We slightly abuse notation and refer to $A_i$ as both the $i$th point as well as the $i$th row of the matrix $A$.
 For a clustering $\mathcal{C}=\{C_1,\ldots ,C_k\}$, we define that the $n\times k$ indicator matrix $\tilde X$ induced by $\mathcal{C}$ via
 $$ \tilde X_{i,j} = \begin{cases}1 & \text{if } A_i\in C_j \\
 0 & \text{else.} \end{cases}$$
@@ -129,7 +129,7 @@ Thus, the two clusters induced by the columns formed by concatenating the vector
 For any $C_j^a$, we have $\cost_{C_j^a}(\{\mu(C_j^a)\}) = (\alpha-1)\cdot k^{\alpha-2}\cdot (k-1)$.
 \end{fact}
 \begin{proof}
-Without loss of generality, we consider $C_1^0$; the proof is analogous for the other choices of $j$ and $a$. We first note that for any point $A_i \in C_1^0$, the coordinates $A_{i,\ell}$ are identical for $\ell <k$. Furthermore for the column $\ell\geq k$, we have by construction $\sum_{A_i\in C_j} A_{i,\ell} = k^{\alpha-1}\cdot \frac{k-1}{k} + (k^{\alpha}-k^{\alpha-1})\frac{1}{k}=k^{\alpha-1}\cdot (\frac{k-1}{k} - (k-1)\frac{1}{k}) = 0.$ Therefore, the mean of $C_1^0$ satisfies $\mu(C_1^0)_{\ell} = \begin{cases}A_{i,\ell} &\text{if }\ell<k \\
+Without loss of generality, we consider $C_1^0$; \jesper{Not sure, what goes on here - "costCa" sits on top of "choices"} the proof is analogous for the other choices of $j$ and $a$. We first note that for any point $A_i \in C_1^0$, the coordinates $A_{i,\ell}$ are identical for $\ell <k$. Furthermore for the column $\ell\geq k$, we have by construction $\sum_{A_i\in C_j} A_{i,\ell} = k^{\alpha-1}\cdot \frac{k-1}{k} + (k^{\alpha}-k^{\alpha-1})\frac{1}{k}=k^{\alpha-1}\cdot (\frac{k-1}{k} - (k-1)\frac{1}{k}) = 0.$ Therefore, the mean of $C_1^0$ satisfies $\mu(C_1^0)_{\ell} = \begin{cases}A_{i,\ell} &\text{if }\ell<k \\
 0 &\text{else.}\end{cases}$. 
 Thus, the cost is precisely $(\alpha-1)\cdot k^{\alpha-1}\cdot \left(\left(\frac{k-1}{k}\right)^2 + \left(\frac{1}{k}\right)^2 \right)=(\alpha-1)\cdot k^{\alpha-2}\cdot (k-1)$.
 \end{proof}
@@ -157,7 +157,7 @@ Consider the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ for some $a$ 
 We use $w(C_i^a \cap \Omega):=\sum_{p\in C_i^a \cap \Omega} w(p)$ to denote the mass of points of $C_i^a$ in $\Omega$.
 For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\varepsilon)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)\leq |C_i| (1-\varepsilon)$, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the total number of thus placed centers.
 
-We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and Fact \ref{fact:opt}, we may write for any deficient cluster $C_i^a$
+We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and Fact \ref{fact:opt}\jesper{Why is Lemma and Fact now capitalized?}, we may write for any deficient cluster $C_i^a$
 $\cost_{C_i^a}(\calS) = \cost_{C_j^a}(\{\mu(C_j^a)\}) + k^{\alpha-1}\|\mu(C_j^a)-\mu(C_h^a)\|_2^2$, where $C_h^a$ is a non-deficient cluster.
 Thus, the cost is due to Fact \ref{fact:cost}
 \begin{eqnarray*}
@@ -177,6 +177,6 @@ If there are many deficient clusters, then this will also be the overall distort
 
 \subsection{Further Extensions}
 
-On the benchmark we considered here, both Sensitivity Sampling, as well as Group Sampling are similar to uniform sampling and, indeed, uniform sampling could be used to construct a good coreset. We can eliminate uniform sampling as a viable algorithm for this instance by combining multiple benchmarks $B_1,\ldots B_t$ with $\sum_{i=1}^t  k_i =k$. Each benchmark then has size $\sum_{i=1}^t  k_i^{\alpha}$. We then adding an additive offset to the coordinates of each benchmark such that they do not interfere. In this case, uniform sampling does not work if the values of the $k_i$ are different enough. Since it is well known that uniform sampling is not a viable coreset algorithm in both theory and practice, we only used the basic benchmark for our evaluations.
+On the benchmark we considered here, both Sensitivity Sampling, as well as Group Sampling are similar to uniform sampling and, indeed, uniform sampling could be used to construct a good coreset. We can eliminate uniform sampling as a viable algorithm for this instance by combining multiple benchmarks $B_1,\ldots B_t$ with $\sum_{i=1}^t  k_i =k$. Each benchmark then has size $\sum_{i=1}^t  k_i^{\alpha}$. We then add an additive offset to the coordinates of each benchmark such that they do not interfere. In this case, uniform sampling does not work if the values of the $k_i$ are different enough. Since it is well known that uniform sampling is not a viable coreset algorithm in both theory and practice, we only used the basic benchmark for our evaluations.
 
 

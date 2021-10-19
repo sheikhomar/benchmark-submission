@@ -5,7 +5,7 @@ One of the main approaches to deal with the scalability issue is to compress or 
 
 Among the most popular and successful paradigms in this line of research are \emph{coresets}. Informally, given a data set $A$, a coreset $S\subset A$ with respect to a given set of queries $Q$ and query function $f: A\times Q \rightarrow \mathbb{R}_{\geq 0}$ approximates the behaviour of $A$ for all queries up to some multiplicative distortion $D$ via
 $$ \sup_{q\in Q} \max\left( \frac{f(S,q)}{f(A,q)},\frac{f(A,q)}{f(S,q)}\right) \leq D.$$
-Coresets have been applied to a number of problems such as computational geometry \cite{AHV05,Chan09}, linear algebra \cite{IndykMGR20,maalouf2019fast}, and machine learning \cite{MRM21,MunteanuSSW18}. But the by far most intensively studied an arguably most successful applications of the coreset framework are $k$-clustering problem.
+Coresets have been applied to a number of problems such as computational geometry \cite{AHV05,Chan09}, linear algebra \cite{IndykMGR20,maalouf2019fast}, and machine learning \cite{MRM21,MunteanuSSW18}. But the by far most intensively studied and arguably most successful applications of the coreset framework are $k$-clustering problem\jesper{plural or singular?}.
 
 Here we are given $n$ points $A$ with (potential unit) weights $w:A\rightarrow \mathbb{R}_{\geq 0}$ in some metric space with distance function $\dist$ and aim to find $k$ centers $C$ such that $$\cost_A(C):= \frac{1}{n} \sum_{p\in A}  \min_{c\in C} w(p)\cdot \dist^z(p,c)$$
 is minimized. The most popular variant of this problem is probably the $k$-means problem in $d$-dimensional Euclidean space where $z=2$ and $\dist(x,y) = \sqrt{\sum_{i=1}^d (x_i-y_i)^2}$.
@@ -31,6 +31,6 @@ Nevertheless, this method of comparison has the drawback that it is more likely 
 \emph{all} candidate solutions $C$. A relaxed guarantee that only preserves optimal or nearly optimal clusterings are known as weak coresets, which often are easier to compute. Thus, if a candidate coreset algorithm outputs a weak coreset, it may have a bad worst-case distortion which would not be visible when evaluating it on the outcome of an optimization algorithm.
 
 Thus, the purpose of this paper is to systematically evaluate the distortion of various coreset algorithms.
-On real world data sets, we observe that while all coreset algorithms are generally able to find a solution with good cost, there is a stark difference in the distortion, which shows a differences between optimization and compression are readily observable in practise.
+On real world data sets, we observe that while all coreset algorithms are generally able to find a solution with good cost, there is a stark difference in the distortion, which shows a differences between optimization and compression are readily observable in practice\jesper{something wrong in this sentence}.
 In addition, we propose a benchmark for $k$-means coresets in Euclidean spaces.
 We argue why this benchmark has properties that make it both hard for all known coreset constructions. We also show how to efficiently estimate the distortion of a candidate coreset on the benchmark.

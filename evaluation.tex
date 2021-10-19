@@ -1,6 +1,6 @@
 \section{Experiments} \label{sec:experiments}
 
-We now present the empirical evaluation of these corsets.
+We now present the empirical evaluation of these coresets.
 We ran two kinds of experiments. On real-world data sets, we merely computed a coreset $\Omega$, followed by running $k$-means++ on $\Omega$. 
 The $k$-means++ algorithm was repeated 10 times, each yielding a solution $\calS_i$, and as the best lower bound on the distortion we used the largest ratio $\max_i\left(\max\left(\frac{\cost_A(\calS_i)}{\cost_{\Omega}(\calS_i)},\frac{\cost_{\Omega}(\calS_i)}{\cost_A(\calS_i)}\right)\right)$.
 For the benchmark, we used the evaluation as proposed in Section~\ref{sec:benchmark}. In addition, we also determined the distortion via simply running the $k$-means++ algorithm. 
@@ -16,7 +16,7 @@ We use three common real-world datasets for evaluating $k$-means coresets
 \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}
 ---
 and several instances of the proposed benchmark. 
-The \textit{Census} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. \textit{Covertype} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{AckermannMRSLS12}. \textit{Tower} is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. This dataset consists of 4,915,200 rows and 3 columns. To evaluate how denoising effects the quality of the output, we apply SVD on \textit{Census} and \textit{Covertype} using the $k$ largest singular values. Note that we do not reduce the number of dimensions of the original datasets. As for the benchmark dataset, instances are generated to match roughly the sizes of the real-world datasets. The chosen parameters values and the corresponding dataset sizes are shown in ~\cref{tab:benchmark-instances-overview}. 
+The \textit{Census} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. \textit{Covertype} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{AckermannMRSLS12}. \textit{Tower} is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. This dataset consists of 4,915,200 rows and 3 columns. To evaluate how denoising effects the quality of the output, we apply SVD\jesper{Should "SVD" be spelled out? I cannot find it anywhere in the paper. Is it a well known term?} on \textit{Census} and \textit{Covertype} using the $k$ largest singular values. Note that we do not reduce the number of dimensions of the original datasets. As for the benchmark dataset, instances are generated to match roughly the sizes of the real-world datasets. The chosen parameters values and the corresponding dataset sizes are shown in ~\cref{tab:benchmark-instances-overview}. 
 % We generated a set of instances with no scaling i.e., $\beta=1.0$ (referred to as \textit{Benchmark-1.0}) and with maximum scaling; $\beta = 2.0$ (\textit{Benchmark-2.0}).
 
 
@@ -101,12 +101,12 @@ The \textit{Census} dataset is a small subset of the Public Use Microdata Sample
 \end{table}
 
 \subsection{Algorithm Parameters}
-We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{FGSSS13, AckermannMRSLS12}. For the target coreset size, we used $200k$ for all our experiments. On \textit{Census} and \textit{Covertype}, we used $k$ values $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$ as in. On the benchmark instances, we settled on $k \in \{10, 20, 30, 40\}$ as a reasonable trade-off between running time and dataset size.
+We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{AckermannMRSLS12, FGSSS13}. For the target coreset size, we used $200k$ for all our experiments. On \textit{Census} and \textit{Covertype}, we used $k$ values $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$. On the benchmark instances, we settled on $k \in \{10, 20, 30, 40\}$ as a reasonable trade-off between running time and dataset size.
 
 
 
 \subsection{Setup}
-We implemented Sensitivity Sampling, Group Sampling and StreamKM++ in C++17 using Boost and Blaze libraries. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. We used gcc 9.3.0 to compile the source code.
+We implemented Sensitivity Sampling, Group Sampling and StreamKM++ in C++17 using Boost and Blaze libraries. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. The source code was compiled with gcc 9.3.0.
 The experiments were performed on an Intel i7 machine (8 core, 3.4 GHz and 32 GB RAM) and an Intel i9 server (14 core, 3.3 GHz and 256 GB RAM).
 
 \subsection{Results}
