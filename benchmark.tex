@@ -27,7 +27,7 @@ For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i
 (v_i^{\ell-1})_2 \cdot \mathds{1}_k \\
 \vdots \\
 (v_i^{\ell-1})_1 \cdot \mathds{1}_k
-\end{bmatrix}$. Finally, set the column $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, of $A$ to be $k^{\alpha-a}$ stacks of $v_b^{a+1}$.
+\end{bmatrix}$. Finally, set the column $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, of $A$ to be $k^{\alpha-a}$ \omar{$k^{\alpha-a+1}$?} stacks of $v_b^{a+1}$.
 
 
 To get a better feel for the construction, we have given two example inputs in Figure 1.
@@ -138,7 +138,7 @@ Finally, we show that the means for the clustering $\mathcal{C}^{a}$ also induce
 
 \begin{fact}
 \label{fact:opt}
-For a clustering $\mathcal{C}^{a}$, let $\mu(C_j^{a})$ denote the mean of cluster $C_j^a$. Then every point of is assigned to its closest center. Moreover, every point $A_i$ of $C_j^a$ has equal distance to any center $\mu(C_h^{a})$ with $h\neq j$.
+For a clustering $\mathcal{C}^{a}$, let $\mu(C_j^{a})$ denote the mean of cluster $C_j^a$. Then every point of \omar{$A_i$ of $C_j^a$} is assigned to its closest center. Moreover, every point $A_i$ of $C_j^a$ has equal distance to any center $\mu(C_h^{a})$ with $h\neq j$.
 \end{fact}
 \begin{proof}
 Again, we assume without loss of generality $a=0$.
@@ -155,7 +155,7 @@ We now describe how we use the benchmark to measure the distortion of a coreset.
 
 Consider the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ for some $a$ and let $\Omega$ with weights $w:\Omega\rightarrow \mathbb{R}_{\geq 0}$ be the coreset. 
 We use $w(C_i^a \cap \Omega):=\sum_{p\in C_i^a \cap \Omega} w(p)$ to denote the mass of points of $C_i^a$ in $\Omega$.
-For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\varepsilon)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)\leq |C_i| (1-\varepsilon)$, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the total number of thus placed centers.
+For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\varepsilon)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)\leq |C_i| (1-\varepsilon)$ \omar{Replace $\leq$ with $<$?}, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the total number of thus placed centers. \omar{Replace all $C_i$ with $C_i^a$?}
 
 We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and Fact \ref{fact:opt}\jesper{Why is Lemma and Fact now capitalized?}, we may write for any deficient cluster $C_i^a$
 $\cost_{C_i^a}(\calS) = \cost_{C_j^a}(\{\mu(C_j^a)\}) + k^{\alpha-1}\|\mu(C_j^a)-\mu(C_h^a)\|_2^2$, where $C_h^a$ is a non-deficient cluster.
