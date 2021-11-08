@@ -9,14 +9,28 @@ Except for BICO, which is deterministic, this experiment was repeated for each c
 
 
 \subsection{Datasets}
-We use three common real-world datasets for evaluating $k$-means coresets 
----
-\textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}},
-\textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}}, and 
-\textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}
----
-and several instances of the proposed benchmark. 
-The \textit{Census} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. \textit{Covertype} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{AckermannMRSLS12}. \textit{Tower} is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. This dataset consists of 4,915,200 rows and 3 columns. To evaluate how denoising effects the quality of the output, we apply SVD\jesper{Should "SVD" be spelled out? I cannot find it anywhere in the paper. Is it a well known term?} on \textit{Census} and \textit{Covertype} using the $k$ largest singular values. Note that we do not reduce the number of dimensions of the original datasets. As for the benchmark dataset, instances are generated to match roughly the sizes of the real-world datasets. The chosen parameters values and the corresponding dataset sizes are shown in ~\cref{tab:benchmark-instances-overview}. 
+To evaluate the behavior of different algorithms, we conducted experiments on 5 real-world datasets, as shown in~\cref{tab:real-world-datasets-overview}, in addition to our proposed benchmark.
+
+% The real-world datasets include
+% \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}},
+% \textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}}, and 
+% \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}
+% ---
+% and several instances of the proposed benchmark.
+
+The \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. 
+
+\textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{AckermannMRSLS12}.
+
+\textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}} is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. This dataset consists of 4,915,200 rows and 3 columns. 
+We used the datasets \textit{Census}, \textit{Covertype} and \textit{Tower} as these are often used to evaluate the performance of coreset algorithms. 
+
+To include larger datasets in evaluation, we used \textit{Caltech} and \textit{NYTimes}. \textit{Caltech} was inspired by~\cite{FGSSS13}. It was created by computing SIFT features from the images in the Caltech101 dataset\footnote{\url{http://www.vision.caltech.edu/Image_Datasets/Caltech101/}}. This database contains pictures of objects partitioned into 101 categories. Disregarding the categories, we concatenated the 128-dimensional SIFT vectors from each image into one large data matrix. 
+We decided to include the \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} dataset in our experiments as the number of dimensions is very large. \textit{NYTimes} is composed of the word counts of 300,000 news articles from The New York Times. The vocabulary size of the text collection is 102,660.
+
+To understand how denoising effects the quality of the coreset outputs, we applied Principal Component Analysis (PCA) on \textit{Caltech}, \textit{Census} and \textit{Covertype} by computing the $k$ singular vectors corresponding to the largest singular values. For these three datasets, we preserve the dimensions of the original datasets. For the \textit{NYTimes} dataset, we experimented with both PCA and terminal embeddings to reduce the number of dimensions.
+
+As for the benchmark dataset, instances were generated to roughly match the sizes of the real-world datasets. The chosen parameters values and the corresponding dataset sizes are shown in ~\cref{tab:benchmark-instances-overview}. 
 % We generated a set of instances with no scaling i.e., $\beta=1.0$ (referred to as \textit{Benchmark-1.0}) and with maximum scaling; $\beta = 2.0$ (\textit{Benchmark-2.0}).
 
 
@@ -35,6 +49,10 @@ The \textit{Census} dataset is a small subset of the Public Use Microdata Sample
 		    & Dimensions
             \\
 		\midrule
+		\textit{Caltech}
+    		& 3,680,458
+    		& 128
+    		\\
 		\textit{Census}
     		& 2,458,285
     		& 68
@@ -43,7 +61,11 @@ The \textit{Census} dataset is a small subset of the Public Use Microdata Sample
     	    & 581,012
     		& 54
     		\\
-        \textit{Tover}
+	    \textit{NYTimes}
+    	    & 500,000
+    		& 102,660
+    		\\
+        \textit{Tower}
             & 4,915,200
     		& 3
     		\\
@@ -101,13 +123,12 @@ The \textit{Census} dataset is a small subset of the Public Use Microdata Sample
 \end{table}
 
 \subsection{Algorithm Parameters}
-We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{AckermannMRSLS12, FGSSS13}. For the target coreset size, we used $200k$ for all our experiments. On \textit{Census} and \textit{Covertype}, we used $k$ values $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$. On the benchmark instances, we settled on $k \in \{10, 20, 30, 40\}$ as a reasonable trade-off between running time and dataset size.
+We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{AckermannMRSLS12, FGSSS13}. For the target coreset size, we used $200k$ for all our experiments. On \textit{Caltech}, \textit{Census},  \textit{Covertype} and \textit{NYTimes}, we used $k$ values in $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$. On the benchmark instances, we settled on $k \in \{10, 20, 30, 40\}$ as a reasonable trade-off between running time and dataset size.
 
 
 
 \subsection{Setup}
-We implemented Sensitivity Sampling, Group Sampling and StreamKM++ in C++17 using Boost and Blaze libraries. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. The source code was compiled with gcc 9.3.0.
-The experiments were performed on an Intel i7 machine (8 core, 3.4 GHz and 32 GB RAM) and an Intel i9 server (14 core, 3.3 GHz and 256 GB RAM).
+We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ in C++. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. The source code was compiled with gcc 9.3.0. The experiments were performed on a machine with 14 cores (3.3 GHz) and 256 GB of memory.
 
 \subsection{Results}
 
