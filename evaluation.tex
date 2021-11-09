@@ -133,6 +133,8 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 \subsection{Results}
 
 \begin{figure*}
+  \caption{The distortions of the evaluated algorithms on 5 real-world datasets and on the proposed benchmark. Lower bar is better.}
+  \label{fig:distortions}
   \includegraphics[width=.65\linewidth]{figures/distortions-Tower.pdf}
   \newline \newline
   \subfloat{
@@ -150,39 +152,28 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
   }
   \newline \newline
   \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/distortions-Caltech.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/distortions-Caltech+PCA.pdf}
+  }
+  \newline \newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/distortions-NYTimes+RP.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/distortions-NYTimes+PCA.pdf}
+  }
+  \newline \newline
+  \subfloat{
+    \\[1ex]
     \includegraphics[width=0.5\textwidth]{figures/distortions-Benchmark.pdf}
   }
-%   \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/results-Benchmark-2.0.pdf}
-%   }
-  \label{fig:results}
-  \caption{The average distortion of the evaluated algorithms on different datasets.}
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/boxplot-Benchmark-GS-SS-StreamKM.pdf}
+  }
+  
 \end{figure*}
 
-
-
-
-\begin{figure*}
-  \includegraphics[width=.5\linewidth]{figures/costs-Tower.pdf}
-  \newline \newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/costs-Covertype.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/costs-Covertype+PCA.pdf}
-  }
-  \newline \newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/costs-Census.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/costs-Census+PCA.pdf}
-  }
-  \newline \newline
-  \label{fig:costs}
-  \caption{The costs of the evaluated algorithms on \textit{Tower}, \textit{Covertype}, and \textit{Census} datasets.}
-\end{figure*}
-
-
-All four algorithms are equally matched when comparing them using the cost (see \cref{fig:costs}). For BICO and StreamKM++, the results are inline with 
-Looking only at the costs for different values of $k$, we observe that all four algorithms are equally matched. 
+We summarized the results in \cref{fig:distortions}.
+All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. \textit{Tower} is a simple dataset with very low dimensionality ($d=3$). The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO. The performance does not change much despite reducing noise with PCA. Differences in performance are more stark on \textit{Census} and \textit{Caltech} where methods based on importance sampling are better. For \textit{Census} ($d=68$), the preprocessing step with PCA improves the performance of BICO and Ray Maker slightly for lower values of $k$. The distortions of BICO and Ray Maker are reduced markedly on \textit{Caltech} ($d=128$) after applying PCA. We observe that BICO and Ray Maker have very large distortions on \textit{NYTimes} when random projections are used for dimensionality reduction. On the \textit{Benchmark} dataset, Ray Maker is the worst while Sensitivty Sampling and Group Sampling are the best. StreamKM++ performs also very well compared to BICO.
