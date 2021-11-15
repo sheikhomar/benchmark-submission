@@ -20,7 +20,7 @@ The outperformance of a coreset algorithm cannot be fully determined by the outc
 % The full picture of which coreset algorithm is best may not be revealed if one simply evaluate coreset algorithms by comparing the best possible clustering in terms of the lowest cost.
 Therefore, departing from other works which evaluate coreset algorithms based on the output of an optimization algorithm, we instead separate the task of computing a coreset from the optimization task and evaluate the quality of coresets in isolation. 
 
-% Why benchmark?
+% Why benchmark? Because it is certain to be different from optimization.
 It is worthwhile to evaluate coresets on a synthetic data for two reasons. First, it is easier to make a fair evaluation if the synthetic data is known to generate hard instances for any coreset algorithm. Second, the evaluation procedure can consider both good and bad clusterings as they will be known beforehand. These two points are not always clear for real-world data sets.
 
 % Issues with real-world data sets.
@@ -39,9 +39,8 @@ Afterwards, we computed the distortion
       \frac{\cost_{\Omega}(\calS)}{\cost_A(\calS)}
     \right)
 \end{align*}
-For the benchmark, we computed the distortion following the evaluation procedure described in~\cref{sec:benchmark}.
+For the benchmark, we computed the distortion following the evaluation procedure described in~\cref{sec:benchmark}. This experiment was repeated for each coreset algorithm $10$ times. We aggregated the reported distortions by taking the maximum over all $10$ evaluations. In addition, we also preprocessed the data using the dimension reduction techniques described in Section~\ref{sec:algorithms}.
 
-% Describe the "how" - why benchmark. Certain to be different from optimization.
 
 
 % We now present the empirical evaluation of these coresets.
