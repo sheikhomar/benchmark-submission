@@ -51,9 +51,9 @@ For the benchmark, we computed the distortion following the evaluation procedure
 
 
 \subsection{Data sets}
-We conducted our experiments on 5 real-world data sets to study the difference be. 
+We conducted our experiments on 5 real-world data sets to study the difference between coresets and optimization. 
 % To evaluate the behavior of different algorithms on a wide range of real-world data sets, we conducted experiments on 5 data sets, three of which are commonly used to evaluate coresets~\cite{FGSSS13, AckermannMRSLS12}. 
-The sizes of the data sets are summarized in ~\cref{tab:real-world-datasets-overview}. In addition, we used four instances of the proposed benchmark. The instances were generated to match approximately the sizes of the real-world data sets. The chosen parameters values and the corresponding instance sizes are shown in ~\cref{tab:benchmark-instances-overview}. 
+The sizes of the data sets are summarized in ~\cref{tab:real-world-datasets-overview}. Additionally, we evaluated the behavior of the coreset algorithms using four instances of the proposed benchmark. These instances were generated to match approximately the sizes of the real-world data sets. The chosen parameters values and the corresponding instance sizes are shown in ~\cref{tab:benchmark-instances-overview}. 
 % We generated a set of instances with no scaling i.e., $\beta=1.0$ (referred to as \textit{Benchmark-1.0}) and with maximum scaling; $\beta = 2.0$ (\textit{Benchmark-2.0}).
 We now provide a brief description of each of the real-world data sets.
 
@@ -78,7 +78,9 @@ The data set with the least dimensionality is \textit{Tower}\footnote{\url{http:
 
 We decided to include the \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} dataset in our experiments as the number of dimensions is very large. \textit{NYTimes} is composed of the word counts of 300,000 news articles from The New York Times. The vocabulary size of the text collection is 102,660. To make processing feasible, we reduced the number of dimensions to 100 using terminal embeddings.
 
-To understand how denoising effects the quality of the coreset outputs, we applied Principal Component Analysis (PCA) on \textit{Caltech}, \textit{Census} and \textit{Covertype} by computing the $k$ singular vectors corresponding to the largest singular values. For these three datasets, we preserve the dimensions of the original datasets. We did not apply on \textit{Tower} due to the low dimensionality of this data set. For the \textit{NYTimes} dataset, we experimented with both PCA and terminal embeddings.
+To understand how denoising effects the quality of the outputted coresets, we applied Principal Component Analysis (PCA) on \textit{Caltech}, \textit{Census} and \textit{Covertype} by using the $k$ singular vectors corresponding to the largest singular values. For these three datasets, we preserved the dimensions of the original datasets.  
+The \textit{NYTimes} dataset did not permit the preservation of dimensions as the number of dimensions is very large. In this case, we used PCA to reduce the dimensions to $k$.
+We did not perform any preprocessing on \textit{Tower} due to its low dimensionality.
 
 
 
