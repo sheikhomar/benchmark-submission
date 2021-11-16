@@ -220,44 +220,97 @@ We followed the same experimental procedure with respect to the choice of parame
   
 \end{figure*}
 
+\begin{figure*}
+  \caption{The real costs i.e. $\cost_A(\calS)$ of evaluated algorithms on 5 real-world datasets.}
+  \label{fig:real-costs}
+  \includegraphics[width=.66\linewidth]{figures/real-costs-Tower.pdf}
+  \newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
+  }
+  \newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
+  }
+  \newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
+  }
+  \newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes+RP.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
+  }
+  \newline
+  \subfloat{
+    \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
+    \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
+    \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
+    \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
+  }
+\end{figure*}
+
+
+
+
 
 \begin{figure*}
-  \caption{The costs of evaluated algorithms on 5 real-world datasets.}
+  \caption{The coreset costs i.e. $\cost_\Omega(\calS)$ of evaluated algorithms on 5 real-world datasets.}
   \label{fig:coreset-costs}
   \includegraphics[width=.65\linewidth]{figures/coreset-costs-Tower.pdf}
-  \newline \newline
+  \newline
   \subfloat{
     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-Covertype.pdf}
   }
   \subfloat{
     \includegraphics[width=.5\linewidth]{figures/coreset-costs-Covertype+PCA.pdf}
   }
-  \newline \newline
+  \newline
   \subfloat{
     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-Census.pdf}
   }
   \subfloat{
     \includegraphics[width=.5\linewidth]{figures/coreset-costs-Census+PCA.pdf}
   }
-  \newline \newline
+  \newline
   \subfloat{
     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-Caltech.pdf}
   }
   \subfloat{
     \includegraphics[width=.5\linewidth]{figures/coreset-costs-Caltech+PCA.pdf}
   }
-  \newline \newline
+  \newline
   \subfloat{
     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-NYTimes+RP.pdf}
   }
   \subfloat{
     \includegraphics[width=.5\linewidth]{figures/coreset-costs-NYTimes+PCA.pdf}
   }
-  \newline \newline
+  \newline
+%   \subfloat{
+%     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-Benchmark.pdf}
+    
+%   }
   \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/coreset-costs-Benchmark.pdf}
+    \includegraphics[width=0.15\textwidth]{figures/coreset-costs-Benchmark-k10.pdf}
+    \includegraphics[width=0.165\textwidth]{figures/coreset-costs-Benchmark-k20.pdf}
+    \includegraphics[width=0.16\textwidth]{figures/coreset-costs-Benchmark-k30.pdf}
+    \includegraphics[width=0.31\textwidth]{figures/coreset-costs-Benchmark-k40.pdf}
   }
 \end{figure*}
+
+
 
 
 \subsection{Setup}
@@ -279,7 +332,7 @@ For some data sets, optimization is very close to compression.
 Clearly, this is the case for \textit{Tower}. The cost curve in ~\cref{fig:cost-curves-real-world-datasets} for this data set seem to support this claim as the elbow for \textit{Tower} bends the most which indicates that adding more centers help reduce the coreset cost. For BICO, Ray Maker, and StreamKM++, there is a correlation between the steepness of the cost curve for a data set and the distortion of the generated coreset. For data sets where the curve is less steep, we observed higher distortions. The effect is more pronounced for the movement-based algorithms (BICO and Ray Maker) than for StreamKM++ which performs sampling. The other two sampling-based approaches (Group Sampling and Sensitivity Sampling) seem to be free from this behavior as they consistently generate high quality coresets irrespective of how the cost curve bends for a given data set.
 
 \subsubsection*{Movement-based vs Sampling-based Approaches}
-In general, movement-based constructions perform the worst in terms of coreset quality. We observed that BICO and Ray Maker have the highest distortions across all datasets including on the benchmark instances. However, BICO and Ray Maker seem to be better in terms of optimization as their costs were generally lower across the evaluated data sets (see~\cref{fig:coreset-costs}). Curiously, Ray Maker even beats the current state-of-the-art BICO by a small margin on   \textit{Covertype}, \textit{Caltech}, \textit{NYTimes+RP}, and all benchmark instances. \omar{TODO: Discuss with Chris about why Ray Maker is better that SOTA!? A fluke?}
+In general, movement-based constructions perform the worst in terms of coreset quality. We observed that BICO and Ray Maker have the highest distortions across all datasets including on the benchmark instances. However, BICO and Ray Maker seem to be better in terms of optimization as their costs were generally lower across the evaluated data sets (see~\cref{fig:real-costs}). Curiously, Ray Maker even beats the current state-of-the-art BICO by a small margin on   \textit{Covertype}, \textit{Caltech}, \textit{NYTimes+RP}, and all benchmark instances. \omar{TODO: Discuss with Chris about why Ray Maker is better that SOTA!? A fluke?}
 
 Among the sampling-based algorithms, Sensitive Sampling performs the best followed by Group Sampling and StreamKM++. On most data sets, StreamKM++ seems to be on the lowest performer among the three. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers which mimic movement-based algorithms like BICO. Moreover, there is a movement-based component in the analysis of StreamKM++.
 
