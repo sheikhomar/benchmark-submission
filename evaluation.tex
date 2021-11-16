@@ -319,29 +319,28 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 
 
 \subsection{Outcome of Experiments}
-\omar{TODO: Consider removing the entire section, or interweave it with the interpretation section.}
 We summarized the distortions in \cref{fig:distortions}.
 All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO. The performance does not change much despite reducing noise with PCA. Differences in performance are more stark on \textit{Census} and \textit{Caltech} where methods based on importance sampling are better. For \textit{Census} ($d=68$), the preprocessing step with PCA improves the performance of BICO and Ray Maker slightly for lower values of $k$. The distortions of BICO and Ray Maker are reduced markedly on \textit{Caltech} ($d=128$) after applying PCA. We observe that BICO and Ray Maker have very large distortions on \textit{NYTimes} when random projections are used for dimensionality reduction. On the \textit{Benchmark} dataset, Ray Maker is the worst while Sensitivty Sampling and Group Sampling are the best. StreamKM++ performs also very well compared to BICO.
 
 
 \subsection{Interpretation of Experiments}
-\omar{TODO: Write intro here...}
+
 
 \subsubsection*{Optimization versus Compression}
 For some data sets, optimization is very close to compression. 
-Clearly, this is the case for \textit{Tower}. The cost curve in ~\cref{fig:cost-curves-real-world-datasets} for this data set seem to support this claim as the elbow for \textit{Tower} bends the most which indicates that adding more centers help reduce the coreset cost. For BICO, Ray Maker, and StreamKM++, there is a correlation between the steepness of the cost curve for a data set and the distortion of the generated coreset. For data sets where the curve is less steep, we observed higher distortions. The effect is more pronounced for the movement-based algorithms (BICO and Ray Maker) than for StreamKM++ which performs sampling. The other two sampling-based approaches (Group Sampling and Sensitivity Sampling) seem to be free from this behavior as they consistently generate high quality coresets irrespective of how the cost curve bends for a given data set.
+Clearly, this is the case for \textit{Tower}. The cost curve in ~\cref{fig:cost-curves-real-world-datasets} for this data set seem to support this claim as the elbow for \textit{Tower} bends the most which indicates that adding more centers help reduce the cost. For BICO, Ray Maker, and StreamKM++, there is a correlation between the steepness of the cost curve for a data set and the distortion of the generated coreset. For data sets where the curve is less steep, we observed higher distortions. The effect is more pronounced for the movement-based algorithms (BICO and Ray Maker) than for StreamKM++ which performs sampling. The other two sampling-based approaches (Group Sampling and Sensitivity Sampling) seem to be free from this behavior as they consistently generate high quality coresets irrespective of how the cost curve bends for a given data set.
 
 \subsubsection*{Movement-based vs Sampling-based Approaches}
-In general, movement-based constructions perform the worst in terms of coreset quality. We observed that BICO and Ray Maker have the highest distortions across all datasets including on the benchmark instances. However, BICO and Ray Maker seem to be better in terms of optimization as their costs were generally lower across the evaluated data sets (see~\cref{fig:real-costs}). Curiously, Ray Maker even beats the current state-of-the-art BICO by a small margin on   \textit{Covertype}, \textit{Caltech}, \textit{NYTimes+RP}, and all benchmark instances. \omar{TODO: Discuss with Chris about why Ray Maker is better that SOTA!? A fluke?}
-
-Among the sampling-based algorithms, Sensitive Sampling performs the best followed by Group Sampling and StreamKM++. On most data sets, StreamKM++ seems to be on the lowest performer among the three. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers which mimic movement-based algorithms like BICO. Moreover, there is a movement-based component in the analysis of StreamKM++.
+In general, movement-based constructions perform the worst in terms of coreset quality although all five algorithms are equally matched in terms of optimization. \cref{fig:real-costs} shows that the evaluated coreset constructions yield similar clusterings.
+\omar{Figure out why Group Sampling and StreamKM++ perform the worst on the benchmark instances.}
+We observed that BICO and Ray Maker have the highest distortions across all datasets including on the benchmark instances. Among the sampling-based algorithms, Sensitive Sampling performs the best followed by Group Sampling and StreamKM++. Importance sampling seems to be superior than movement-based algorithms. On most data sets, StreamKM++ is the lowest performer among the three sampling-based methods. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers which mimic movement-based algorithms like BICO. Moreover, there is a movement-based component in the analysis of StreamKM++.
 
 
 
 
 
 \subsubsection*{BICO versus StreamKM++}
-The theoretical analysis of the worst case bounds for BICO and StreamKM++ are derived from a movement-based construction. Both methods feature similar bounds as described in~\cref{sec:algorithms}. Surprisingly, the quality of the coresets produced by StreamKM++ is significantly better than what one would expect from the analysis. In terms of distortion StreamKM++ is significantly better than BICO across poetrvarious datasets. This begs the question whether there exist a better theoretical analysis for StreamKM++. We leave this as an open problem for future research.
+The theoretical analysis of the worst case bounds for BICO and StreamKM++ are derived from a movement-based construction. Both methods feature similar bounds as described in~\cref{sec:algorithms}. Surprisingly, the quality of the coresets produced by StreamKM++ is significantly better than what one would expect from the analysis. In terms of distortion StreamKM++ is significantly better than BICO across all datasets, and especially on high dimensionality data. This begs the question whether there exist a better theoretical analysis for StreamKM++. We leave this as an open problem for future research.
 
 
 
@@ -353,19 +352,5 @@ The theoretical analysis of the worst case bounds for BICO and StreamKM++ are de
   \includegraphics[width=1\linewidth]{figures/explained-variance-plot.pdf}
 \end{figure}
 
-On almost all our data sets, the performance seems to improve when input data is preprocessed with PCA. Empirically, the more noise is removed (i.e., small $k$ value), the lower the distortion. Notice that $k$ is the number of principal components that the input data is projected on to. On \textit{Covertype}, PCA does not change the results as almost all the variance in the data is explained by the first five principal components (see~\cref{fig:explained-variance-pca}). 
+On almost all our data sets, the performance improves when input data is preprocessed with PCA, especially for the movement-based algorithms. Empirically, the more noise is removed (i.e., small $k$ value), the lower the distortion. Notice that $k$ is the number of principal components that the input data is projected on to. The rest of the low variance components are treated as noise and removed. Method utilizing sampling (Group Sampling, Sensitivity Sampling and StreamKM++) are less effected by the preprocessing step. On \textit{Covertype}, PCA does not change the distortions by much because almost all the variance in the data is explained by the first five principal components (see~\cref{fig:explained-variance-pca}). As the smallest number of centers $k$ is $10$, the input data is simply being rotated. Similar explanation applies to the \textit{Census} data set. On our two high-dimensionality data sets \textit{Caltech} and \textit{NYTimes}, the quality of the coresets by BICO and Ray Maker improves greatly because the noise removal is more aggressive. Even if the quality is much better for movement-based coreset constructions due to PCA transformation, importance sampling methods are still superior when it comes to the quality of the compression. 
 
-
-
-
-\subsubsection*{Impact of Dimensionality Reduction with Random Projection}
-\begin{itemize}
-    \item Apply Random Projection on Caltech and Census
-\end{itemize}
-
-
-\subsubsection*{Random Projection vs PCA for Dimensionality Reduction}
-\begin{itemize}
-    \item Theory says that PCA has bigger target dimension than terminal embeddings for dimensionality reduction.
-    \item Can we do perform some studies on PCA vs Random Projection for dimensionality reduction?
-\end{itemize}
