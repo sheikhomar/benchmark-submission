@@ -14,32 +14,43 @@
 
 
 \section{Experiments} \label{sec:experiments}
-% Describe the "what": coresets vs optimization. What are we doing? What do we expect?
-In this section, we present an empirical evaluation of $k$-means coreset constructions.
-The outperformance of a coreset algorithm cannot be fully determined by the outcome of an optimization after the coreset is generated because a coreset algorithm may ultimately yield a good clustering yet fail to produce a high quality coreset with low distortion.
-% Therefore, departing from other works which evaluate coreset algorithms based on the output of an optimization algorithm, we instead separate the task of computing a coreset from the optimization task and evaluate the quality of coresets in isolation.
-Therefore, departing from other works which evaluate coreset algorithms based on the output of an optimization algorithm, we would like to study whether there is a difference between optimization and compression.
+In this section, we present a new procedure for evaluating $k$-means coresets. 
+We begin our exposition by motivating why there is a need for a new evaluation procedure. Then we describe the proposed procedure, the data sets used for the empirical evaluation and the experimental setup. Finally, we detail the outcome of the experiments and our observations on the results.
 
-% Why benchmark? Because it is certain to be different from optimization.
-It is worthwhile to evaluate coresets on a synthetic data for two reasons. First, it is easier to make a fair evaluation if the synthetic data is known to generate hard instances for any coreset algorithm. Second, the evaluation procedure can consider both good and bad clusterings as they will be known beforehand. These two points are not always clear for real-world data sets.
 
-% Issues with real-world data sets.
-For real-world data sets, it is not uncommon to observe that $k$-means cost to drop significantly for larger values of $k$. ~\cref{fig:cost-curves-real-world-datasets} illustrate this behavior for several real-world datasets. The more the curve bends, the less of a difference there is between computing a coreset and a clustering with low cost. In this case, a coreset algorithm adding more centers to the coreset will seem to be performing well when evaluating it based on the outcome of the optimization. However, in the benchmark dataset, there is no way to reduce the cost without capturing the right subclusters within the instance. This means that the cost does not decrease markedly beyond a certain value of $k$ even if more centers are added as seen in~\cref{fig:cost-curves-benchmark}. In this work, we nevertheless study real-world data sets to determine whether the difference between coresets and optimization can be observed in these data sets.
+\subsection{Motivation for Introducing New Evaluation Procedure}
+Previous works evaluated coreset algorithms by comparing the cost of applying a coreset algorithm followed by an optimization procedure. The drawback of this type of evaluation is that it mixes up the two separate tasks of coreset construction and optimization. A coreset algorithm may yield a good clustering (with small cost) yet fail to produce a high quality coreset (with small distortion).
+As such, the performance of a coreset algorithm cannot be fully determined by the outcome of the optimization procedure. 
+
+To accurately evaluate a $k$-means coreset in isolation, one would need to come up with a solution i.e., a $k$-center clustering that results in the maximal distortion. In \cref{sec:coreset-evaluation-hard}, we showed that finding such a solution is co-NP hard. How about using a random solution? The issue is that it is not clear how to define a distribution of meaningful solutions from which to sample from. Moreover, a randomly drawn solution, which does not exploit the behavior of a coreset construction, is less likely to yield a worst-case solution in terms of high distortion. A better approach of finding meaningful solutions is to use $k$-means++ as it can uncover cluster structures in the data. Running multiple iterations of $k$-means++ allows us to pick a solution with a high distortion.
 
 
 
 
-% Describe how we measure distortion.
-For estimating the quality of the coresets produced by various coreset algorithms, we computed the distortions on real-world data sets and on the benchmark. On each real-world data set $A$, we first computed a coreset $\Omega$ and then ran $k$-means++ on $\Omega$ to find a set of $k$ centers $\calS$. The $k$-means++ algorithm was repeated 5 times in order to pick the set of centers with the lowest cost on $\Omega$.
-\omar{While writing this, I checked the code and saw that it is picking a set of $k$ centers with the lowest cost! Is this wrong? Should I instead let $k$-means++ generate 5 sets of centers $\calS_1, \calS_2, \cdots, \calS_5$ and then pick the one with largest distortion?}
-Afterwards, we computed the distortion
+
+As a complement to the evaluation procedure above on real-world data sets, we also proposed a synthetic benchmark for two main reasons. 
+% 
+First, the benchmark allows us to quickly find a bad solution because both good and bad clusterings are known a priori. This is difficult on real-world data sets.
+% 
+Second, it is easier to make a fair comparison of different coreset constructions because the benchmark is known to generate hard instances for any coreset algorithm. This is not always the case on real-world data sets.
+For example, it is not uncommon for the $k$-means cost to drop significantly for larger values of $k$ in real-world datasets.
+~\cref{fig:cost-curves-real-world-datasets} illustrate this behavior for several real-world datasets. The more the curve bends, the less of a difference there is between computing a coreset and a clustering with low cost. In this case, a coreset algorithm adding more centers to the coreset will seem to be performing well when evaluating it based on the outcome of the optimization. However, in the benchmark dataset, there is no way of reducing the cost without capturing the right subclusters within the benchmark instance. This means that the cost does not decrease markedly beyond a certain value of $k$ even if more centers are added as depicted in~\cref{fig:cost-curves-benchmark}.
+% In this work, we nevertheless study real-world data sets to determine whether the difference between coresets and optimization can be observed in these data sets.
+
+
+
+
+\subsection{Evaluation Procedure}
+For estimating the quality of the coresets produced by various coreset algorithms, we evaluated the algorithms on both real-world data sets and the proposed benchmark. 
+
+On each real-world data set $A$, we first computed a coreset $\Omega$ and then ran $k$-means++ on $\Omega$ to find a set of $k$ centers $\calS$. The $k$-means++ algorithm was repeated 5 times in order to pick the set of centers with the largest distortion. Recall that distortion is defined as:
 \begin{align*}
     \max\left(
       \frac{\cost_A(\calS)}{\cost_{\Omega}(\calS)},
       \frac{\cost_{\Omega}(\calS)}{\cost_A(\calS)}
     \right)
 \end{align*}
-For the benchmark, we computed the distortion following the evaluation procedure described in~\cref{sec:benchmark}. This experiment was repeated for each coreset algorithm $10$ times. We aggregated the reported distortions by taking the maximum over all $10$ evaluations. In addition, we also preprocessed the data using the dimension reduction techniques described in Section~\ref{sec:algorithms}.
+For the benchmark, we computed the distortion following the evaluation procedure described in~\cref{sec:benchmark}. Due to the stochastic nature of the algorithms, this experiment was repeated $10$ times. We aggregated the reported distortions by taking the maximum over all $10$ evaluations. In addition, we also preprocessed the data using the dimension reduction techniques described in Section~\ref{sec:algorithms}.
 
 
 % We now present the empirical evaluation of these coresets.
@@ -51,33 +62,27 @@ For the benchmark, we computed the distortion following the evaluation procedure
 
 
 \subsection{Data sets}
-We conducted our experiments on 5 real-world data sets to study the difference between coresets and optimization. 
-% To evaluate the behavior of different algorithms on a wide range of real-world data sets, we conducted experiments on 5 data sets, three of which are commonly used to evaluate coresets~\cite{FGSSS13, AckermannMRSLS12}. 
-The sizes of the data sets are summarized in ~\cref{tab:real-world-datasets-overview}. Additionally, we evaluated the behavior of the coreset algorithms using four instances of the proposed benchmark. These instances were generated to match approximately the sizes of the real-world data sets. The chosen parameters values and the corresponding instance sizes are shown in ~\cref{tab:benchmark-instances-overview}. 
+We conducted experiments on 5 real-world data sets. 
+The sizes of these data sets are summarized in ~\cref{tab:real-world-datasets-overview}. In addition, we evaluated the behavior of the coreset algorithms using four instances of the proposed benchmark. These instances were generated to match approximately the sizes of the real-world data sets. The chosen parameters values and the corresponding instance sizes are shown in ~\cref{tab:benchmark-instances-overview}. 
 % We generated a set of instances with no scaling i.e., $\beta=1.0$ (referred to as \textit{Benchmark-1.0}) and with maximum scaling; $\beta = 2.0$ (\textit{Benchmark-2.0}).
 We now provide a brief description of each of the real-world data sets.
-
-% The real-world datasets include
-% \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}},
-% \textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}}, and 
-% \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}
-% ---
-% and several instances of the proposed benchmark.
 
 The \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. 
 
 \textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{AckermannMRSLS12}.
 
-The data set with the least dimensionality is \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}. This data set consists of 4,915,200 rows and 3 features as it is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. 
+The data set with the fewest number of dimensions is \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}. This data set consists of 4,915,200 rows and 3 features as it is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. 
 
 % We used the datasets \textit{Census}, \textit{Covertype} and \textit{Tower} as these are often used to evaluate the performance of coreset algorithms. 
 
 % To include larger datasets in evaluation, we used \textit{Caltech} and \textit{NYTimes}. 
 
-\textit{Caltech} was inspired by~\cite{FGSSS13}. It was created by computing SIFT features from the images in the Caltech101\footnote{\url{http://www.vision.caltech.edu/Image_Datasets/Caltech101/}} image database. This database contains pictures of objects partitioned into 101 categories. Disregarding the categories, we concatenated the 128-dimensional SIFT vectors from each image into one large data matrix inspired by~\cite{FGSSS13}. 
+Inspired by~\cite{FGSSS13}, \textit{Caltech} was created by computing SIFT features from the images in the Caltech101\footnote{\url{http://www.vision.caltech.edu/Image_Datasets/Caltech101/}} image database. This database contains pictures of objects partitioned into 101 categories. Disregarding the categories, we concatenated the 128-dimensional SIFT vectors from each image into one large data matrix. 
 
-We decided to include the \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} dataset in our experiments as the number of dimensions is very large. \textit{NYTimes} is composed of the word counts of 300,000 news articles from The New York Times. The vocabulary size of the text collection is 102,660. To make processing feasible, we reduced the number of dimensions to 100 using terminal embeddings.
+% \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} dataset in our experiments as the number of dimensions is very large.
+\textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} is a dataset composed of the bag-of-words (BOW) representations of 300,000 news articles from The New York Times. The vocabulary size of the text collection is 102,660. Due to the BOW encoding, \textit{NYTimes} has a very large number of dimensions and is highly sparse. To make processing feasible, we reduced the number of dimensions to 100 using terminal embeddings.
 
+\subsection{Preprocessing}
 To understand how denoising effects the quality of the outputted coresets, we applied Principal Component Analysis (PCA) on \textit{Caltech}, \textit{Census} and \textit{Covertype} by using the $k$ singular vectors corresponding to the largest singular values. For these three datasets, we preserved the dimensions of the original datasets.  
 The \textit{NYTimes} dataset did not permit the preservation of dimensions as the number of dimensions is very large. In this case, we used PCA to reduce the dimensions to $k$.
 We did not perform any preprocessing on \textit{Tower} due to its low dimensionality.
@@ -178,7 +183,7 @@ We followed the same experimental procedure with respect to the choice of parame
 
 
 \begin{figure*}
-  \caption{The distortions of the evaluated algorithms on 5 real-world datasets and on the proposed benchmark. Lower bar is better.}
+  \caption{The distortions of the evaluated algorithms on 5 real-world datasets and on the benchmark.}
   \label{fig:distortions}
   \includegraphics[width=.65\linewidth]{figures/distortions-Tower.pdf}
   \newline \newline
@@ -320,19 +325,21 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 
 \subsection{Outcome of Experiments}
 We summarized the distortions in \cref{fig:distortions}.
-All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO. The performance does not change much despite reducing noise with PCA. Differences in performance are more stark on \textit{Census} and \textit{Caltech} where methods based on importance sampling are better. For \textit{Census} ($d=68$), the preprocessing step with PCA improves the performance of BICO and Ray Maker slightly for lower values of $k$. The distortions of BICO and Ray Maker are reduced markedly on \textit{Caltech} ($d=128$) after applying PCA. We observe that BICO and Ray Maker have very large distortions on \textit{NYTimes} when random projections are used for dimensionality reduction. On the \textit{Benchmark} dataset, Ray Maker is the worst while Sensitivty Sampling and Group Sampling are the best. StreamKM++ performs also very well compared to BICO.
+All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO and Group Sampling while Sensitivity Sampling and StreamKM++ perform the best. Differences in performance are more noticeable on \textit{Census}, \textit{Caltech}, and \textit{NYTimes}  where methods based on importance sampling perform much better. Sensitivity Sampling and Group Sampling perform the best, StreamKM++ come in second while BICO and Ray Maker perform the worst across these data sets.
+On the \textit{Benchmark}, Ray Maker is the worst while Sensitivty Sampling and Group Sampling are the best. StreamKM++ performs also very well compared to BICO.
+
+Reducing noise with PCA helped boost the performance on real-world data sets with large number of dimensions. On \textit{Covertype}, PCA does not change the performance numbers by much. On \textit{Census} ($d=68$), the preprocessing step with PCA improves the performance of BICO and Ray Maker slightly for lower values of $k$. The distortions of BICO and Ray Maker are reduced markedly on \textit{Caltech} ($d=128$) after applying PCA. 
 
 
-\subsection{Interpretation of Experiments}
+\subsection{Interpretation of Experimental Results}
 
 
 \subsubsection*{Optimization versus Compression}
 For some data sets, optimization is very close to compression. 
 Clearly, this is the case for \textit{Tower}. The cost curve in ~\cref{fig:cost-curves-real-world-datasets} for this data set seem to support this claim as the elbow for \textit{Tower} bends the most which indicates that adding more centers help reduce the cost. For BICO, Ray Maker, and StreamKM++, there is a correlation between the steepness of the cost curve for a data set and the distortion of the generated coreset. For data sets where the curve is less steep, we observed higher distortions. The effect is more pronounced for the movement-based algorithms (BICO and Ray Maker) than for StreamKM++ which performs sampling. The other two sampling-based approaches (Group Sampling and Sensitivity Sampling) seem to be free from this behavior as they consistently generate high quality coresets irrespective of how the cost curve bends for a given data set.
 
-\subsubsection*{Movement-based vs Sampling-based Approaches}
+\subsubsection*{Movement-based versus Sampling-based Approaches}
 In general, movement-based constructions perform the worst in terms of coreset quality although all five algorithms are equally matched in terms of optimization. \cref{fig:real-costs} shows that the evaluated coreset constructions yield similar clusterings.
-\omar{Figure out why Group Sampling and StreamKM++ perform the worst on the benchmark instances.}
 We observed that BICO and Ray Maker have the highest distortions across all datasets including on the benchmark instances. Among the sampling-based algorithms, Sensitive Sampling performs the best followed by Group Sampling and StreamKM++. Importance sampling seems to be superior than movement-based algorithms. On most data sets, StreamKM++ is the lowest performer among the three sampling-based methods. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers which mimic movement-based algorithms like BICO. Moreover, there is a movement-based component in the analysis of StreamKM++.
 
 
@@ -340,6 +347,7 @@ We observed that BICO and Ray Maker have the highest distortions across all data
 
 
 \subsubsection*{BICO versus StreamKM++}
+Despite having the same worst case bounds, the quality of coresets produced by BICO and StreamKM++ differ significantly.
 The theoretical analysis of the worst case bounds for BICO and StreamKM++ are derived from a movement-based construction. Both methods feature similar bounds as described in~\cref{sec:algorithms}. Surprisingly, the quality of the coresets produced by StreamKM++ is significantly better than what one would expect from the analysis. In terms of distortion StreamKM++ is significantly better than BICO across all datasets, and especially on high dimensionality data. This begs the question whether there exist a better theoretical analysis for StreamKM++. We leave this as an open problem for future research.
 
 
@@ -347,7 +355,7 @@ The theoretical analysis of the worst case bounds for BICO and StreamKM++ are de
 \subsubsection*{Impact of Noise Reduction}
 
 \begin{figure}
-  \caption{The cumulative propotion of explained variance by principal components on various data sets.}
+  \caption{The cumulative propotion of explained variance by principal components on \textit{Caltech}, \textit{Covertype}, and \textit{Census}.}
   \label{fig:explained-variance-pca}
   \includegraphics[width=1\linewidth]{figures/explained-variance-plot.pdf}
 \end{figure}
