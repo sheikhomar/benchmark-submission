@@ -31,6 +31,7 @@ Nevertheless, this method of comparison has the drawback that it is more likely 
 \emph{all} candidate solutions $C$. A relaxed guarantee that only preserves optimal or nearly optimal clusterings are known as weak coresets, which often are easier to compute. Thus, if a candidate coreset algorithm outputs a weak coreset, it may have a bad worst-case distortion which would not be visible when evaluating it on the outcome of an optimization algorithm.
 
 Thus, the purpose of this paper is to systematically evaluate the distortion of various coreset algorithms.
-On real world data sets, we observe that while all coreset algorithms are generally able to find a solution with good cost, there is a stark difference in the distortion, which shows a differences between optimization and compression are readily observable in practice\jesper{something wrong in this sentence}.
+To our knowledge, this is the first work that studies the quality of coreset constructions based on their distortion.
+On real-world data sets, we observe that while all coreset algorithms are generally able to find a solution with good cost, there is a stark difference in the distortion, which shows that differences between optimization and compression are readily observable in practice.
 In addition, we propose a benchmark for $k$-means coresets in Euclidean spaces.
 We argue why this benchmark has properties that make it both hard for all known coreset constructions. We also show how to efficiently estimate the distortion of a candidate coreset on the benchmark.
