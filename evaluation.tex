@@ -43,7 +43,7 @@ For example, it is not uncommon for the $k$-means cost to drop significantly for
 \subsection{Evaluation Procedure}
 For estimating the quality of the coresets produced by various coreset algorithms, we evaluated the algorithms on both real-world data sets and the proposed benchmark. 
 
-On each real-world data set $A$, we first computed a coreset $\Omega$ and then ran $k$-means++ on $\Omega$ to find a set of $k$ centers $\calS$. The $k$-means++ algorithm was repeated 5 times in order to pick the set of centers with the largest distortion. Recall that distortion is defined as:
+On each real-world data set $A$, we first computed a coreset $\Omega$ and then ran $k$-means++ on $\Omega$ to find a set of $k$ centers $\calS$. The $k$-means++ algorithm was repeated 5 times in order to pick the set of centers with the largest distortion. Recall that distortion of a given solution $\calS$ is defined as:
 \begin{align*}
     \max\left(
       \frac{\cost_A(\calS)}{\cost_{\Omega}(\calS)},
@@ -82,10 +82,15 @@ Inspired by~\cite{FGSSS13}, \textit{Caltech} was created by computing SIFT featu
 % \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} dataset in our experiments as the number of dimensions is very large.
 \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} is a dataset composed of the bag-of-words (BOW) representations of 300,000 news articles from The New York Times. The vocabulary size of the text collection is 102,660. Due to the BOW encoding, \textit{NYTimes} has a very large number of dimensions and is highly sparse. To make processing feasible, we reduced the number of dimensions to 100 using terminal embeddings.
 
-\subsection{Preprocessing}
+\subsection{Preprocessing \& Experimental Setup}
 To understand how denoising effects the quality of the outputted coresets, we applied Principal Component Analysis (PCA) on \textit{Caltech}, \textit{Census} and \textit{Covertype} by using the $k$ singular vectors corresponding to the largest singular values. For these three datasets, we preserved the dimensions of the original datasets.  
 The \textit{NYTimes} dataset did not permit the preservation of dimensions as the number of dimensions is very large. In this case, we used PCA to reduce the dimensions to $k$.
 We did not perform any preprocessing on \textit{Tower} due to its low dimensionality.
+
+We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{AckermannMRSLS12, FGSSS13}. For the target coreset size, we used $200k$ for all our experiments. On \textit{Caltech}, \textit{Census},  \textit{Covertype} and \textit{NYTimes}, we used $k$ values in $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$. On the benchmark instances, we settled on $k \in \{10, 20, 30, 40\}$ as a reasonable trade-off between running time and dataset size.
+
+
+We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ in C++. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. The source code was compiled with gcc 9.3.0. The experiments were performed on a machine with 14 cores (3.3 GHz) and 256 GB of memory.
 
 
 
@@ -176,10 +181,6 @@ We did not perform any preprocessing on \textit{Tower} due to its low dimensiona
 	\end{center}
 % 	}
 \end{table}
-
-\subsection{Algorithm Parameters}
-We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{AckermannMRSLS12, FGSSS13}. For the target coreset size, we used $200k$ for all our experiments. On \textit{Caltech}, \textit{Census},  \textit{Covertype} and \textit{NYTimes}, we used $k$ values in $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$. On the benchmark instances, we settled on $k \in \{10, 20, 30, 40\}$ as a reasonable trade-off between running time and dataset size.
-
 
 
 \begin{figure*}
@@ -317,9 +318,6 @@ We followed the same experimental procedure with respect to the choice of parame
 
 
 
-
-\subsection{Setup}
-We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ in C++. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. The source code was compiled with gcc 9.3.0. The experiments were performed on a machine with 14 cores (3.3 GHz) and 256 GB of memory.
 
 
 
