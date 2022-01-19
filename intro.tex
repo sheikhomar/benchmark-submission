@@ -8,7 +8,12 @@ $$ \sup_{q\in Q} \max\left( \frac{f(S,q)}{f(A,q)},\frac{f(A,q)}{f(S,q)}\right) \
 Coresets have been applied to a number of problems such as computational geometry \cite{AHV05,Chan09}, linear algebra \cite{IndykMGR20,maalouf2019fast}, and machine learning \cite{MRM21,MunteanuSSW18}. But the by far most intensively studied and arguably most successful applications of the coreset framework are $k$-clustering problem\jesper{plural or singular?}.
 
 Here we are given $n$ points $A$ with (potential unit) weights $w:A\rightarrow \mathbb{R}_{\geq 0}$ in some metric space with distance function $\dist$ and aim to find $k$ centers $C$ such that $$\cost_A(C):= \frac{1}{n} \sum_{p\in A}  \min_{c\in C} w(p)\cdot \dist^z(p,c)$$
+\omar{Shouldn't the cost be:
+$$\cost_A(C):= \sum_{p\in A} w(p)\cdot  \min_{c\in C} \dist^z(p,c)$$
+}
 is minimized. The most popular variant of this problem is probably the $k$-means problem in $d$-dimensional Euclidean space where $z=2$ and $\dist(x,y) = \sqrt{\sum_{i=1}^d (x_i-y_i)^2}$.
+
+
 
 A $(k,\varepsilon)$-coreset is now a subset $\Omega\subset A$ with weights $w:\Omega\rightarrow \mathbb{R}_{\geq 0}$ such that for any set of $k$ centers $C$
 \begin{equation}
