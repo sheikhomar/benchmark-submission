@@ -5,7 +5,7 @@ One of the main approaches to deal with the scalability issue is to compress or 
 
 Among the most popular and successful paradigms in this line of research are \emph{coresets}. Informally, given a data set $A$, a coreset $S\subset A$ with respect to a given set of queries $Q$ and query function $f: A\times Q \rightarrow \mathbb{R}_{\geq 0}$ approximates the behaviour of $A$ for all queries up to some multiplicative distortion $D$ via
 $$ \sup_{q\in Q} \max\left( \frac{f(S,q)}{f(A,q)},\frac{f(A,q)}{f(S,q)}\right) \leq D.$$
-Coresets have been applied to a number of problems such as computational geometry \cite{AHV05,Chan09}, linear algebra \cite{IndykMGR20,maalouf2019fast}, and machine learning \cite{MRM21,MunteanuSSW18}. But the by far most intensively studied and arguably most successful applications of the coreset framework are $k$-clustering problem\jesper{plural or singular?}.
+Coresets have been applied to a number of problems such as computational geometry \cite{AHV05,Chan09}, linear algebra \cite{IndykMGR20,maalouf2019fast}, and machine learning \cite{MRM21,MunteanuSSW18}. But the by far most intensively studied and arguably most successful applications of the coreset framework is the $k$-clustering problem.
 
 Here we are given $n$ points $A$ with (potential unit) weights $w:A\rightarrow \mathbb{R}_{\geq 0}$ in some metric space with distance function $\dist$ and aim to find $k$ centers $C$ such that $$\cost_A(C):= \frac{1}{n} \sum_{p\in A}  \min_{c\in C} w(p)\cdot \dist^z(p,c)$$
 \omar{Shouldn't the cost be:
@@ -20,23 +20,23 @@ A $(k,\varepsilon)$-coreset is now a subset $\Omega\subset A$ with weights $w:\O
 \label{eq:coreset}
 \sup_{C} \max\left( \frac{\cost_A(C)}{\cost_{\Omega}(C)},\frac{\cost_{\Omega}(C)}{\cost_{A}(C)}\right) \leq 1+\varepsilon.
 \end{equation}
+The coreset definition in \cref{eq:coreset} provides an upper bound for the distortion of all candidate solutions i.e., all possible $k$ clusterings. 
+A \emph{weak coreset} is a relaxed guarantee that holds for optimal or nearly optimal clusterings of $A$ instead of all clusterings.
 
 In a long line of work spanning the last 20 years\cite{BecchettiBC0S19,BravermanJKW21,Chen09,FL11,FeldmanSS20,
 HaM04,HaK07,huang2020coresets,BravermanJKW21,LS10,SohlerW18}, the size of coresets has been steadily improved with the current state of the art yielding a coreset with $\tilde{O}(k\varepsilon^{-4})$ points for a distortion $D\leq (1+\varepsilon)$ due to Cohen-Addad, Saulpic, and Schwiegelshohn \cite{Cohen-AddadSS21}\footnote{We use $\tilde O(x)$ to hide $\log^c x$ terms for any constant $c$.}.
 
-While we have a good grasp of the theoretical guarantees of these algorithms, our understanding of the empirical performance is somewhat lacking.
-This is due to two main reasons.
-\begin{itemize}
-\item Experiments are geared towards optimization: Often experiments on coresets are conducted as follows. First, compute coreset(s) with the available algorithm(s). Then run an optimization algorithm. The \emph{best} coreset algorithm is considered to be the one resulting in the clustering with smallest cost. 
-\item Evaluating the quality of a coreset is hard: Given two point sets $A$ and $B$, it is computationally hard to determine the distortion when considering $B$ as a candidate coreset of $A$ with respect to the $k$-means objective.  Thus, while we can default to the worst case guarantees from theory, it is difficult to compare the output of two coreset algorithms for a given data set. 
-\end{itemize}
+While we have a good grasp of the theoretical guarantees of these algorithms, our understanding of the empirical performance is somewhat lacking. Verifying coresets is important in practice. However, it is not trivial to assess the quality of a coreset. To accurately evaluate a given coreset, we would need to come up with a $k$ clustering $C$ which results in a maximal distortion. Our conjecture is that finding such a worst-case solution in the general case is co-NP hard, while we know it is co-NP hard for weak coresets.
 
-These two reasons are related. Due to the difficulty of evaluating coresets, comparing the outcome of an optimization algorithm is a simple and reasonable alternative. To some degree the fact that a clustering has low cost is also a global property of this clustering.
-Nevertheless, this method of comparison has the drawback that it is more likely to measure the performance of the underlying optimization problem, rather than evaluating coresets. Moreover, coresets as defined in \cref{eq:coreset} have a guarantee for
-\emph{all} candidate solutions $C$. A relaxed guarantee that only preserves optimal or nearly optimal clusterings are known as weak coresets, which often are easier to compute. Thus, if a candidate coreset algorithm outputs a weak coreset, it may have a bad worst-case distortion which would not be visible when evaluating it on the outcome of an optimization algorithm.
+Due to this difficulty, a common heuristic for evaluating coresets is as follows~\cite{AckermannMRSLS12,FGSSS13}. First, compute a coreset $\Omega$ with the available algorithm(s) using some input data $A$. Then, run an optimization algorithm on $\Omega$ to compute a $k$ clustering $C$. For randomized algorithms, the two steps are repeated multiple times. The \emph{best} coreset algorithm is considered to be the one which yields a clustering with the smallest cost.
 
-Thus, the purpose of this paper is to systematically evaluate the distortion of various coreset algorithms.
-To our knowledge, this is the first work that studies the quality of coreset constructions based on their distortion.
-On real-world data sets, we observe that while all coreset algorithms are generally able to find a solution with good cost, there is a stark difference in the distortion, which shows that differences between optimization and compression are readily observable in practice.
-In addition, we propose a benchmark for $k$-means coresets in Euclidean spaces.
-We argue why this benchmark has properties that make it both hard for all known coreset constructions. We also show how to efficiently estimate the distortion of a candidate coreset on the benchmark.
+The drawback of this evaluation method is that it mixes up the two separate tasks of coreset construction and optimization.
+A coreset algorithm may yield a good clustering (with small cost) yet fail to produce a high quality coreset (with small distortion).
+Consequently, the method is more likely to measure the performance of the underlying optimization problem, rather than evaluating coresets.
+
+
+The purpose of this study is to systematically evaluate the quality of various coreset algorithms for $k$-means. As such, we develop a new evaluation procedure which estimates the distortion of coreset algorithms. On real-world data sets, we observe that while the evaluated coreset algorithms are generally able to find solutions with comparable costs, there is a stark difference in their distortions. This shows that differences between optimization and compression are readily observable in practice.
+
+As a complement to our evaluation procedure on real-world data sets, we propose a benchmark framework for generating synthetic data sets. We argue why this benchmark has properties that results in hard instances for all known coreset constructions. We also show how to efficiently estimate the distortion of a candidate coreset on the benchmark.
+
+

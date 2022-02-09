@@ -159,7 +159,7 @@ Consider the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ for some $a$ 
 We use $w(C_i^a \cap \Omega):=\sum_{p\in C_i^a \cap \Omega} w(p)$ to denote the mass of points of $C_i^a$ in $\Omega$.
 For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\varepsilon)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)\leq |C_i| (1-\varepsilon)$ \omar{Replace $\leq$ with $<$?}, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the total number of thus placed centers. \omar{Replace all $C_i$ with $C_i^a$?}
 
-We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and Fact \ref{fact:opt}\jesper{Why is Lemma and Fact now capitalized?}, we may write for any deficient cluster $C_i^a$
+We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and Fact \ref{fact:opt}, we may write for any deficient cluster $C_i^a$
 $\cost_{C_i^a}(\calS) = \cost_{C_j^a}(\{\mu(C_j^a)\}) + k^{\alpha-1}\|\mu(C_j^a)-\mu(C_h^a)\|_2^2$, where $C_h^a$ is a non-deficient cluster.
 Thus, the cost is due to Fact \ref{fact:cost}
 \begin{eqnarray*}
