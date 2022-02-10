@@ -1,0 +1,75 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: sea2022.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: plainurl.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: references.bib
+A bad cross reference---entry "BecchettiBC0S19"
+refers to entry "DBLP:conf/stoc/2019", which doesn't exist
+A bad cross reference---entry "SohlerW18"
+refers to entry "DBLP:conf/focs/2018", which doesn't exist
+A bad cross reference---entry "HuangJV19"
+refers to entry "DBLP:conf/nips/2019", which doesn't exist
+A bad cross reference---entry "SSS19"
+refers to entry "DBLP:conf/waoa/2019", which doesn't exist
+A bad cross reference---entry "ArV07"
+refers to entry "DBLP:conf/soda/2007", which doesn't exist
+A bad cross reference---entry "KappmeierS015"
+refers to entry "DBLP:conf/wea/2015", which doesn't exist
+A bad cross reference---entry "MahabadiMMR18"
+refers to entry "DBLP:conf/stoc/2018", which doesn't exist
+Warning--I didn't find a database entry for "DBLP:conf/waoa/2019"
+Warning--I didn't find a database entry for "DBLP:conf/nips/2019"
+Warning--I didn't find a database entry for "DBLP:conf/stoc/2019"
+Warning--I didn't find a database entry for "DBLP:conf/soda/2007"
+Warning--I didn't find a database entry for "DBLP:conf/stoc/2018"
+Warning--I didn't find a database entry for "DBLP:conf/wea/2015"
+Warning--I didn't find a database entry for "DBLP:conf/focs/2018"
+You've used 40 entries,
+            2882 wiz_defined-function locations,
+            942 strings with 16072 characters,
+and the built_in function-call counts, 24039 in all, are:
+= -- 2590
+> -- 815
+< -- 32
++ -- 292
+- -- 246
+* -- 1385
+:= -- 3174
+add.period$ -- 155
+call.type$ -- 40
+change.case$ -- 228
+chr.to.int$ -- 0
+cite$ -- 40
+duplicate$ -- 837
+empty$ -- 2232
+format.name$ -- 246
+if$ -- 6260
+int.to.chr$ -- 0
+int.to.str$ -- 40
+missing$ -- 40
+newline$ -- 227
+num.names$ -- 104
+pop$ -- 455
+preamble$ -- 1
+purify$ -- 188
+quote$ -- 0
+skip$ -- 1675
+stack$ -- 0
+substring$ -- 1393
+swap$ -- 406
+text.length$ -- 32
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 160
+warning$ -- 0
+while$ -- 195
+width$ -- 42
+write$ -- 509
+(There were 7 error messages)
