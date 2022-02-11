@@ -2,65 +2,38 @@
 
 
 \section{Experiments} \label{sec:experiments}
-In this section, we present a new procedure for evaluating $k$-means coresets. 
-We begin our exposition by motivating why there is a need for a new evaluation procedure. Then we describe the proposed procedure, the data sets used for the empirical evaluation and the experimental setup. Finally, we detail the outcome of the experiments and our observations on the results.
-
-
-\subsection{Motivation for Introducing New Evaluation Procedure}
-\chris{I think we mentioned most of this before? I am currently in favour of removing it. We need to shorten the paper anyway for space reasons.}
-Previous works evaluated coreset algorithms on real-world data by comparing the cost of applying a coreset algorithm followed by an optimization procedure~\cite{AckermannMRSLS12,FGSSS13}. Although this approach seems like a reasonable way of measuring coreset performance, it is more likely to capture the performance of the underlying optimization rather than the coreset construction.
-
-Determining the quality of a $k$-means coreset in isolation requires generating a candidate solution (a $k$ clustering) which results in a maximal distortion. This follows from the definition of coreset in \cref{eq:coreset}. Finding such a worst-case solution is conjectured to be computationally hard. One obvious alternative approach would be to randomly generate a worst-case solution with high probability. The challenge, however, is that it is not clear how to define a distribution of meaningful solutions from which to sample from. Moreover, a randomly drawn solution, which does not exploit the behavior of a coreset construction, is less likely to yield a worst-case solution in terms of high distortion. 
-
-A practical approach for finding meaningful solutions is to use $k$-means++ as it can uncover cluster structures in the data. Running multiple iterations of $k$-means++ allows us to pick a solution with high distortion.
-The obtained solution can then be used to estimate the quality of any given coreset computed on a real-world data set.
-
-Still, it can be tricky to gauge the general performance of coreset algorithms using only a selection of real-world data sets. For this reason, we proposed a synthetic benchmark to complement the evaluation procedure on real-world data sets. The benchmark accomplishes two important tasks.
-% 
-First, the benchmark allows us to quickly find a bad solution because both good and bad clusterings are known a priori. It is unclear how to find bad clusterings for real-world data sets.
-% 
-Second, it is easier to make a fair comparison of different coreset constructions because the benchmark is known to generate hard instances for all known coreset algorithms. This cannot be said for real-world data sets.
-
-\chris{I think the following paragraph has value, but it should go to the complement interpretation/outcome section.}
-%
-% For some real-world data sets, it is relatively easy to generate coresets which results in low cost clusterings. A coreset algorithm can simply add more centers to the coreset, because
-For example, it is not uncommon for the $k$-means cost to drop significantly for larger values of $k$ in real-world data sets.
-~\cref{fig:cost-curves-real-world-datasets} illustrates this behavior for several real-world data sets. The more the curve bends, the less of a difference there is between computing a coreset and a clustering with low cost. For data sets with a L-shaped cost curve, a coreset algorithm adding more centers to the coreset will seem to be performing well when evaluating it based on the outcome of the optimization. However, in the benchmark dataset, there is no way of reducing the cost without capturing the right subclusters within the benchmark instance. This means that the cost does not decrease markedly beyond a certain value of $k$ even if more centers are added as depicted in~\cref{fig:cost-curves-benchmark}.
-
-\chris{I think the first figures should be distortion plots. Again, should be moved to the outcome section}.
-
-\begin{figure}
-  \caption{Depicts how clustering costs of five real-world data sets decrease as the number of centers increase. 
-  The most widely used data sets for evaluating coresets are \textit{Tower}, \textit{Covertype}, and \textit{Census}, while \textit{Caltech} is rarely used and \textit{NYTimes} has never been used before.
-  Plotting the cost curve allows us to study whether we can observe a difference between coreset construction and optimization in a data set when evaluating a coreset based on cost.
-  }
-  \label{fig:cost-curves-real-world-datasets}
-  \includegraphics[width=1\linewidth]{figures/cost-curves-real-world-datasets.pdf}
-\end{figure}
-
-
-\begin{figure}
-  \caption{Shows the clustering costs of four instances of the benchmark framework as a function of the number of centers. In contrast to real-world data sets, the costs do not decrease rapidly as more cluster centers are added.
-%   On this account, the benchmark is less sensitive to 
-  }
-  \label{fig:cost-curves-benchmark}
-  \includegraphics[width=1\linewidth]{figures/cost-curves-benchmark.pdf}
-\end{figure}
-
-
+In this section, we present how we evaluated different algorithms. First, we propose a new evaluation procedure which gauges the quality of coresets. Then, we describe the data sets used for the empirical evaluation and our experimental setup. Finally, we detail the outcome of the experiments and our observations on the results.
 
 \subsection{Evaluation Procedure}
-For estimating the quality of the coresets produced by various coreset algorithms, we evaluated the algorithms on both real-world data sets and the proposed benchmark. 
+\omar{Removed subsection ``Motivation for Introducing New Evaluation Procedure'' and wrote Evaluation Procedure in a slightly different way. What do you think?}
+Finding a $k$-clustering which results in a maximal distortion is difficult. Instead, we can estimate the quality of coresets on real-world data sets as follows: we first compute a coreset $\Omega$. Then, run $k$-means++ on $\Omega$ to find a set of $k$ centers $C$. We repeat the $k$-means++ algorithm 5 times to pick the set of centers with the largest distortion.
 
-On each real-world data set $A$, we first computed a coreset $\Omega$ and then ran $k$-means++ on $\Omega$ to find a set of $k$ centers $C$. The $k$-means++ algorithm was repeated 5 times in order to pick the set of centers with the largest distortion. Recall that distortion of a given solution $C$ is defined as:
-$$
-    \max\left(
-      \frac{\cost_A(C)}{\cost_{\Omega}(C)},
-      \frac{\cost_{\Omega}(C)}{\cost_A(C)}
-    \right)
-$$
-For the benchmark, we computed the distortion following the evaluation procedure described in~\cref{sec:benchmark}. Every randomized coreset construction was repeated $10$ times. We aggregated the reported distortions by taking the maximum over all $10$ evaluations. 
+While it is useful to evaluate coresets on real-world data sets, it can be tricky to gauge the general performance of coreset algorithms using only a small selection of data sets. For this reason, we used our benchmark to complement the evaluation on real-world data sets. The benchmark accomplishes two important tasks. First, the benchmark allows us to quickly find a bad solution because both good and bad clusterings are known a priori. It is unclear how to find bad clusterings for real-world data sets. Second, it is easier to make a fair comparison of different coreset constructions because the benchmark is known to generate hard instances for all known coreset algorithms. This cannot be said for real-world data sets. For the benchmark, we computed the distortion following the evaluation procedure described in~\cref{sec:benchmark}. 
+\omar{The paragraph above can probably be reduced to two sentence about how we use the benchark, but I wanted to emphasize why the benchmark is so useful. I am okay if it gets removed due to lack of space.}
+
+Every randomized coreset construction was repeated $10$ times. We aggregated the reported distortions by taking the maximum over all $10$ evaluations. 
 \chris{I don't get this. Did you take $D = \frac{1}{10}\sum D_i$, where $D_i$ is the maximum distortion in the $i$th evaluation or $D=\max D_i$? Because I would understand using the mean (or median), but not so much using the max both times. We repeat the experiment to filter out outliers and bad runs; using the max means we always take the biggest outlier.}
+\omar{I did the later, meaning I took the maximum distortion over all 10 repetitions of an experiment. This is what I do exact.
+\newline\newline
+For each iteration $i \in \{1, 2, \cdots, 10\}$ of an experiment:
+\begin{enumerate}
+    \item Compute a coreset $\Omega_i$ on $A$
+    \item Run $k$-means++ algorithm 5 times. \\Each run of  $k$-means++ on $\Omega_i$ outputs a clustering $C_{ij}$
+    \item Then, the best lower bound on the distortion fir $\Omega_i$ is the solution with the largest distortion:
+    $$
+    D_i =
+    \max_j\left(
+    \max\left(
+      \frac{\cost_A(C_{ij})}{\cost_{\Omega_i}(C_{ij})},
+      \frac{\cost_{\Omega_i}(C_{ij})}{\cost_A(C_{ij})}
+    \right)
+    \right)
+    $$
+\end{enumerate}
+Having computed 10 distortions, I pick $D=\max D_i$ because it captures the worst possible distortion that an algorithm can produce. Since the coreset definition does not say anything about an algorithm generating a coreset with a certain distortion with high probability, I assumed that a ``bad'' run with extremely high distortion should give an estimate of the general quality of the evaluated coreset construction. The idea is that an outlier is not a failure mode of the algorithm but an indication of how good it actually is. Not sure if this makes sense. What do you think?
+\newline\newline
+In any case, I computed the the average distortions with variances over the 10 runs. I created an appendix with these results, see \cref{tab:distortions-mean-std-without-pca} and \cref{tab:distortions-mean-std-with-pca}. I also regenerated the plots so they now show the average distortion $D = \frac{1}{10}\sum D_i$.
+}
 In addition, we preprocessed the data using the dimension reduction techniques described in Section~\ref{sec:algorithms}.
 
 
@@ -193,54 +166,56 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 \end{table}
 
 
+
 \begin{figure*}
-  \caption{The distortions of the evaluated coreset algorithms on five real-world data sets and on four benchmark instances.}
+  \caption{The distortions of the evaluated coreset algorithms on five real-world data sets and on four benchmark instances. The axis is non-linear as otherwise the bars for Sensitivity Sampling and Group Sampling would disappear on the plots. Their distortions are very close to 1.}
   \label{fig:distortions}
-  \includegraphics[width=.69\linewidth]{figures/distortions-Tower.pdf}
+  \includegraphics[width=.69\linewidth]{figures/distortions-mean-Tower.pdf}
   \newline \newline
   \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/distortions-Covertype.pdf}
+    \includegraphics[width=0.5\textwidth]{figures/distortions-mean-Covertype.pdf}
   }
   \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/distortions-Covertype+PCA.pdf}
-  }
-  \newline \newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/distortions-Census.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/distortions-Census+PCA.pdf}
+    \includegraphics[width=.5\linewidth]{figures/distortions-mean-Covertype+PCA.pdf}
   }
   \newline \newline
   \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/distortions-Caltech.pdf}
+    \includegraphics[width=0.5\textwidth]{figures/distortions-mean-Census.pdf}
   }
   \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/distortions-Caltech+PCA.pdf}
+    \includegraphics[width=.5\linewidth]{figures/distortions-mean-Census+PCA.pdf}
   }
   \newline \newline
   \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/distortions-NYTimes.pdf}
+    \includegraphics[width=0.5\textwidth]{figures/distortions-mean-Caltech.pdf}
   }
   \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/distortions-NYTimes+PCA.pdf}
+    \includegraphics[width=.5\linewidth]{figures/distortions-mean-Caltech+PCA.pdf}
+  }
+  \newline \newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/distortions-mean-NYTimes.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/distortions-mean-NYTimes+PCA.pdf}
   }
   \newline \newline
 %   \subfloat{
 %     \\[1ex]
-%     \includegraphics[width=0.5\textwidth]{figures/distortions-Benchmark.pdf}
+%     \includegraphics[width=0.5\textwidth]{figures/distortions-mean-Benchmark.pdf}
 %   }
   \subfloat{
-    \includegraphics[width=0.165\textwidth]{figures/distortions-Benchmark-k10.pdf}
-    \includegraphics[width=0.165\textwidth]{figures/distortions-Benchmark-k20.pdf}
-    \includegraphics[width=0.165\textwidth]{figures/distortions-Benchmark-k30.pdf}
-    \includegraphics[width=0.331\textwidth]{figures/distortions-Benchmark-k40.pdf}
+    \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k10.pdf}
+    \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k20.pdf}
+    \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k30.pdf}
+    \includegraphics[width=0.331\textwidth]{figures/distortions-mean-Benchmark-k40.pdf}
   }
 %   \subfloat{
 %     \includegraphics[width=.5\linewidth]{figures/boxplot-Benchmark-GS-SS-StreamKM.pdf}
 %   }
   
 \end{figure*}
+
 
 \begin{figure*}
   \caption{The average costs of running the evaluated coreset algorithms multiple times on different data sets. In general, the five coreset algorithms are able to compute coresets which result in solutions with comparable costs on the different real-world data sets. The differences in cost is more noticeable on the benchmark instances. Here, Senstivity Sampling is the winner because it seems to be better at capturing the correct ``clusters'' inherent in the benchmark instances.}
@@ -287,56 +262,6 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 
 
 
-% \begin{figure*}
-%   \caption{The coreset costs i.e. $\cost_\Omega(C)$ of evaluated algorithms on 5 real-world data sets.}
-%   \label{fig:coreset-costs}
-%   \includegraphics[width=.65\linewidth]{figures/coreset-costs-Tower.pdf}
-%   \newline
-%   \subfloat{
-%     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-Covertype.pdf}
-%   }
-%   \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/coreset-costs-Covertype+PCA.pdf}
-%   }
-%   \newline
-%   \subfloat{
-%     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-Census.pdf}
-%   }
-%   \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/coreset-costs-Census+PCA.pdf}
-%   }
-%   \newline
-%   \subfloat{
-%     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-Caltech.pdf}
-%   }
-%   \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/coreset-costs-Caltech+PCA.pdf}
-%   }
-%   \newline
-%   \subfloat{
-%     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-NYTimes.pdf}
-%   }
-%   \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/coreset-costs-NYTimes+PCA.pdf}
-%   }
-%   \newline
-% %   \subfloat{
-% %     \includegraphics[width=0.5\textwidth]{figures/coreset-costs-Benchmark.pdf}
-    
-% %   }
-%   \subfloat{
-%     \includegraphics[width=0.15\textwidth]{figures/coreset-costs-Benchmark-k10.pdf}
-%     \includegraphics[width=0.165\textwidth]{figures/coreset-costs-Benchmark-k20.pdf}
-%     \includegraphics[width=0.16\textwidth]{figures/coreset-costs-Benchmark-k30.pdf}
-%     \includegraphics[width=0.31\textwidth]{figures/coreset-costs-Benchmark-k40.pdf}
-%   }
-% \end{figure*}
-
-
-
-
-
-
 \subsection{Outcome of Experiments}
 We summarized the distortions in \cref{fig:distortions}.
 All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO and Group Sampling while Sensitivity Sampling and StreamKM++ perform the best. Differences in performance are more noticeable on \textit{Census}, \textit{Caltech}, and \textit{NYTimes}  where methods based on importance sampling perform much better. Sensitivity Sampling and Group Sampling perform the best, StreamKM++ come in second while BICO and Ray Maker perform the worst across these data sets.
@@ -346,32 +271,56 @@ Reducing noise with PCA helped boost the performance on real-world data sets wit
 
 
 \subsection{Interpretation of Experimental Results}
-
 \chris{Can we have one central take-away for each? I wrote a suggestion, let me know how you feel about them}
+\omar{Yes! See my notes below.}
 
 
 \subsubsection*{Optimization versus Compression}
-For some data sets, optimization is very close to compression. 
-Clearly, this is the case for \textit{Tower}. The cost curve in ~\cref{fig:cost-curves-real-world-datasets} for this data set seem to support this claim as the ``elbow'' for \textit{Tower} bends the most which indicates that adding more centers help reduce the cost. For BICO, Ray Maker, and StreamKM++, there is a correlation between the steepness of the cost curve for a data set and the distortion of the generated coreset. 
+For some data sets, optimization is very close to compression. It is not uncommon for the $k$-means cost of real-world data sets to drop significantly for larger values of $k$.
+~\cref{fig:cost-curves-real-world-datasets} illustrates this behavior for several real-world data sets. The more the curve bends, the less of a difference there is between computing a coreset and a clustering with low cost. For data sets with a L-shaped cost curve, a coreset algorithm adding more centers to the coreset will seem to be performing well when evaluating it based on the outcome of the optimization.
+\textit{Tower} is a good example of a data set where optimization is very close to compression. Its cost curve bends the most which indicates that adding more centers help reduce the cost. One of the strengths of the benchmark is that there is no way of reducing the cost without capturing the right subclusters within a benchmark instance. This means that the cost does not decrease markedly beyond a certain value of $k$ even if more centers are added as depicted in~\cref{fig:cost-curves-benchmark}. 
+
+For BICO, Ray Maker, and StreamKM++, there is a correlation between the steepness of the cost curve for a data set and the distortion of the generated coreset. 
 \chris{excellent. please add the aforementioned stuff here (plots and the parts from the paragraph that we will probably erase).}
+\omar{Added at the beginning of the subsection for better text flow.}
 For data sets where the curve is less steep, we observed higher distortions. The effect is more pronounced for the movement-based algorithms (BICO and Ray Maker) than for StreamKM++ which performs sampling. The other two sampling-based approaches (Group Sampling and Sensitivity Sampling) seem to be free from this behavior as they consistently generate high quality coresets irrespective of the shape of cost curve.
 
 \chris{The aforementioned correlation between cost and distortion for movement and the fact that sampling seems to be rather oblivious to this.}
+\omar{I agree, this take-away seems to be clear from the text.}
+
+
+
+
+
+
+\begin{figure}
+  \caption{Depicts how clustering costs of five real-world data sets decrease as the number of centers increase. 
+  The most widely used data sets for evaluating coresets are \textit{Tower}, \textit{Covertype}, and \textit{Census}, while \textit{Caltech} is rarely used and \textit{NYTimes} has never been used before.
+  Plotting the cost curve allows us to study whether we can observe a difference between coreset construction and optimization in a data set when evaluating a coreset based on cost.
+  }
+  \label{fig:cost-curves-real-world-datasets}
+  \includegraphics[width=1\linewidth]{figures/cost-curves-real-world-datasets.pdf}
+\end{figure}
+
+
+\begin{figure}
+  \caption{Shows the clustering costs of four instances of the benchmark framework as a function of the number of centers. In contrast to real-world data sets, the costs do not decrease rapidly as more cluster centers are added.
+%   On this account, the benchmark is less sensitive to 
+  }
+  \label{fig:cost-curves-benchmark}
+  \includegraphics[width=1\linewidth]{figures/cost-curves-benchmark.pdf}
+\end{figure}
+
 
 \subsubsection*{Movement-based versus Sampling-based Approaches}
 While all five algorithms are equally matched when comparing clustering costs (see  \cref{fig:real-costs}), coreset quality performance differ significantly (see \cref{fig:distortions}). 
 In general, movement-based constructions perform the worst in terms of coreset quality. 
-We observed that BICO and Ray Maker have the highest distortions across all data sets including on the benchmark instances. Among the sampling-based algorithms, Sensitive Sampling performs with Group Sampling generally being competitive. StreamKM++ is an interesting case. Like the movement-based methods, its distortion increases with the dimension. Nevertheless, it generally performs significantly better than BICO and Ray Maker. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers weighted by the number of points of a minimal cost assignment. This is similar to movement-based algorithms such as BICO. Nevertheless, it also retains some of the performance from pure importance schemes.
+We observed that BICO and Ray Maker have the highest distortions across all data sets including on the benchmark instances. Among the sampling-based algorithms, Sensitive Sampling performs well with Group Sampling generally being competitive. StreamKM++ is an interesting case. Like the movement-based methods, its distortion increases with the dimension. Nevertheless, it generally performs significantly better than BICO and Ray Maker. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers weighted by the number of points of a minimal cost assignment. This is similar to movement-based algorithms such as BICO. Nevertheless, it also retains some of the performance from pure importance schemes.
 \chris{Can we say something about the impact of dimension? I am not sure I read the plot right (the non-linearity of the axis makes it a bit difficult), but is the distortion of the sampling based stuff affected by the dimension, or more or less independent? Also, I think we want to highlight more one key take away message: Dimension affects distortion for movement based in practise, not just in theory.}
+\omar{Yes, we can say something about the impact of dimension. Please see \cref{tab:distortions-mean-std-with-pca} for the distortion numbers. What do you think of adding the following: }
+In practice as well as in theory, the distortion of movement-based algorithms are affected by the dimension. By comparison, sampling-based algorithms are affected very little by the dimension. The distortion of StreamKM++ increase only slightly with the dimension while Group Sampling and Sensitivity Sampling are largely unaffected.
 
 
-
-
-
-\subsubsection*{BICO versus StreamKM++}
-Despite having similar worst case bounds, the quality of coresets produced by BICO and StreamKM++ differ significantly.
-The theoretical analysis of the worst case bounds for BICO and StreamKM++ are derived from a movement-based construction. Both methods feature similar bounds as described in~\cref{sec:algorithms}. Surprisingly, the quality of the coresets produced by StreamKM++ is significantly better than what one would expect from the analysis. In terms of distortion StreamKM++ is significantly better than BICO across all data sets, and especially on high dimensionality data. This begs the question whether there exist a better theoretical analysis for StreamKM++. We leave this as an open problem for future research.
-\chris{Put this into conclusion. I think most of the points were raised before, but the question whether there exists a purely $k$-means++-based coreset is certainly an interesting one.}
 
 
 
@@ -386,4 +335,5 @@ The theoretical analysis of the worst case bounds for BICO and StreamKM++ are de
 On almost all our data sets, the performance improves when input data is preprocessed with PCA, especially for the movement-based algorithms. Empirically, the more noise is removed (i.e., small $k$ value), the lower the distortion. Notice that $k$ is the number of principal components that the input data is projected on to. The rest of the low variance components are treated as noise and removed. Method utilizing sampling (Group Sampling, Sensitivity Sampling and StreamKM++) are less effected by the preprocessing step. On \textit{Covertype}, PCA does not change the distortions by much because almost all the variance in the data is explained by the first five principal components (see~\cref{fig:explained-variance-pca}). 
 On \textit{Caltech} and \textit{NYTimes}, the quality of the coresets by BICO and Ray Maker improves greatly because the noise removal is more aggressive. Even if the quality is much better for movement-based coreset constructions due to PCA transformation, importance sampling methods are still superior when it comes to the quality of the compression. 
 \chris{Take away message at the end: All coreset constructions are affected by the dimension (even sampling, though markedly less so). We can say, PCA is computationally very expensive, but may be nevertheless be worth it.}
+\omar{Agreed, that is a concluding message!}
 
