@@ -10,12 +10,14 @@ Reallocating 'global_strs' (item size: 1) to 4000000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: references.bib
+Repeated entry---line 678 of file references.bib
+ : @inproceedings{HuangJV19
+ :                         ,
+I'm skipping whatever remains of this entry
 A bad cross reference---entry "BecchettiBC0S19"
 refers to entry "DBLP:conf/stoc/2019", which doesn't exist
 A bad cross reference---entry "SohlerW18"
 refers to entry "DBLP:conf/focs/2018", which doesn't exist
-A bad cross reference---entry "HuangJV19"
-refers to entry "DBLP:conf/nips/2019", which doesn't exist
 A bad cross reference---entry "SSS19"
 refers to entry "DBLP:conf/waoa/2019", which doesn't exist
 A bad cross reference---entry "ArV07"
@@ -25,51 +27,50 @@ refers to entry "DBLP:conf/wea/2015", which doesn't exist
 A bad cross reference---entry "MahabadiMMR18"
 refers to entry "DBLP:conf/stoc/2018", which doesn't exist
 Warning--I didn't find a database entry for "DBLP:conf/waoa/2019"
-Warning--I didn't find a database entry for "DBLP:conf/nips/2019"
 Warning--I didn't find a database entry for "DBLP:conf/stoc/2019"
 Warning--I didn't find a database entry for "DBLP:conf/soda/2007"
 Warning--I didn't find a database entry for "DBLP:conf/stoc/2018"
 Warning--I didn't find a database entry for "DBLP:conf/wea/2015"
 Warning--I didn't find a database entry for "DBLP:conf/focs/2018"
-You've used 40 entries,
+You've used 41 entries,
             2882 wiz_defined-function locations,
-            942 strings with 16072 characters,
-and the built_in function-call counts, 24039 in all, are:
-= -- 2590
-> -- 815
+            950 strings with 16466 characters,
+and the built_in function-call counts, 24671 in all, are:
+= -- 2648
+> -- 860
 < -- 32
-+ -- 292
-- -- 246
-* -- 1385
-:= -- 3174
-add.period$ -- 155
-call.type$ -- 40
-change.case$ -- 228
++ -- 307
+- -- 260
+* -- 1441
+:= -- 3274
+add.period$ -- 159
+call.type$ -- 41
+change.case$ -- 235
 chr.to.int$ -- 0
-cite$ -- 40
-duplicate$ -- 837
-empty$ -- 2232
-format.name$ -- 246
-if$ -- 6260
+cite$ -- 41
+duplicate$ -- 848
+empty$ -- 2277
+format.name$ -- 260
+if$ -- 6406
 int.to.chr$ -- 0
-int.to.str$ -- 40
-missing$ -- 40
-newline$ -- 227
-num.names$ -- 104
-pop$ -- 455
+int.to.str$ -- 41
+missing$ -- 41
+newline$ -- 233
+num.names$ -- 108
+pop$ -- 463
 preamble$ -- 1
-purify$ -- 188
+purify$ -- 194
 quote$ -- 0
-skip$ -- 1675
+skip$ -- 1708
 stack$ -- 0
-substring$ -- 1393
-swap$ -- 406
+substring$ -- 1423
+swap$ -- 409
 text.length$ -- 32
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 160
+type$ -- 164
 warning$ -- 0
-while$ -- 195
-width$ -- 42
-write$ -- 509
+while$ -- 200
+width$ -- 43
+write$ -- 522
 (There were 7 error messages)

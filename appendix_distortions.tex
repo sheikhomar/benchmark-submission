@@ -1,4 +1,94 @@
-\section{Distortion results}
+\section{Appendix: Properties of the Benchmark and Missing Plots}
+
+\begin{figure*}[h]
+\begin{center}
+$$ 
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} &-\frac{1}{2} & \frac{1}{2} \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  & -\frac{1}{2} & \frac{1}{2} \\
+\end{bmatrix} ~~~~~~~~
+% \begin{bmatrix}
+% \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
+% \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
+% \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
+%  -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
+% -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
+% -\frac{1}{3} & \frac{2}{3} &  -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
+% -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
+% -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
+% -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
+% \end{bmatrix} 
+\begin{bmatrix}
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & \frac{2}{3}   &  -\frac{1}{3}  \\
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+\end{bmatrix} 
+$$
+\end{center}
+\label{fig1}
+\caption{Benchmark construction for $k=2$ and $\alpha=3$ (left) and $k=3$ and $\alpha=2$ (right).}
+\end{figure*}
+
+
+\begin{fact}
+For $a\neq a'$, we have $d(\mathcal{C}^{a},\mathcal{C}^{a'}) = 1-1/k$.
+\end{fact}
+\begin{proof}
+Consider an arbitrary vector $v_i^{\ell}$. By construction, the positive entries of $v_i^{\ell}$ range from $k^{\ell-1}\cdot i+1$ to $k^{\ell-1}\cdot (i+1)$. Similarly, the positive entries for the vector $v_j^{\ell-1}$ range from range from $k^{\ell-2}\cdot j+1$ to $k^{\ell-2}\cdot (j+1)$. Therefore, concatenating $v_j^{\ell-1}$ $k$ times into a vector $v'$, $v'$ and $v_i^{\ell}$ can share at most one positive coordinate. Inductively, the same holds true for any concatenation of vectors $v_j^{\ell-h}$.
+Thus, the two clusters induced by the columns formed by concatenating the vectors $v$ can share only a $1/k$ fraction of the points. Since each cluster consists of exactly $k^{\alpha}/k$ = $k^{\alpha-1}$ points, the confusion matrix $M$ only has entries $\frac{n}{k^2}$ and for any permutation $\pi$, we have $d(\mathcal{C}^{a},\mathcal{C}^{a'}) = 1-1/k$.
+\end{proof}
+
+\begin{fact}
+\label{fact:cost}
+For any $C_j^a$, we have $\cost_{C_j^a}(\{\mu(C_j^a)\}) = (\alpha-1)\cdot k^{\alpha-2}\cdot (k-1)$.
+\end{fact}
+\begin{proof}
+Without loss of generality, we consider $C_1^0$; the proof is analogous for the other choices of $j$ and $a$. We first note that for any point $A_i \in C_1^0$, the coordinates $A_{i,\ell}$ are identical for $\ell <k$. Furthermore for the column $\ell\geq k$, we have by construction $\sum_{A_i\in C_j} A_{i,\ell} = k^{\alpha-1}\cdot \frac{k-1}{k} + (k^{\alpha}-k^{\alpha-1})\frac{1}{k}=k^{\alpha-1}\cdot (\frac{k-1}{k} - (k-1)\frac{1}{k}) = 0.$ Therefore, the mean of $C_1^0$ satisfies $\mu(C_1^0)_{\ell} = \begin{cases}A_{i,\ell} &\text{if }\ell<k \\
+0 &\text{else.}\end{cases}$. 
+Thus, the cost is precisely $(\alpha-1)\cdot k^{\alpha-1}\cdot \left(\left(\frac{k-1}{k}\right)^2 + \left(\frac{1}{k}\right)^2 \right)=(\alpha-1)\cdot k^{\alpha-2}\cdot (k-1)$.
+\end{proof}
+
+Finally, we show that the means for the clustering $\mathcal{C}^{a}$ also induce $\mathcal{C}^{a}$.
+
+\begin{fact}
+\label{fact:opt}
+For a clustering $\mathcal{C}^{a}$, let $\mu(C_j^{a})$ denote the mean of cluster $C_j^a$. Then every point  is assigned to its closest center. Moreover, every point $A_i$ of $C_j^a$ has equal distance to any center $\mu(C_h^{a})$ with $h\neq j$.
+\end{fact}
+\begin{proof}
+Again, we assume without loss of generality $a=0$.
+Let $A_i$ be an arbitrary point of cluster $C_{h}^{a}$ and consider the mean $\mu(C_j^a)_{\ell} = \begin{cases}A_{i,\ell} &\text{if }\ell<k \\
+0 &\text{else.}\end{cases}$ of cluster $C_j^a$. By definition, the positive coordinates of $A_i$ are not equal to the positive coordinates of $\mu(C_j^a)$. The only difference in coordinates between the means of $\mu(C_j^a)$ and $\mu(C_h^a)$ are the first $k$ coordinates, as the rest are $0$.
+But here the coordinates of $\mu(C_h^a)$ and $A_i$ are identical, hence $\mu(C_j^a)$ cannot be closer to $A_i$.
+
+To prove that the distances between $A_i$ and any $\mu(C_h^{a})$ with $h\neq j$ are equal, again consider that any difference can only exist among the first $k$ coordinates. Here, we have $\mu(C_h^{a})_h = \frac{k-1}{k}$, and the remaining columns are $-\frac{1}{k}$. Since $A_{i,h} = -\frac{1}{k}$ for any $h\neq j$, the claim follows.
+\end{proof}
+
+\begin{figure}
+  \caption{Shows the clustering costs of four instances of the benchmark framework as a function of the number of centers. In contrast to real-world data sets, the costs do not decrease rapidly as more cluster centers are added.
+%   On this account, the benchmark is less sensitive to 
+  }
+  \label{fig:cost-curves-benchmark}
+  \includegraphics[width=1\linewidth]{figures/cost-curves-benchmark.pdf}
+\end{figure}
+
+\begin{figure}[ht]
+  \caption{The cumulative propotion of explained variance by principal components on \textit{Caltech}, \textit{Covertype}, and \textit{Census}.}
+  \label{fig:explained-variance-pca}
+  \includegraphics[width=0.9\linewidth]{figures/explained-variance-plot.pdf}
+\end{figure}
+
 
 \begin{table}[ht]
 \centering

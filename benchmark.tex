@@ -2,11 +2,12 @@
 \label{sec:coreset-evaluation-hard}
 \label{sec:benchmark}
 
-In this section, we first show that it is in general co-NP hard to evaluate the coreset distortion, given two point sets $A$ and $B$. Thereafter we describe the benchmark and it's properties.
+In this section, we first show that it is in general co-NP hard to evaluate whether two point sets $A$ and $B$ are weak coresets of each other. Here, a weak coreset only requires that a $(1+\varepsilon)$ approximation for one point set is a $(1+O(\varepsilon))$ for the other.
 
 
 \begin{proposition}
-Given two point sets $A$ and $B$ in $\mathbb{R}^d$ and a sufficiently small (constant) $\varepsilon>0$, it is co-NP hard to decide whether $A$ is a $(k,\varepsilon)$-coreset of $B$.
+\label{prop:hardness}
+Given two point sets $A$ and $B$ in $\mathbb{R}^d$ and a sufficiently small (constant) $\varepsilon>0$, it is co-NP hard to decide whether $A$ is a weak coreset of $B$.
 \end{proposition}
 \begin{proof}
 First, we recall that for some $\varepsilon_0$ and candidate clustering cost $V$, it is NP-hard to decide whether there exists a clustering $C$ with cost in $\cost_A(C)\leq V$ and $\cost_B(C)\geq (1+\varepsilon_0)\cdot V$.
@@ -29,50 +30,10 @@ For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i
 (v_i^{\ell-1})_2 \cdot \one_k \\
 \vdots \\
 (v_i^{\ell-1})_1 \cdot \one_k
-\end{bmatrix}$. Finally, set the column $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, of $A$ to be $k^{\alpha-a}$ \omar{$k^{\alpha-a+1}$?} stacks of $v_b^{a+1}$.
+\end{bmatrix}$. Finally, set the column $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, of $A$ to be $k^{\alpha-a+1}$  stacks of $v_b^{a+1}$.
 
 
-To get a better feel for the construction, we have given two example inputs in Figure 1.
-\begin{figure*}[h]
-\begin{center}
-$$ 
-\begin{bmatrix}
-\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
--\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
-\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
--\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
-\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
--\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
-\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} &-\frac{1}{2} & \frac{1}{2} \\
--\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  & -\frac{1}{2} & \frac{1}{2} \\
-\end{bmatrix} ~~~~~~~~
-% \begin{bmatrix}
-% \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
-% \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
-% \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
-%  -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
-% -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
-% -\frac{1}{3} & \frac{2}{3} &  -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
-% -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
-% -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
-% -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
-% \end{bmatrix} 
-\begin{bmatrix}
- \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
- -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
- -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
- \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
- -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
- -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & \frac{2}{3}   &  -\frac{1}{3}  \\
- \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
- -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
- -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
-\end{bmatrix} 
-$$
-\end{center}
-\label{fig1}
-\caption{Benchmark construction for $k=2$ and $\alpha=3$ (left) and $k=3$ and $\alpha=2$ (right).}
-\end{figure*}
+To get a better feel for the construction, we have given two small example benchmarks for $k=2$ and $k=3$ in the appendix.
 
 \subsection{Properties of the Benchmark}
 
@@ -105,76 +66,45 @@ Observe that for clusters that are identical, their distance is $0$. The maximum
 
 We are now ready to state the desired properties of our benchmark. The benchmark was designed to generate many clusterings such that
 \begin{enumerate}
-\item The distance between these clustering is maximized.
-\item The clusterings have equal cost.
+\item The distance between these clustering is $1-\frac{1}{k}$, i.e. it is maximized.
+\item The clusterings have equal cost and the centers in each clustering have equal cost.
 \item The clusterings are induced by a set of centers in $\mathbb{R}^d$.
 \end{enumerate}
 
+A formal verification of these properties can be found in the appendix.
 The first and second property ensure that (equally good) solutions we use for evaluation are spread out through the solution space. In other words, we are less likely to only focus on a set of solutions $\mathcal{S}$ for which a low distortion on one $S\in\mathcal{S}$ implies a low distortion for all elements of $\mathcal{S}$.
 The third property is important as these are the only clusterings the (standard) coreset guarantee has to apply to. 
-
 
 The solutions we consider are given as follows. For the columns $a\cdot k+1,\ldots (a+1)\cdot k$, we define the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ with 
 $A_i\in C_j^a$ if and only if $A_{i,j} > 0$. Let $\tilde X^a$ and $X^{a}$ denote the indicator matrix and clustering matrix, respectively, as induced by $\mathcal{C}^{a}$.
 
 
-\begin{fact}
-For $a\neq a'$, we have $d(\mathcal{C}^{a},\mathcal{C}^{a'}) = 1-1/k$.
-\end{fact}
-\begin{proof}
-Consider an arbitrary vector $v_i^{\ell}$. By construction, the positive entries of $v_i^{\ell}$ range from $k^{\ell-1}\cdot i+1$ to $k^{\ell-1}\cdot (i+1)$. Similarly, the positive entries for the vector $v_j^{\ell-1}$ range from range from $k^{\ell-2}\cdot j+1$ to $k^{\ell-2}\cdot (j+1)$. Therefore, concatenating $v_j^{\ell-1}$ $k$ times into a vector $v'$, $v'$ and $v_i^{\ell}$ can share at most one positive coordinate. Inductively, the same holds true for any concatenation of vectors $v_j^{\ell-h}$.
-Thus, the two clusters induced by the columns formed by concatenating the vectors $v$ can share only a $1/k$ fraction of the points. Since each cluster consists of exactly $k^{\alpha}/k$ = $k^{\alpha-1}$ points, the confusion matrix $M$ only has entries $\frac{n}{k^2}$ and for any permutation $\pi$, we have $d(\mathcal{C}^{a},\mathcal{C}^{a'}) = 1-1/k$.
-\end{proof}
-
-\begin{fact}
-\label{fact:cost}
-For any $C_j^a$, we have $\cost_{C_j^a}(\{\mu(C_j^a)\}) = (\alpha-1)\cdot k^{\alpha-2}\cdot (k-1)$.
-\end{fact}
-\begin{proof}
-Without loss of generality, we consider $C_1^0$; the proof is analogous for the other choices of $j$ and $a$. We first note that for any point $A_i \in C_1^0$, the coordinates $A_{i,\ell}$ are identical for $\ell <k$. Furthermore for the column $\ell\geq k$, we have by construction $\sum_{A_i\in C_j} A_{i,\ell} = k^{\alpha-1}\cdot \frac{k-1}{k} + (k^{\alpha}-k^{\alpha-1})\frac{1}{k}=k^{\alpha-1}\cdot (\frac{k-1}{k} - (k-1)\frac{1}{k}) = 0.$ Therefore, the mean of $C_1^0$ satisfies $\mu(C_1^0)_{\ell} = \begin{cases}A_{i,\ell} &\text{if }\ell<k \\
-0 &\text{else.}\end{cases}$. 
-Thus, the cost is precisely $(\alpha-1)\cdot k^{\alpha-1}\cdot \left(\left(\frac{k-1}{k}\right)^2 + \left(\frac{1}{k}\right)^2 \right)=(\alpha-1)\cdot k^{\alpha-2}\cdot (k-1)$.
-\end{proof}
-
-Finally, we show that the means for the clustering $\mathcal{C}^{a}$ also induce $\mathcal{C}^{a}$.
-
-\begin{fact}
-\label{fact:opt}
-For a clustering $\mathcal{C}^{a}$, let $\mu(C_j^{a})$ denote the mean of cluster $C_j^a$. Then every point of \omar{$A_i$ of $C_j^a$} is assigned to its closest center. Moreover, every point $A_i$ of $C_j^a$ has equal distance to any center $\mu(C_h^{a})$ with $h\neq j$.
-\end{fact}
-\begin{proof}
-Again, we assume without loss of generality $a=0$.
-Let $A_i$ be an arbitrary point of cluster $C_{h}^{a}$ and consider the mean $\mu(C_j^a)_{\ell} = \begin{cases}A_{i,\ell} &\text{if }\ell<k \\
-0 &\text{else.}\end{cases}$ of cluster $C_j^a$. By definition, the positive coordinates of $A_i$ are not equal to the positive coordinates of $\mu(C_j^a)$. The only difference in coordinates between the means of $\mu(C_j^a)$ and $\mu(C_h^a)$ are the first $k$ coordinates, as the rest are $0$.
-But here the coordinates of $\mu(C_h^a)$ and $A_i$ are identical, hence $\mu(C_j^a)$ cannot be closer to $A_i$.
-
-To prove that the distances between $A_i$ and any $\mu(C_h^{a})$ with $h\neq j$ are equal, again consider that any difference can only exist among the first $k$ coordinates. Here, we have $\mu(C_h^{a})_h = \frac{k-1}{k}$, and the remaining columns are $-\frac{1}{k}$. Since $A_{i,h} = -\frac{1}{k}$ for any $h\neq j$, the claim follows.
-\end{proof}
 
 \subsection{Benchmark Evaluation}
 
 We now describe how we use the benchmark to measure the distortion of a coreset. Assume that the coresets only consists of input point\footnote{It is not necessary for coreset constructions in general to consists of input points. One can adjust the evaluation in to account for this. But since all algorithms considered in this paper have the property and it makes the evaluation simpler, we will only consider coresets that are subsets of the original point set.}
 
 Consider the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ for some $a$ and let $\Omega$ with weights $w:\Omega\rightarrow \mathbb{R}_{\geq 0}$ be the coreset. 
+Note that there are $\alpha$ many such clusterings, for each value of $a$.
 We use $w(C_i^a \cap \Omega):=\sum_{p\in C_i^a \cap \Omega} w(p)$ to denote the mass of points of $C_i^a$ in $\Omega$.
-For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\varepsilon)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)\leq |C_i| (1-\varepsilon)$ \omar{Replace $\leq$ with $<$?}, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the total number of thus placed centers. \omar{Replace all $C_i$ with $C_i^a$?}
+For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\varepsilon)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)< |C_i^a| (1-\varepsilon)$, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the total number of thus placed centers.
 
-We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and Fact \ref{fact:opt}, we may write for any deficient cluster $C_i^a$
+We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and the fact that all clusters have equal cost, we may write for any deficient cluster $C_i^a$
 $\cost_{C_i^a}(\calS) = \cost_{C_j^a}(\{\mu(C_j^a)\}) + k^{\alpha-1}\|\mu(C_j^a)-\mu(C_h^a)\|_2^2$, where $C_h^a$ is a non-deficient cluster.
-Thus, the cost is due to Fact \ref{fact:cost}
+Thus, the cost is 
 \begin{eqnarray*}
-\cost_{C_i^a}(\calS) &=& (\alpha-1)\cdot k^{\alpha-2}\cdot (k-1) + k^{\alpha-1}\cdot 2\\
-&\approx & (1+\frac{2}{\alpha})\cdot \cost_{C_j^a}(\{\mu(C_j^a)\}).
+\cost_{C_i^a}(\calS) &\approx & (1+\frac{2}{\alpha})\cdot \cost_{C_j^a}(\{\mu(C_j^a)\}).
 \end{eqnarray*}
 
 Conversely, the cost on the coreset is
 \begin{eqnarray*}
-& &\cost_{\Omega\cap C_i^a}(\calS)  \\
-&= &w(C_i^a \cap \Omega)\left((\alpha-1)\cdot \left(\left(\frac{k-1}{k}\right)^2 + (k-1)\left(\frac{1}{k}\right)^2\right) + 2\right) \\
+\cost_{\Omega\cap C_i^a}(\calS)  
+%&= &w(C_i^a \cap \Omega)\left((\alpha-1)\cdot \left(\left(\frac{k-1}{k}\right)^2 + (k-1)\left(\frac{1}{k}\right)^2\right) + 2\right) \\
 & \approx & \frac{w(C_i^a \cap \Omega)}{ \cost_{C_j^a}(\{\mu(C_j^a)\})}(1+\frac{2}{\alpha})\cdot \cost_{C_j^a}(\{\mu(C_j^a)\}).
 \end{eqnarray*}
 Thus for each deficient clustering individually, the distortion will be close to $\frac{k^{\alpha-1}}{w(C_i^a \cap \Omega)} \geq \frac{1}{1-\varepsilon}$.
 If there are many deficient clusters, then this will also be the overall distortion.
+For all possible (suitably discritized) thresholds for deficiency, we can now identify the clustering $\mathcal{C}^a$ with a maximum number of deficient clusters and use the aforementioned construction to get a lower bound on the distortion.
 
 
 \subsection{Further Extensions}

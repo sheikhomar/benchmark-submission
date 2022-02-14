@@ -23,7 +23,7 @@ In addition, we preprocessed the data using the dimension reduction techniques d
 
 
 \subsection{Data sets}
-We conducted experiments on five real-world data sets and four instances of our benchmark. The sizes of the real-world data sets are summarized in ~\cref{tab:real-world-datasets-overview}. Benchmark instances were generated to match approximately the sizes of the real-world data sets. The chosen parameter values and the corresponding instance sizes are shown in ~\cref{tab:benchmark-instances-overview}. 
+We conducted experiments on five real-world data sets and four instances of our benchmark. Benchmark instances were generated to match approximately the sizes of the real-world data sets. The sizes of the data sets are summarized in ~\cref{tab:real-world-datasets-overview}. 
 % We generated a set of instances with no scaling i.e., $\beta=1.0$ (referred to as \textit{Benchmark-1.0}) and with maximum scaling; $\beta = 2.0$ (\textit{Benchmark-2.0}).
 We now provide a brief description of each of the real-world data sets.
 
@@ -57,10 +57,11 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 
 
 %
+\begin{center}
 \begin{table}
-	\begin{center}%\centering
-	\caption{The sizes of the real-world data sets used for the experimental evaluation}
 	\label{tab:real-world-datasets-overview}
+\begin{minipage}{0.5\textwidth}
+	%\begin{center}%\centering
 % 	\resizebox{\textwidth}{!}{
 	\begin{tabular}{lrr}
 		\toprule
@@ -91,17 +92,11 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
     		\\
 		\bottomrule
 	\end{tabular}\\
-	\end{center}
+%	\end{center}
 % 	}
-\end{table}
-
-
-
-%
-\begin{table}
-	\begin{center}%\centering
-	\caption{The parameter values and the sizes of the benchmark instances used for the experimental evaluation.}
-	\label{tab:benchmark-instances-overview}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+%	\begin{center}%\centering
 % 	\resizebox{\textwidth}{!}{
 	\begin{tabular}{rrrr}
 		\toprule
@@ -138,9 +133,15 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
     % 		\\
 		\bottomrule
 	\end{tabular}\\
-	\end{center}
+%	\end{center}
 % 	}
+\end{minipage}
+\caption{Size of real world data sets (left) and evaluated benchmarks (right).}
 \end{table}
+\end{center}
+
+
+%
 
 
 
@@ -194,53 +195,53 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 \end{figure*}
 
 
-\begin{figure*}
-  \caption{The average costs of running the evaluated coreset algorithms multiple times on different data sets. In general, the five coreset algorithms are able to compute coresets which result in solutions with comparable costs on the different real-world data sets. The differences in cost is more noticeable on the benchmark instances. Here, Senstivity Sampling is the winner because it seems to be better at capturing the correct ``clusters'' inherent in the benchmark instances.}
-  \label{fig:real-costs}
-  \includegraphics[width=.67\linewidth]{figures/real-costs-Tower.pdf}
-  \newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
-  }
-  \newline\newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
-  }
-  \newline\newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
-  }
-  \newline\newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
-  }
-  \newline\newline
-  \subfloat{
-    \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
-    \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
-    \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
-    \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
-  }
-\end{figure*}
+%\begin{figure*}
+%  \caption{The average costs of running the evaluated coreset algorithms multiple times on different data sets. In general, the five coreset algorithms are able to compute coresets which result in solutions with comparable costs on the different real-world data sets. The differences in cost is more noticeable on the benchmark instances. Here, Senstivity Sampling is the winner because it seems to be better at capturing the correct ``clusters'' inherent in the benchmark instances.}
+%  \label{fig:real-costs}
+%  \includegraphics[width=.67\linewidth]{figures/real-costs-Tower.pdf}
+%  \newline
+%  \subfloat{
+%    \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
+%  }
+%  \subfloat{
+%    \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%    \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
+%  }
+%  \subfloat{
+%    \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%    \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
+%  }
+%  \subfloat{
+%    \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%    \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes.pdf}
+%  }
+%  \subfloat{
+%    \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%    \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
+%    \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
+%    \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
+%    \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
+%  }
+%\end{figure*}
 
 
 
 
 
 \subsection{Outcome of Experiments}
-We summarized the distortions in \cref{fig:distortions}.
+We summarized the distortions in \cref{fig:distortions}, for numerical variance we refer to \ref{tab:distortions-mean-std-without-pca} and \ref{tab:distortions-mean-std-with-pca} in the appendix.
 All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO and Group Sampling while Sensitivity Sampling and StreamKM++ perform the best. Differences in performance are more noticeable on \textit{Census}, \textit{Caltech}, and \textit{NYTimes}  where methods based on importance sampling perform much better. Sensitivity Sampling and Group Sampling perform the best, StreamKM++ come in second while BICO and Ray Maker perform the worst across these data sets.
 On the \textit{Benchmark}, Ray Maker is the worst while Sensitivty Sampling and Group Sampling are the best. StreamKM++ performs also very well compared to BICO.
 
@@ -252,12 +253,14 @@ Reducing noise with PCA helped boost the performance on real-world data sets wit
 
 
 \subsubsection*{Optimization versus Compression}
-For some data sets, optimization is very close to compression. It is not uncommon for the $k$-means cost of real-world data sets to drop significantly for larger values of $k$.
+While all five algorithms are equally matched when optimizing on the candidate coresets, coreset quality performance differ significantly (see \cref{fig:distortions}). We omit plots and tables detailing the cost due to space restrictions. For all data sets, the obtained costs differed insignificantly for all values of $k$.
+
+The quality of the coreset itself can be closely tied to the change in cost with increasing number of centers. It is not uncommon for the $k$-means cost of real-world data sets to drop significantly for larger values of $k$.
 ~\cref{fig:cost-curves-real-world-datasets} illustrates this behavior for several real-world data sets. The more the curve bends, the less of a difference there is between computing a coreset and a clustering with low cost. For data sets with a L-shaped cost curve, a coreset algorithm adding more centers to the coreset will seem to be performing well when evaluating it based on the outcome of the optimization.
-\textit{Tower} is a good example of a data set where optimization is very close to compression. Its cost curve bends the most which indicates that adding more centers help reduce the cost. One of the strengths of the benchmark is that there is no way of reducing the cost without capturing the right subclusters within a benchmark instance. This means that the cost does not decrease markedly beyond a certain value of $k$ even if more centers are added as depicted in~\cref{fig:cost-curves-benchmark}. 
+\textit{Tower} is a good example of a data set where optimization is very close to compression. Its cost curve bends the most which indicates that adding more centers help reduce the cost. One of the strengths of the benchmark is that there is no way of reducing the cost without capturing the right subclusters within a benchmark instance. This means that the cost does not decrease markedly beyond a certain value of $k$ even if more centers are added, see Figure~\cref{fig:cost-curves-benchmark} in the appendix. 
 
 For BICO, Ray Maker, and StreamKM++, there is a correlation between the steepness of the cost curve for a data set and the distortion of the generated coreset. 
-On data sets where the curve is less steep, we observed higher distortions. The effect is more pronounced for the movement-based algorithms (BICO and Ray Maker) than for StreamKM++ which performs sampling. The other two sampling-based approaches (Group Sampling and Sensitivity Sampling) seem to be free from this behavior as they consistently generate high quality coresets irrespective of the shape of cost curve.
+On data sets where the curve is less steep, we observed higher distortions. The effect is more pronounced for the movement-based algorithms (BICO and Ray Maker) than for StreamKM++. The other two sampling-based approaches (Group Sampling and Sensitivity Sampling) seem to be free from this behavior as they consistently generate high quality coresets irrespective of the shape of cost curve.
 
 
 
@@ -275,17 +278,9 @@ On data sets where the curve is less steep, we observed higher distortions. The 
 \end{figure}
 
 
-\begin{figure}
-  \caption{Shows the clustering costs of four instances of the benchmark framework as a function of the number of centers. In contrast to real-world data sets, the costs do not decrease rapidly as more cluster centers are added.
-%   On this account, the benchmark is less sensitive to 
-  }
-  \label{fig:cost-curves-benchmark}
-  \includegraphics[width=1\linewidth]{figures/cost-curves-benchmark.pdf}
-\end{figure}
-
 
 \subsubsection*{Movement-based versus Sampling-based Approaches}
-While all five algorithms are equally matched when comparing clustering costs (see  \cref{fig:real-costs}), coreset quality performance differ significantly (see \cref{fig:distortions}). 
+
 In general, movement-based constructions perform the worst in terms of coreset quality. 
 We observed that BICO and Ray Maker have the highest distortions across all data sets including on the benchmark instances. Among the sampling-based algorithms, Sensitive Sampling performs well with Group Sampling generally being competitive. StreamKM++ is an interesting case. Like the movement-based methods, its distortion increases with the dimension. Nevertheless, it generally performs significantly better than BICO and Ray Maker. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers weighted by the number of points of a minimal cost assignment. This is similar to movement-based algorithms such as BICO. Nevertheless, it also retains some of the performance from pure importance schemes.
 
@@ -296,12 +291,6 @@ In practice as well as in theory, the distortion of movement-based algorithms ar
 
 
 \subsubsection*{Impact of PCA}
-
-\begin{figure}
-  \caption{The cumulative propotion of explained variance by principal components on \textit{Caltech}, \textit{Covertype}, and \textit{Census}.}
-  \label{fig:explained-variance-pca}
-  \includegraphics[width=0.9\linewidth]{figures/explained-variance-plot.pdf}
-\end{figure}
 
 On almost all our data sets, the performance improves when input data is preprocessed with PCA, especially for the movement-based algorithms. Empirically, the more noise is removed (i.e., small $k$ value), the lower the distortion. Notice that $k$ is the number of principal components that the input data is projected on to. The rest of the low variance components are treated as noise and removed. Method utilizing sampling (Group Sampling, Sensitivity Sampling and StreamKM++) are less effected by the preprocessing step. On \textit{Covertype}, PCA does not change the distortions by much because almost all the variance in the data is explained by the first five principal components (see~\cref{fig:explained-variance-pca}). 
 On \textit{Caltech} and \textit{NYTimes}, the quality of the coresets by BICO and Ray Maker improves greatly because the noise removal is more aggressive. Even if the quality is much better for movement-based coreset constructions due to PCA, importance sampling methods are still superior when it comes to the quality of the compression. Summarizing, all methods benefit from PCA, and in case of movement based constructions, we consider PCA a necessary preprocessing step. For the sampling based methods, the computational expense of using PCA in preprocessing does not seem to offset the comparatively small gains in distortion.

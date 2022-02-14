@@ -141,6 +141,15 @@ Gereon Frahling and Christian Sohler.
 \newblock In {\em Proceedings of the 37th Annual {ACM} Symposium on Theory of
   Computing ({STOC})}, pages 209--217, 2005.
 
+\bibitem{GiannopoulosKWW12}
+Panos Giannopoulos, Christian Knauer, Magnus Wahlstr{\"{o}}m, and Daniel
+  Werner.
+\newblock Hardness of discrepancy computation and {\(\epsilon\)}-net
+  verification in high dimension.
+\newblock {\em J. Complex.}, 28(2):162--176, 2012.
+\newblock \href {https://doi.org/10.1016/j.jco.2011.09.001}
+  {\path{doi:10.1016/j.jco.2011.09.001}}.
+
 \bibitem{HaK07}
 Sariel Har{-}Peled and Akash Kushal.
 \newblock Smaller coresets for k-median and k-means clustering.
@@ -160,11 +169,13 @@ Sariel Har{-}Peled and Soham Mazumdar.
 \bibitem{HuangJV19}
 Lingxiao Huang, Shaofeng~H.{-}C. Jiang, and Nisheeth~K. Vishnoi.
 \newblock Coresets for clustering with fairness constraints.
-\newblock In {\em Advances in Neural Information Processing Systems 32: Annual
-  Conference on Neural Information Processing Systems 2019, NeurIPS 2019, 8-14
-  December 2019, Vancouver, BC, Canada}, pages 7587--7598, 2019.
+\newblock In Hanna~M. Wallach, Hugo Larochelle, Alina Beygelzimer, Florence
+  d'Alch{\'{e}}{-}Buc, Emily~B. Fox, and Roman Garnett, editors, {\em Advances
+  in Neural Information Processing Systems 32: Annual Conference on Neural
+  Information Processing Systems 2019, NeurIPS 2019, December 8-14, 2019,
+  Vancouver, BC, Canada}, pages 7587--7598, 2019.
 \newblock URL:
-  \url{http://papers.nips.cc/paper/8976-coresets-for-clustering-with-fairness-constraints}.
+  \url{https://proceedings.neurips.cc/paper/2019/hash/810dfbbebb17302018ae903e9cb7a483-Abstract.html}.
 
 \bibitem{huang2020coresets}
 Lingxiao Huang and Nisheeth~K. Vishnoi.
