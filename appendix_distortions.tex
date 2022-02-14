@@ -75,25 +75,24 @@ But here the coordinates of $\mu(C_h^a)$ and $A_i$ are identical, hence $\mu(C_j
 To prove that the distances between $A_i$ and any $\mu(C_h^{a})$ with $h\neq j$ are equal, again consider that any difference can only exist among the first $k$ coordinates. Here, we have $\mu(C_h^{a})_h = \frac{k-1}{k}$, and the remaining columns are $-\frac{1}{k}$. Since $A_{i,h} = -\frac{1}{k}$ for any $h\neq j$, the claim follows.
 \end{proof}
 
-\begin{figure}
+
+
+\begin{figure}[ht]
+  \includegraphics[width=1\linewidth]{figures/cost-curves-benchmark.pdf}
   \caption{Shows the clustering costs of four instances of the benchmark framework as a function of the number of centers. In contrast to real-world data sets, the costs do not decrease rapidly as more cluster centers are added.
-%   On this account, the benchmark is less sensitive to 
   }
   \label{fig:cost-curves-benchmark}
-  \includegraphics[width=1\linewidth]{figures/cost-curves-benchmark.pdf}
 \end{figure}
 
 \begin{figure}[ht]
+  \includegraphics[width=0.9\linewidth]{figures/explained-variance-plot.pdf}
   \caption{The cumulative propotion of explained variance by principal components on \textit{Caltech}, \textit{Covertype}, and \textit{Census}.}
   \label{fig:explained-variance-pca}
-  \includegraphics[width=0.9\linewidth]{figures/explained-variance-plot.pdf}
 \end{figure}
 
 
-\begin{table}[ht]
+\begin{table}[!htbp]
 \centering
-\caption{Distortions of the evaluation algorithms on all data sets without PCA preprocessing. Each cell specify the mean distortion along with the standard deviation in brackets of 10 repetition of the experiment.}
-\label{tab:distortions-mean-std-without-pca}
 \begin{tabular}{lllllll}
 \toprule
 \parbox[t]{2cm}{\ \\Data set}  & \parbox[t]{5mm}{\ \\$k$} &           BICO & \parbox[t]{1cm}{Group\\Sampling} &      Ray Maker & \parbox[t]{1cm}{Sensitivity\\Sampling} &    StreamKM++ \\
@@ -135,16 +134,15 @@ Tower & 20  &   1.07 (0.003) &   1.02 (0.007) &   1.06 (0.004) &         1.03 (0
       & 100 &   1.04 (0.002) &   1.03 (0.004) &   1.05 (0.001) &         1.01 (0.004) &  1.02 (0.001) \\
 \bottomrule
 \end{tabular}
-
+\caption{Distortions of the evaluation algorithms on all data sets without PCA preprocessing. Each cell specify the mean distortion along with the standard deviation in brackets of 10 repetition of the experiment.}
+\label{tab:distortions-mean-std-without-pca}
 \end{table}
 
 
 
 
-\begin{table}[ht]
+\begin{table}[!htbp]
 \centering
-\caption{Distortions of the evaluation algorithms on the data sets preprocessed with PCA. Each cell specify the mean distortion along with the standard deviation in brackets of 10 repetitions.}
-\label{tab:distortions-mean-std-with-pca}
 \begin{tabular}{lllllll}
 \toprule
 \parbox[t]{2cm}{\ \\Data set}  & \parbox[t]{5mm}{\ \\$k$} &           BICO & \parbox[t]{1cm}{Group\\Sampling} &      Ray Maker & \parbox[t]{1cm}{Sensitivity\\Sampling} &    StreamKM++ \\
@@ -174,8 +172,53 @@ NYTimes+PCA & 10  &   1.01 (0.000) &   1.00 (0.000) &   1.01 (0.001) &         1
       & 50  &   1.04 (0.002) &   1.00 (0.000) &   1.05 (0.001) &         1.00 (0.000) &  1.02 (0.000) \\
 \bottomrule
 \end{tabular}
-
+\caption{Distortions of the evaluation algorithms on the data sets preprocessed with PCA. Each cell specify the mean distortion along with the standard deviation in brackets of 10 repetitions.}
+\label{tab:distortions-mean-std-with-pca}
 \end{table}
+
+
+
+\begin{figure*}
+  \includegraphics[width=.67\linewidth]{figures/real-costs-Tower.pdf}
+  \newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
+  }
+  \newline\newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
+  }
+  \newline\newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
+  }
+  \newline\newline
+  \subfloat{
+    \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
+  }
+  \newline\newline
+  \subfloat{
+    \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
+    \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
+    \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
+    \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
+  }
+  \caption{The average costs of running the evaluated coreset algorithms multiple times on different data sets. In general, the five coreset algorithms are able to compute coresets which result in solutions with comparable costs on the different real-world data sets. The differences in cost is more noticeable on the benchmark instances. Here, Senstivity Sampling is the winner because it seems to be better at capturing the correct ``clusters'' inherent in the benchmark instances.}
+  \label{fig:real-costs}
+\end{figure*}
+
 
 
 
