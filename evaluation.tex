@@ -2,7 +2,7 @@
 
 
 \section{Experiments} \label{sec:experiments}
-In this section, we present how we evaluated different algorithms. First, we propose a new evaluation procedure which gauges the quality of coresets. Then, we describe the data sets used for the empirical evaluation and our experimental setup. Finally, we detail the outcome of the experiments and our observations on the results.
+In this section, we present how we evaluated different algorithms. First, we propose our evaluation procedure which gauges the quality of coresets. Then, we describe the data sets used for the empirical evaluation and our experimental setup. Finally, we detail the outcome of the experiments and our interpretation of the results.
 
 \subsection{Evaluation Procedure}
 As mentioned before, finding a $k$-clustering which results in a maximal distortion is difficult. Instead, we can estimate the quality of coresets on real-world data sets as follows: we first compute a coreset $\Omega$. Then, run $k$-means++ on $\Omega$ to find a set of $k$ centers $C$. We repeat the $k$-means++ algorithm 5 times and pick the set of centers with the largest distortion.
@@ -11,7 +11,7 @@ While it is useful to evaluate coresets on real-world data sets, it can be trick
 
 
 Every randomized coreset construction was repeated $10$ times. We aggregated the reported distortions by taking the average over all $10$ evaluations. 
-In addition, we preprocessed the data using the dimension reduction techniques described in Section~\ref{sec:dim_reduction}.
+In addition, we preprocessed the data using PCA (compare Section~\ref{sec:dim_reduction}).
 
 
 % We now present the empirical evaluation of these coresets.
@@ -253,7 +253,7 @@ Reducing noise with PCA helped boost the performance on real-world data sets wit
 
 
 \subsubsection*{Optimization versus Compression}
-While all five algorithms are equally matched when optimizing on the candidate coresets, coreset quality performance differ significantly (see \cref{fig:distortions}). We omit tables detailing the cost due to space restrictions. For all data sets, the obtained costs differed insignificantly for all values of $k$ (see \cref{fig:real-costs}).
+While all five algorithms are equally matched when optimizing on the candidate coresets, coreset quality performance differ significantly (see \cref{fig:distortions}). We omit tables and plots detailing the cost due to space restrictions. For all data sets, the obtained costs differed insignificantly for all values of $k$.
 
 The quality of the coreset itself can be closely tied to the change in cost with increasing number of centers. It is not uncommon for the $k$-means cost of real-world data sets to drop significantly for larger values of $k$.
 ~\cref{fig:cost-curves-real-world-datasets} illustrates this behavior for several real-world data sets. The more the curve bends, the less of a difference there is between computing a coreset and a clustering with low cost. For data sets with a L-shaped cost curve, a coreset algorithm adding more centers to the coreset will seem to be performing well when evaluating it based on the outcome of the optimization.
@@ -282,9 +282,9 @@ On data sets where the curve is less steep, we observed higher distortions. The 
 \subsubsection*{Movement-based versus Sampling-based Approaches}
 
 In general, movement-based constructions perform the worst in terms of coreset quality. 
-We observed that BICO and Ray Maker have the highest distortions across all data sets including on the benchmark instances. Among the sampling-based algorithms, Sensitive Sampling performs well with Group Sampling generally being competitive. StreamKM++ is an interesting case. Like the movement-based methods, its distortion increases with the dimension. Nevertheless, it generally performs significantly better than BICO and Ray Maker. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers weighted by the number of points of a minimal cost assignment. This is similar to movement-based algorithms such as BICO. Nevertheless, it also retains some of the performance from pure importance schemes.
+We observed that BICO and Ray Maker have the highest distortions across all data sets including on the benchmark instances. Among the sampling-based algorithms, Sensitive Sampling performs well with Group Sampling generally being competitive. This runs contrary to theory where Group Sampling has the better (currently known) theoretical bounds. StreamKM++ is an interesting case. Like the movement-based methods, its distortion increases with the dimension. Nevertheless, it generally performs significantly better than BICO and Ray Maker. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers weighted by the number of points of a minimal cost assignment. This is similar to movement-based algorithms such as BICO. Nevertheless, it also retains some of the performance from pure importance schemes.
 
-In practice as well as in theory, the distortion of movement-based algorithms are affected by the dimension. By comparison, sampling-based algorithms are affected very little. Theoretically, there should not exist a difference, as the sampling bounds are independent of the dimension. What little effect can be observed is likely due to PCA making it easier to find low cost solutions that form the backbone of all coreset constructions. StreamKM++ is an interesting case, as it is still affected by the dimension, though than the other movement based methods and less than the worst-case bounds would suggest.
+In practice as well as in theory, the distortion of movement-based algorithms are affected by the dimension. By comparison, sampling-based algorithms are affected very little. Theoretically, there should not exist a difference, as the sampling bounds are independent of the dimension. What little effect can be observed is likely due to PCA making it easier to find low cost solutions that form the backbone of all coreset constructions. StreamKM++ is an interesting case, as it is still affected by the dimension, though less than the other movement based methods, due its performance without dimension reduction being significantly better than the worst-case bounds would suggest. 
 
 
 
@@ -293,6 +293,6 @@ In practice as well as in theory, the distortion of movement-based algorithms ar
 \subsubsection*{Impact of PCA}
 
 On almost all our data sets, the performance improves when input data is preprocessed with PCA, especially for the movement-based algorithms. Empirically, the more noise is removed (i.e., small $k$ value), the lower the distortion. Notice that $k$ is the number of principal components that the input data is projected on to. The rest of the low variance components are treated as noise and removed. Method utilizing sampling (Group Sampling, Sensitivity Sampling and StreamKM++) are less effected by the preprocessing step. On \textit{Covertype}, PCA does not change the distortions by much because almost all the variance in the data is explained by the first five principal components (see~\cref{fig:explained-variance-pca}). 
-On \textit{Caltech} and \textit{NYTimes}, the quality of the coresets by BICO and Ray Maker improves greatly because the noise removal is more aggressive. Even if the quality is much better for movement-based coreset constructions due to PCA, importance sampling methods are still superior when it comes to the quality of the compression. Summarizing, all methods benefit from PCA, and in case of movement based constructions, we consider PCA a necessary preprocessing step. For the sampling based methods, the computational expense of using PCA in preprocessing does not seem to offset the comparatively small gains in distortion.
+On \textit{Caltech} and \textit{NYTimes}, the quality of the coresets by BICO and Ray Maker improves greatly because the noise removal is more aggressive. Even if the quality is much better for movement-based coreset constructions due to PCA, importance sampling methods are still superior when it comes to the quality of the compression. Summarizing, all methods benefit from PCA, and in case of movement based constructions, we consider PCA a necessary preprocessing step. For the sampling based methods, the computational expense of using PCA in preprocessing does not seem justify the comparatively meagre gains in coreset distortion.
 
 

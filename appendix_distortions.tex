@@ -75,6 +75,22 @@ But here the coordinates of $\mu(C_h^a)$ and $A_i$ are identical, hence $\mu(C_j
 To prove that the distances between $A_i$ and any $\mu(C_h^{a})$ with $h\neq j$ are equal, again consider that any difference can only exist among the first $k$ coordinates. Here, we have $\mu(C_h^{a})_h = \frac{k-1}{k}$, and the remaining columns are $-\frac{1}{k}$. Since $A_{i,h} = -\frac{1}{k}$ for any $h\neq j$, the claim follows.
 \end{proof}
 
+\section{Hardness of Weak Coreset Evaluation}
+
+Here, we show that it is in general co-NP hard to evaluate whether two point sets $A$ and $B$ are weak coresets of each other. A weak coreset only requires that a $(1+\varepsilon)$ approximation for one point set is a $(1+O(\varepsilon))$ for the other.
+
+
+\begin{proposition}
+\label{prop:hardness}
+Given two point sets $A$ and $B$ in $\mathbb{R}^d$ and a sufficiently small (constant) $\varepsilon>0$, it is co-NP hard to decide whether $A$ is a weak coreset of $B$.
+\end{proposition}
+\begin{proof}
+First, we recall that for some $\varepsilon_0$ and candidate clustering cost $V$, it is NP-hard to decide whether there exists a clustering $C$ with cost in $\cost_A(C)\leq V$ and $\cost_B(C)\geq (1+\varepsilon_0)\cdot V$.
+Conversely, it is co-NP-hard to decide whether there exists no set of centers $C$ such that $\cost_A(C)\leq V$ and $\cost_B(C) \geq (1+\varepsilon_0)\cdot V$.
+\end{proof}
+
+We remark that the possible values for $\varepsilon_0$ are determined by the current APX-hardness results. Assuming NP$\neq$P, $\varepsilon_0\approx 1.07$ and assuming UCG, $\varepsilon_0 \approx 1.17$~\cite{Cohen-AddadSL21,Cohen-AddadS19} for $k$-means in Euclidean spaces.
+
 
 
 \begin{figure}[ht]
@@ -178,47 +194,47 @@ NYTimes+PCA & 10  &   1.01 (0.000) &   1.00 (0.000) &   1.01 (0.001) &         1
 
 
 
-\begin{figure*}
-  \includegraphics[width=.67\linewidth]{figures/real-costs-Tower.pdf}
-  \newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
-  }
-  \newline\newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
-  }
-  \newline\newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
-  }
-  \newline\newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
-  }
-  \newline\newline
-  \subfloat{
-    \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
-    \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
-    \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
-    \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
-  }
-  \caption{The average costs of running the evaluated coreset algorithms multiple times on different data sets. In general, the five coreset algorithms are able to compute coresets which result in solutions with comparable costs on the different real-world data sets. The differences in cost is more noticeable on the benchmark instances. Here, Senstivity Sampling is the winner because it seems to be better at capturing the correct ``clusters'' inherent in the benchmark instances.}
-  \label{fig:real-costs}
-\end{figure*}
-
+%\begin{figure*}
+%  \includegraphics[width=.67\linewidth]{figures/real-costs-Tower.pdf}
+%  \newline
+%  \subfloat{
+%    \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
+%  }
+%  \subfloat{
+%    \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%    \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
+%  }
+%  \subfloat{
+%    \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%    \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
+%  }
+%  \subfloat{
+%    \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%    \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes.pdf}
+%  }
+%  \subfloat{
+%    \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%    \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
+%    \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
+%    \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
+%    \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
+%  }
+%  \caption{The average costs of running the evaluated coreset algorithms multiple times on different data sets. In general, the five coreset algorithms are able to compute coresets which result in solutions with comparable costs on the different real-world data sets. The differences in cost is more noticeable on the benchmark instances. Here, Senstivity Sampling is the winner because it seems to be better at capturing the correct ``clusters'' inherent in the benchmark instances.}
+%  \label{fig:real-costs}
+%\end{figure*}
+%
 
 
 

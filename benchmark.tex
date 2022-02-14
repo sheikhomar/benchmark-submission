@@ -1,22 +1,5 @@
-\section{Hardness of Coreset Evaluation and a Benchmark}
-\label{sec:coreset-evaluation-hard}
+\section{Benchmark Construction}
 \label{sec:benchmark}
-
-In this section, we first show that it is in general co-NP hard to evaluate whether two point sets $A$ and $B$ are weak coresets of each other. Here, a weak coreset only requires that a $(1+\varepsilon)$ approximation for one point set is a $(1+O(\varepsilon))$ for the other.
-
-
-\begin{proposition}
-\label{prop:hardness}
-Given two point sets $A$ and $B$ in $\mathbb{R}^d$ and a sufficiently small (constant) $\varepsilon>0$, it is co-NP hard to decide whether $A$ is a weak coreset of $B$.
-\end{proposition}
-\begin{proof}
-First, we recall that for some $\varepsilon_0$ and candidate clustering cost $V$, it is NP-hard to decide whether there exists a clustering $C$ with cost in $\cost_A(C)\leq V$ and $\cost_B(C)\geq (1+\varepsilon_0)\cdot V$.
-Conversely, it is co-NP-hard to decide whether there exists no set of centers $C$ such that $\cost_A(C)\leq V$ and $\cost_B(C) \geq (1+\varepsilon_0)\cdot V$.
-\end{proof}
-
-We remark that the possible values for $\varepsilon_0$ are determined by the current APX-hardness results. Assuming NP$\neq$P, $\varepsilon_0\approx 1.07$ and assuming UCG, $\varepsilon_0 \approx 1.17$~\cite{Cohen-AddadSL21,Cohen-AddadS19} for $k$-means in Euclidean spaces.
-
-\subsection{Benchmark Construction}
 
 In this section, we describe our benchmark. The benchmark has a parameter $\alpha$ which controls the number of points and dimensions.
 For a given value of $k$ the benchmark consists of $n=k^\alpha$ points and $d=\alpha \cdot k$ dimensions.
@@ -34,6 +17,7 @@ For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i
 
 
 To get a better feel for the construction, we have given two small example benchmarks for $k=2$ and $k=3$ in the appendix.
+
 
 \subsection{Properties of the Benchmark}
 
