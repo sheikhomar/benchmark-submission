@@ -241,7 +241,7 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 
 
 \subsection{Outcome of Experiments}
-We summarized the distortions in \cref{fig:distortions}, for numerical variance we refer to \cref{tab:distortions-mean-std-without-pca} and \cref{tab:distortions-mean-std-with-pca} in the appendix.
+We summarized the distortions in \cref{fig:distortions}, for numerical variance we refer to \cref{tab:distortions-mean-std} in the appendix.
 All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO and Group Sampling while Sensitivity Sampling and StreamKM++ perform the best. Differences in performance are more noticeable on \textit{Census}, \textit{Caltech}, and \textit{NYTimes}  where methods based on importance sampling perform much better. Sensitivity Sampling and Group Sampling perform the best, StreamKM++ come in second while BICO and Ray Maker perform the worst across these data sets.
 On the \textit{Benchmark}, Ray Maker is the worst while Sensitivty Sampling and Group Sampling are the best. StreamKM++ performs also very well compared to BICO.
 

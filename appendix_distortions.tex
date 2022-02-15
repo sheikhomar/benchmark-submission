@@ -1,4 +1,4 @@
-\section{Appendix: Properties of the Benchmark and Missing Plots}
+\section{Properties of the Benchmark}
 
 \begin{figure*}[h]
 \begin{center}
@@ -37,8 +37,8 @@ $$
 \end{bmatrix} 
 $$
 \end{center}
-\label{fig1}
 \caption{Benchmark construction for $k=2$ and $\alpha=3$ (left) and $k=3$ and $\alpha=2$ (right).}
+\label{fig:benchmark-small-instances}
 \end{figure*}
 
 
@@ -93,23 +93,11 @@ We remark that the possible values for $\varepsilon_0$ are determined by the cur
 
 
 
-\begin{figure}[ht]
-  \includegraphics[width=1\linewidth]{figures/cost-curves-benchmark.pdf}
-  \caption{Shows the clustering costs of four instances of the benchmark framework as a function of the number of centers. In contrast to real-world data sets, the costs do not decrease rapidly as more cluster centers are added.
-  }
-  \label{fig:cost-curves-benchmark}
-\end{figure}
 
-\begin{figure}[ht]
-  \includegraphics[width=0.9\linewidth]{figures/explained-variance-plot.pdf}
-  \caption{The cumulative propotion of explained variance by principal components on \textit{Caltech}, \textit{Covertype}, and \textit{Census}.}
-  \label{fig:explained-variance-pca}
-\end{figure}
+\section{Distortions}
 
 
-\begin{table}[!htbp]
-\centering
-\begin{tabular}{lllllll}
+\begin{longtable}{p{.20\textwidth}llllll} 
 \toprule
 \parbox[t]{2cm}{\ \\Data set}  & \parbox[t]{5mm}{\ \\$k$} &           BICO & \parbox[t]{1cm}{Group\\Sampling} &      Ray Maker & \parbox[t]{1cm}{Sensitivity\\Sampling} &    StreamKM++ \\
 % Dataset & $k$ &                &                &                &                      &               \\
@@ -148,20 +136,6 @@ Tower & 20  &   1.07 (0.003) &   1.02 (0.007) &   1.06 (0.004) &         1.03 (0
       & 60  &   1.06 (0.001) &   1.03 (0.004) &   1.05 (0.004) &         1.01 (0.003) &  1.02 (0.001) \\
       & 80  &   1.05 (0.001) &   1.03 (0.005) &   1.05 (0.002) &         1.01 (0.006) &  1.02 (0.001) \\
       & 100 &   1.04 (0.002) &   1.03 (0.004) &   1.05 (0.001) &         1.01 (0.004) &  1.02 (0.001) \\
-\bottomrule
-\end{tabular}
-\caption{Distortions of the evaluation algorithms on all data sets without PCA preprocessing. Each cell specify the mean distortion along with the standard deviation in brackets of 10 repetition of the experiment.}
-\label{tab:distortions-mean-std-without-pca}
-\end{table}
-
-
-
-
-\begin{table}[!htbp]
-\centering
-\begin{tabular}{lllllll}
-\toprule
-\parbox[t]{2cm}{\ \\Data set}  & \parbox[t]{5mm}{\ \\$k$} &           BICO & \parbox[t]{1cm}{Group\\Sampling} &      Ray Maker & \parbox[t]{1cm}{Sensitivity\\Sampling} &    StreamKM++ \\
 \midrule
 Caltech+PCA & 10  &   1.16 (0.004) &   1.01 (0.002) &   1.19 (0.009) &         1.00 (0.001) &  1.02 (0.002) \\
       & 20  &   1.42 (0.016) &   1.01 (0.002) &   1.51 (0.008) &         1.01 (0.001) &  1.04 (0.002) \\
@@ -187,54 +161,76 @@ NYTimes+PCA & 10  &   1.01 (0.000) &   1.00 (0.000) &   1.01 (0.001) &         1
       & 40  &   1.04 (0.001) &   1.00 (0.000) &   1.04 (0.001) &         1.00 (0.002) &  1.01 (0.000) \\
       & 50  &   1.04 (0.002) &   1.00 (0.000) &   1.05 (0.001) &         1.00 (0.000) &  1.02 (0.000) \\
 \bottomrule
-\end{tabular}
-\caption{Distortions of the evaluation algorithms on the data sets preprocessed with PCA. Each cell specify the mean distortion along with the standard deviation in brackets of 10 repetitions.}
-\label{tab:distortions-mean-std-with-pca}
-\end{table}
+\caption{Distortions of the evaluation algorithms on all data sets with and without PCA preprocessing. Each cell specify the mean distortion along with the standard deviation in brackets of 10 repetition of the experiment.}
+\label{tab:distortions-mean-std}
+\end{longtable}
 
 
 
-%\begin{figure*}
+
+
+
+
+
+
+
+
+\section{Auxiliary Plots}
+
+
+\begin{figure}[h!t]
+  \includegraphics[width=0.9\linewidth]{figures/explained-variance-plot.pdf}
+  \caption{The cumulative propotion of explained variance by principal components on \textit{Caltech}, \textit{Covertype}, and \textit{Census}.}
+  \label{fig:explained-variance-pca}
+\end{figure}
+
+\begin{figure}[!ht]
+  \includegraphics[width=0.9\linewidth]{figures/cost-curves-benchmark.pdf}
+  \caption{Shows the clustering costs of four instances of the benchmark framework as a function of the number of centers. In contrast to real-world data sets, the costs do not decrease rapidly as more cluster centers are added.
+  }
+  \label{fig:cost-curves-benchmark}
+\end{figure}
+
+% \begin{figure*}
 %  \includegraphics[width=.67\linewidth]{figures/real-costs-Tower.pdf}
 %  \newline
 %  \subfloat{
-%    \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
+%     \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
 %  }
 %  \subfloat{
-%    \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
-%  }
-%  \newline\newline
-%  \subfloat{
-%    \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
-%  }
-%  \subfloat{
-%    \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
+%     \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
 %  }
 %  \newline\newline
 %  \subfloat{
-%    \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
+%     \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
 %  }
 %  \subfloat{
-%    \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
-%  }
-%  \newline\newline
-%  \subfloat{
-%    \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes.pdf}
-%  }
-%  \subfloat{
-%    \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
+%     \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
 %  }
 %  \newline\newline
 %  \subfloat{
-%    \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
-%    \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
-%    \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
-%    \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
+%     \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
+%  }
+%  \subfloat{
+%     \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%     \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes.pdf}
+%  }
+%  \subfloat{
+%     \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
+%  }
+%  \newline\newline
+%  \subfloat{
+%     \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
+%     \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
+%     \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
+%     \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
 %  }
 %  \caption{The average costs of running the evaluated coreset algorithms multiple times on different data sets. In general, the five coreset algorithms are able to compute coresets which result in solutions with comparable costs on the different real-world data sets. The differences in cost is more noticeable on the benchmark instances. Here, Senstivity Sampling is the winner because it seems to be better at capturing the correct ``clusters'' inherent in the benchmark instances.}
 %  \label{fig:real-costs}
-%\end{figure*}
-%
+% \end{figure*}
 
 
 
