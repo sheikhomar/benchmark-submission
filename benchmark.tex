@@ -34,17 +34,21 @@ We also recall the following lemma which will allow us to express the $k$-means 
 \begin{lemma}[Folklore]
 \label{lem:magic}
 Let $A$ be an arbitrary set of points and let $\mu(A) = \frac{1}{|A|}\sum_{p\in A} p$ be the mean. Then for any point $c$
-$$ \sum_{p\in A} \|p-c\|^2 = \sum_{p\in A} \|p-\mu(A)\|^2 + |A|\cdot \|\mu(A)-c\|^2.$$
+\begin{align*}
+ \sum_{p\in A} \|p-c\|^2 = \sum_{p\in A} \|p-\mu(A)\|^2 + |A|\cdot \|\mu(A)-c\|^2.
+\end{align*}
 \end{lemma}
 This lemma proves that for any given cluster $C_j$, the mean is the optimal choice of center. 
 We also note that any two distinct columns of $X$ are orthogonal. Furthermore $\frac{1}{n}\mathbf{1}\mathbf{1}^TA$ copies the mean into every entry of $A$. Combining these two observations, we see that the matrix $XX^TA$ maps the $i$th row of $A$ onto the mean of the cluster it is assigned to. Finally, define the Frobenius norm of an $n\times d$ $A$ by $\|A\|_F = \sqrt{\sum_{i=1}^n\sum_{j=1}^d A_{i,j}^2}$. Then the $k$-means cost of the clustering $\mathcal{C}$ is precisely
-$$\|A-XX^TA\|_F^2.$$
+$\|A-XX^TA\|_F^2.$
 
 We also require the following distance measure on clusterings as proposed by Meila~\cite{Meila05,Meila06}. Given two clusterings $\mathcal{C}$ and $\mathcal{C'}$, the $k\times k$ confusion matrix $M$ is defined as
-$$ M_{i,j} = |C_i\cap C'_j|.$$
+$ M_{i,j} = |C_i\cap C'_j|.$
 Furthermore for the indicator matrices $\tilde X$ and $\tilde X'$ induced by $\mathcal{C}$ and $\mathcal{C'}$ we have the identity $M=\tilde X^T {\tilde X'}$.
 Denote by $\Pi_k$ the set of all permutations over $k$ elements. Then the distance between  $\mathcal{C}$ and $\mathcal{C'}$ is defined as
-$$d(\mathcal{C},\mathcal{C'}) = 1-\frac{1}{n}\underset{\pi\in \Pi_k}{\max} \sum_{i=1}^k M_{i,\pi(i)}.$$
+\begin{align*}
+d(\mathcal{C},\mathcal{C'}) = 1-\frac{1}{n}\underset{\pi\in \Pi_k}{\max} \sum_{i=1}^k M_{i,\pi(i)}.
+\end{align*}
 Observe that for clusters that are identical, their distance is $0$. The maximum distance between any two $k$ clusterings is always $\frac{k-1}{k}$.
 
 

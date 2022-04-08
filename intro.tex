@@ -4,14 +4,17 @@ The design and analysis of scalable algorithms has become an important research 
 One of the main approaches to deal with the scalability issue is to compress or sketch large data sets into smaller, more manageable ones. The aim of such compression methods is to preserve the properties of the original data, up to some small error, while significantly reducing the number of data points.
 
 Among the most popular and successful paradigms in this line of research are \emph{coresets}. Informally, given a data set $A$, a coreset $S\subset A$ with respect to a given set of queries $Q$ and query function $f: A\times Q \rightarrow \mathbb{R}_{\geq 0}$ approximates the behaviour of $A$ for all queries up to some multiplicative distortion $D$ via
-$$ \sup_{q\in Q} \max\left( \frac{f(S,q)}{f(A,q)},\frac{f(A,q)}{f(S,q)}\right) \leq D.$$
+% $$ \sup_{q\in Q} \max\left( \frac{f(S,q)}{f(A,q)},\frac{f(A,q)}{f(S,q)}\right) \leq D.$$
+\begin{equation*}
+    \sup_{q\in Q} \max\left( \frac{f(S,q)}{f(A,q)},\frac{f(A,q)}{f(S,q)}\right) \leq D.
+\end{equation*}
 Coresets have been applied to a number of problems such as computational geometry \cite{AHV05,Chan09}, linear algebra \cite{IndykMGR20,maalouf2019fast}, and machine learning \cite{MRM21,MunteanuSSW18}. But the by far most intensively studied and arguably most successful applications of the coreset framework is the $k$-clustering problem.
 
-Here we are given $n$ points $A$ with (potential unit) weights $w:A\rightarrow \mathbb{R}_{\geq 0}$ in some metric space with distance function $\dist$ and aim to find $k$ centers $C$ such that $$\cost_A(C):= \frac{1}{n} \sum_{p\in A}  \min_{c\in C} w(p)\cdot \dist^z(p,c)$$
-
+Here we are given $n$ points $A$ with (potential unit) weights $w:A\rightarrow \mathbb{R}_{\geq 0}$ in some metric space with distance function $\dist$ and aim to find $k$ centers $C$ such that 
+\begin{equation*}
+\cost_A(C):= \frac{1}{n} \sum_{p\in A}  \min_{c\in C} w(p)\cdot \dist^z(p,c)
+\end{equation*}
 is minimized. The most popular variant of this problem is probably the $k$-means problem in $d$-dimensional Euclidean space where $z=2$ and $\dist(x,y) = \sqrt{\sum_{i=1}^d (x_i-y_i)^2}$.
-
-
 
 A $(k,\varepsilon)$-coreset is now a subset $\Omega\subset A$ with weights $w:\Omega\rightarrow \mathbb{R}_{\geq 0}$ such that for any set of $k$ centers $C$
 \begin{equation}
