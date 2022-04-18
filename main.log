@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.26)  18 AUG 2021 15:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.26)  19 APR 2022 01:02
 entering extended mode
 **./main.tex
 (main.tex
@@ -51,20 +51,16 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@dimlist=\toks16
 
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cf
-g)) (ltexpprt.sty
-(C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.st
-y
-Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
-rs
-\f@nch@headwidth=\skip49
-\f@nch@O@elh=\skip50
-\f@nch@O@erh=\skip51
-\f@nch@O@olh=\skip52
-\f@nch@O@orh=\skip53
-\f@nch@O@elf=\skip54
-\f@nch@O@erf=\skip55
-\f@nch@O@olf=\skip56
-\f@nch@O@orf=\skip57
+g)) (ltexpprt.sty (fancyhdr.sty
+\fancy@headwidth=\skip49
+\f@ncyO@elh=\skip50
+\f@ncyO@erh=\skip51
+\f@ncyO@olh=\skip52
+\f@ncyO@orh=\skip53
+\f@ncyO@elf=\skip54
+\f@ncyO@erf=\skip55
+\f@ncyO@olf=\skip56
+\f@ncyO@orf=\skip57
 )
 *** ACM/SIAM LaTeX2E Preprint Series macro package, version 1.2, March 18, 2019
  ***
@@ -693,24 +689,24 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -746,7 +742,7 @@ LaTeX Font Info:    ... okay on input line 150.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 150.
+Package hyperref Info: Link coloring OFF on input line 151.
 
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -761,9 +757,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count327
 )
-LaTeX Info: Redefining \ref on input line 150.
-LaTeX Info: Redefining \pageref on input line 150.
-LaTeX Info: Redefining \nameref on input line 150.
+LaTeX Info: Redefining \ref on input line 151.
+LaTeX Info: Redefining \pageref on input line 151.
+LaTeX Info: Redefining \nameref on input line 151.
  (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
@@ -797,32 +793,36 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 168
+LaTeX Font Info:    Trying to load font information for U+msa on input line 169
 .
 
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 168
+LaTeX Font Info:    Trying to load font information for U+msb on input line 169
 .
 
 (C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (intro.tex
-Underfull \hbox (badness 1715) in paragraph at lines 11--13
+Underfull \hbox (badness 1715) in paragraph at lines 16--18
 \OT1/cmr/m/n/10 Eu-clidean space where $\OML/cmm/m/it/10 z \OT1/cmr/m/n/10 = 2$
  and $[](\OML/cmm/m/it/10 x; y\OT1/cmr/m/n/10 ) =
  []
+
+
+LaTeX Warning: Citation `GiannopoulosKWW12' on page 1 undefined on input line 3
+0.
+
+
+LaTeX Warning: Reference `prop:hardness' on page 1 undefined on input line 30.
 
 [1{C:/Users/au672776/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
 
 ])
 (preliminaries.tex) (algorithms.tex
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
-
 Underfull \hbox (badness 1558) in paragraph at lines 14--16
 []\OT1/cmr/m/n/10 The pop-u-lar $\OML/cmm/m/it/10 k$\OT1/cmr/m/n/10 -means++ al
 -go-
@@ -834,188 +834,318 @@ Underfull \hbox (badness 1275) in paragraph at lines 16--17
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
+
+LaTeX Warning: Citation `harpeled2007raymaker' on page 3 undefined on input lin
+e 20.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
 []\OT1/cmr/m/n/10 Feldman,
  []
 
 
-Underfull \hbox (badness 4181) in paragraph at lines 31--32
+Underfull \hbox (badness 4181) in paragraph at lines 33--34
 \OT1/cmr/m/n/10 Schmidt, and Sohler [[]] showed that pro-
  []
 
 ) (benchmark.tex
-Underfull \hbox (badness 4084) in paragraph at lines 1--1
-[]\OT1/cmr/bx/n/10 Hardness of Core-set Eval-u-a-tion and a
- []
+! Undefined control sequence.
+<recently read> \one 
+                     
+l.8 Denote by $\one
+                   _k$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 2
-3.
+! Undefined control sequence.
+l.12 (v_i^{\ell-1})_1 \cdot \one
+                                _k \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-(C:\Users\au672776\AppData\Local\Programs\MiKTeX\tex/latex/doublestroke\udsrom.
-fd
-File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-) [3]
+! Undefined control sequence.
+l.13 (v_i^{\ell-1})_2 \cdot \one
+                                _k \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+! Undefined control sequence.
+l.15 (v_i^{\ell-1})_1 \cdot \one
+                                _k
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[3]
+
+LaTeX Warning: Reference `fig:benchmark-small-instances' on page 1 undefined on
+ input line 19.
 
 [4]
-Overfull \hbox (39.78574pt too wide) in alignment at lines 169--173
+Overfull \hbox (32.38255pt too wide) in alignment at lines 88--92
  [][][] []
  []
 
-[5]) (evaluation.tex
-
-LaTeX Warning: Reference `sec:benchmark' on page 6 undefined on input line 6.
-
-
-Underfull \hbox (badness 1082) in paragraph at lines 3--7
-\OT1/cmr/m/n/10 We now present the em-pir-i-cal eval-u-a-tion of these
- []
-
-
-LaTeX Warning: Reference `sec:algorithms' on page 6 undefined on input line 8.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--14
+) (evaluation.tex [5]
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
 [][][][]$\OT1/cmtt/m/n/8 https : / / archive . ics . uci . edu / ml / datasets 
 / US + Census +
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--16
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
 [][][][]$\OT1/cmtt/m/n/8 http : / / homepages . uni-[]paderborn . de / frahling
  /
  []
 
 
-Underfull \hbox (badness 3977) in paragraph at lines 12--21
- \OT1/cmr/bx/n/10 4.1 Datasets[][] \OT1/cmr/m/n/10 We use three com-mon real-wo
-rld
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[][][][]$\OT1/cmtt/m/n/8 http : / / www . vision . caltech . edu / Image _ Data
+sets /
  []
 
 
-Overfull \vbox (1.63698pt too high) has occurred while \output is active []
+Overfull \vbox (2.35005pt too high) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 109--111
- \OT1/cmr/bx/n/10 4.3 Setup[][] \OT1/cmr/m/n/10 We im-ple-mented Sen-si-tiv-ity
- Sam-pling,
- []
-
-[6]
-<figures/distortions-Tower.pdf, id=249, 978.58574pt x 407.75525pt>
-File: figures/distortions-Tower.pdf Graphic file (type pdf)
-<use figures/distortions-Tower.pdf>
-Package pdftex.def Info: figures/distortions-Tower.pdf  used on input line 115.
-
-(pdftex.def)             Requested size: 319.797pt x 133.25305pt.
-<figures/distortions-Covertype.pdf, id=250, 750.99321pt x 407.75525pt>
-File: figures/distortions-Covertype.pdf Graphic file (type pdf)
-<use figures/distortions-Covertype.pdf>
-Package pdftex.def Info: figures/distortions-Covertype.pdf  used on input line 
-119.
-(pdftex.def)             Requested size: 246.0pt x 133.56415pt.
-<figures/distortions-Covertype+PCA.pdf, id=251, 750.99321pt x 407.75525pt>
-File: figures/distortions-Covertype+PCA.pdf Graphic file (type pdf)
-<use figures/distortions-Covertype+PCA.pdf>
-Package pdftex.def Info: figures/distortions-Covertype+PCA.pdf  used on input l
-ine 122.
-(pdftex.def)             Requested size: 246.0pt x 133.56415pt.
-<figures/distortions-Census.pdf, id=252, 741.17528pt x 407.75525pt>
-File: figures/distortions-Census.pdf Graphic file (type pdf)
-<use figures/distortions-Census.pdf>
-Package pdftex.def Info: figures/distortions-Census.pdf  used on input line 126
-.
-(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
-<figures/distortions-Census+PCA.pdf, id=253, 741.17528pt x 407.75525pt>
-File: figures/distortions-Census+PCA.pdf Graphic file (type pdf)
-<use figures/distortions-Census+PCA.pdf>
-Package pdftex.def Info: figures/distortions-Census+PCA.pdf  used on input line
- 129.
-(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
-<figures/distortions-Benchmark.pdf, id=254, 741.17528pt x 407.75525pt>
-File: figures/distortions-Benchmark.pdf Graphic file (type pdf)
-<use figures/distortions-Benchmark.pdf>
-Package pdftex.def Info: figures/distortions-Benchmark.pdf  used on input line 
-133.
-(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--138
+Underfull \hbox (badness 10000) in paragraph at lines 70--101
 
  []
 
 
-Overfull \hbox (13.33331pt too wide) in paragraph at lines 115--138
+Underfull \hbox (badness 10000) in paragraph at lines 105--142
+
+ []
+
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 67--143
+[]$[]$
+ []
+
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 67--143
+[]$ 
+ []
+
+<figures/distortions-mean-Tower.pdf, id=243, 978.58574pt x 256.81508pt>
+File: figures/distortions-mean-Tower.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Tower.pdf>
+Package pdftex.def Info: figures/distortions-mean-Tower.pdf  used on input line
+ 154.
+(pdftex.def)             Requested size: 339.4812pt x 89.09113pt.
+<figures/distortions-mean-Covertype.pdf, id=244, 750.99321pt x 256.81508pt>
+File: figures/distortions-mean-Covertype.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Covertype.pdf>
+Package pdftex.def Info: figures/distortions-mean-Covertype.pdf  used on input 
+line 158.
+(pdftex.def)             Requested size: 246.0pt x 84.12224pt.
+<figures/distortions-mean-Covertype+PCA.pdf, id=245, 750.99321pt x 256.81508pt>
+
+File: figures/distortions-mean-Covertype+PCA.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Covertype+PCA.pdf>
+Package pdftex.def Info: figures/distortions-mean-Covertype+PCA.pdf  used on in
+put line 161.
+(pdftex.def)             Requested size: 246.0pt x 84.12224pt.
+<figures/distortions-mean-Census.pdf, id=246, 741.17528pt x 256.81508pt>
+File: figures/distortions-mean-Census.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Census.pdf>
+Package pdftex.def Info: figures/distortions-mean-Census.pdf  used on input lin
+e 165.
+(pdftex.def)             Requested size: 246.0pt x 85.23514pt.
+<figures/distortions-mean-Census+PCA.pdf, id=247, 741.17528pt x 256.81508pt>
+File: figures/distortions-mean-Census+PCA.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Census+PCA.pdf>
+Package pdftex.def Info: figures/distortions-mean-Census+PCA.pdf  used on input
+ line 168.
+(pdftex.def)             Requested size: 246.0pt x 85.23514pt.
+<figures/distortions-mean-Caltech.pdf, id=248, 726.44838pt x 256.81508pt>
+File: figures/distortions-mean-Caltech.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Caltech.pdf>
+Package pdftex.def Info: figures/distortions-mean-Caltech.pdf  used on input li
+ne 172.
+(pdftex.def)             Requested size: 246.0pt x 86.9672pt.
+<figures/distortions-mean-Caltech+PCA.pdf, id=249, 750.99321pt x 256.81508pt>
+File: figures/distortions-mean-Caltech+PCA.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Caltech+PCA.pdf>
+Package pdftex.def Info: figures/distortions-mean-Caltech+PCA.pdf  used on inpu
+t line 175.
+(pdftex.def)             Requested size: 246.0pt x 84.12224pt.
+<figures/distortions-mean-NYTimes.pdf, id=250, 736.26631pt x 256.81508pt>
+File: figures/distortions-mean-NYTimes.pdf Graphic file (type pdf)
+<use figures/distortions-mean-NYTimes.pdf>
+Package pdftex.def Info: figures/distortions-mean-NYTimes.pdf  used on input li
+ne 179.
+(pdftex.def)             Requested size: 246.0pt x 85.80727pt.
+<figures/distortions-mean-NYTimes+PCA.pdf, id=251, 750.99321pt x 256.81508pt>
+File: figures/distortions-mean-NYTimes+PCA.pdf Graphic file (type pdf)
+<use figures/distortions-mean-NYTimes+PCA.pdf>
+Package pdftex.def Info: figures/distortions-mean-NYTimes+PCA.pdf  used on inpu
+t line 182.
+(pdftex.def)             Requested size: 246.0pt x 84.12224pt.
+<figures/distortions-mean-Benchmark-k10.pdf, id=252, 222.36513pt x 256.81508pt>
+
+File: figures/distortions-mean-Benchmark-k10.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Benchmark-k10.pdf>
+Package pdftex.def Info: figures/distortions-mean-Benchmark-k10.pdf  used on in
+put line 193.
+(pdftex.def)             Requested size: 81.1767pt x 93.75435pt.
+<figures/distortions-mean-Benchmark-k20.pdf, id=253, 222.36513pt x 256.81508pt>
+
+File: figures/distortions-mean-Benchmark-k20.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Benchmark-k20.pdf>
+Package pdftex.def Info: figures/distortions-mean-Benchmark-k20.pdf  used on in
+put line 193.
+(pdftex.def)             Requested size: 81.1767pt x 93.75435pt.
+<figures/distortions-mean-Benchmark-k30.pdf, id=254, 222.36513pt x 256.81508pt>
+
+File: figures/distortions-mean-Benchmark-k30.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Benchmark-k30.pdf>
+Package pdftex.def Info: figures/distortions-mean-Benchmark-k30.pdf  used on in
+put line 193.
+(pdftex.def)             Requested size: 81.1767pt x 93.75435pt.
+<figures/distortions-mean-Benchmark-k40.pdf, id=255, 444.91684pt x 257.47977pt>
+
+File: figures/distortions-mean-Benchmark-k40.pdf Graphic file (type pdf)
+<use figures/distortions-mean-Benchmark-k40.pdf>
+Package pdftex.def Info: figures/distortions-mean-Benchmark-k40.pdf  used on in
+put line 193.
+(pdftex.def)             Requested size: 162.84888pt x 94.24452pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--197
+
+ []
+
+
+Overfull \hbox (13.33331pt too wide) in paragraph at lines 154--197
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--138
+Underfull \hbox (badness 10000) in paragraph at lines 154--197
 
  []
 
 
-Overfull \hbox (13.33331pt too wide) in paragraph at lines 115--138
+Overfull \hbox (13.33331pt too wide) in paragraph at lines 154--197
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--138
-
- []
-
-<figures/costs-Tower.pdf, id=255, 726.44838pt x 407.75525pt>
-File: figures/costs-Tower.pdf Graphic file (type pdf)
-<use figures/costs-Tower.pdf>
-Package pdftex.def Info: figures/costs-Tower.pdf  used on input line 145.
-(pdftex.def)             Requested size: 246.0pt x 138.08119pt.
-<figures/costs-Covertype.pdf, id=256, 741.17528pt x 407.75525pt>
-File: figures/costs-Covertype.pdf Graphic file (type pdf)
-<use figures/costs-Covertype.pdf>
-Package pdftex.def Info: figures/costs-Covertype.pdf  used on input line 149.
-(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
-<figures/costs-Covertype+PCA.pdf, id=257, 741.17528pt x 407.75525pt>
-File: figures/costs-Covertype+PCA.pdf Graphic file (type pdf)
-<use figures/costs-Covertype+PCA.pdf>
-Package pdftex.def Info: figures/costs-Covertype+PCA.pdf  used on input line 15
-2.
-(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
-<figures/costs-Census.pdf, id=258, 741.17528pt x 407.75525pt>
-File: figures/costs-Census.pdf Graphic file (type pdf)
-<use figures/costs-Census.pdf>
-Package pdftex.def Info: figures/costs-Census.pdf  used on input line 156.
-(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
-<figures/costs-Census+PCA.pdf, id=259, 741.17528pt x 407.75525pt>
-File: figures/costs-Census+PCA.pdf Graphic file (type pdf)
-<use figures/costs-Census+PCA.pdf>
-Package pdftex.def Info: figures/costs-Census+PCA.pdf  used on input line 159.
-(pdftex.def)             Requested size: 246.0pt x 135.33115pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--162
+Underfull \hbox (badness 10000) in paragraph at lines 154--197
 
  []
 
 
-Overfull \hbox (13.33331pt too wide) in paragraph at lines 145--162
+Overfull \hbox (13.33331pt too wide) in paragraph at lines 154--197
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--162
+Underfull \hbox (badness 10000) in paragraph at lines 154--197
 
  []
 
 
-Overfull \hbox (13.33331pt too wide) in paragraph at lines 145--162
+Overfull \hbox (13.33331pt too wide) in paragraph at lines 154--197
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--162
+Underfull \hbox (badness 10000) in paragraph at lines 154--197
 
  []
 
-) (conclusion.tex) (main.bbl
+
+LaTeX Warning: Reference `tab:distortions-mean-std' on page 1 undefined on inpu
+t line 248.
+
+[6] [7 <./figures/distortions-mean-Tower.pdf> <./figures/distortions-mean-Cover
+type.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Covertype.pdf): PDF i
+nclusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-Covertype+PCA.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Covertype+PCA.pdf): P
+DF inclusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-Census.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Census.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-Census+PCA.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Census+PCA.pdf): PDF 
+inclusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-Caltech.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Caltech.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-Caltech+PCA.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Caltech+PCA.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-NYTimes.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-NYTimes.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-NYTimes+PCA.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-NYTimes+PCA.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-Benchmark-k10.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Benchmark-k10.pdf): P
+DF inclusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-Benchmark-k20.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Benchmark-k20.pdf): P
+DF inclusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-Benchmark-k30.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Benchmark-k30.pdf): P
+DF inclusion: multiple pdfs with page group included in a single page
+> <./figures/distortions-mean-Benchmark-k40.pdf
+
+pdfTeX warning: pdflatex (file ./figures/distortions-mean-Benchmark-k40.pdf): P
+DF inclusion: multiple pdfs with page group included in a single page
+>]
+
+LaTeX Warning: Reference `fig:cost-curves-benchmark' on page 1 undefined on inp
+ut line 264.
+
+<figures/cost-curves-real-world-datasets.pdf, id=780, 853.19376pt x 441.03647pt
+>
+File: figures/cost-curves-real-world-datasets.pdf Graphic file (type pdf)
+<use figures/cost-curves-real-world-datasets.pdf>
+Package pdftex.def Info: figures/cost-curves-real-world-datasets.pdf  used on i
+nput line 276.
+(pdftex.def)             Requested size: 241.0pt x 124.57285pt.
+
+Underfull \hbox (badness 2189) in paragraph at lines 288--290
+ []\OT1/cmr/bx/n/10 Movement-based ver-sus Sampling-based Ap-
+ []
+
+[8 <./figures/cost-curves-real-world-datasets.pdf>]
+
+LaTeX Warning: Reference `fig:explained-variance-pca' on page 1 undefined on in
+put line 299.
+
+) (conclusion.tex
+Underfull \vbox (badness 6396) has occurred while \output is active []
+
+) (main.bbl
+[9]
 Underfull \hbox (badness 1616) in paragraph at lines 16--21
 \OT1/cmr/m/it/9 of the Eigh-teenth An-nual ACM-SIAM Sym-po-sium
  []
@@ -1036,6 +1166,9 @@ Underfull \hbox (badness 1694) in paragraph at lines 80--84
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 144--151
 []\OT1/cmr/m/n/9 Lingxiao Huang, Shaofeng H.-C. Jiang, and
  []
@@ -1043,44 +1176,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--151
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7]
-[8 <./figures/distortions-Tower.pdf> <./figures/distortions-Covertype.pdf
-
-pdfTeX warning: pdflatex (file ./figures/distortions-Covertype.pdf): PDF inclus
-ion: multiple pdfs with page group included in a single page
-> <./figures/distortions-Covertype+PCA.pdf
-
-pdfTeX warning: pdflatex (file ./figures/distortions-Covertype+PCA.pdf): PDF in
-clusion: multiple pdfs with page group included in a single page
-> <./figures/distortions-Census.pdf
-
-pdfTeX warning: pdflatex (file ./figures/distortions-Census.pdf): PDF inclusion
-: multiple pdfs with page group included in a single page
-> <./figures/distortions-Census+PCA.pdf
-
-pdfTeX warning: pdflatex (file ./figures/distortions-Census+PCA.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./figures/distortions-Benchmark.pdf
-
-pdfTeX warning: pdflatex (file ./figures/distortions-Benchmark.pdf): PDF inclus
-ion: multiple pdfs with page group included in a single page
->] [9 <./figures/costs-Tower.pdf> <./figures/costs-Covertype.pdf
-
-pdfTeX warning: pdflatex (file ./figures/costs-Covertype.pdf): PDF inclusion: m
-ultiple pdfs with page group included in a single page
-> <./figures/costs-Covertype+PCA.pdf
-
-pdfTeX warning: pdflatex (file ./figures/costs-Covertype+PCA.pdf): PDF inclusio
-n: multiple pdfs with page group included in a single page
-> <./figures/costs-Census.pdf
-
-pdfTeX warning: pdflatex (file ./figures/costs-Census.pdf): PDF inclusion: mult
-iple pdfs with page group included in a single page
-> <./figures/costs-Census+PCA.pdf
-
-pdfTeX warning: pdflatex (file ./figures/costs-Census+PCA.pdf): PDF inclusion: 
-multiple pdfs with page group included in a single page
->]
+ [10]
 Underfull \hbox (badness 3646) in paragraph at lines 170--176
 []\OT1/cmr/m/n/9 Jan-Philipp W. Kapp-meier, Daniel R. Schmidt,
  []
@@ -1098,36 +1194,21 @@ Underfull \hbox (badness 1515) in paragraph at lines 266--272
 \OT1/cmr/m/n/9 In Matthias Muller-Hannemann and Re-nato Fon-
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10])
-[11
-
-] (main.aux)
+) [11] (main.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: DEC0F72BBA6FE0945EA99F7CB8BCA4B5;1806
-(rerunfilecheck)             After:  3EA9E15A8BD94308892587D18071E553;1901.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 6798F259899F260BDCF5F8CDF9EF1C6C;2190.
  ) 
 Here is how much of TeX's memory you used:
- 16481 strings out of 479321
- 267697 string characters out of 2855152
- 618023 words of memory out of 3000000
- 33541 multiletter control sequences out of 15000+600000
- 418467 words of font info for 87 fonts, out of 8000000 for 9000
+ 16444 strings out of 479321
+ 268015 string characters out of 2855152
+ 590535 words of memory out of 3000000
+ 33508 multiletter control sequences out of 15000+600000
+ 417193 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,11n,131p,1334b,495s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,11n,131p,969b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\t
 crm0700.pk> <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
 /dpi600\tcrm0600.pk> <C:\Users\au672776\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
@@ -1159,12 +1240,10 @@ ic/amsfonts/cm/cmsy8.pfb><C:/Users/au672776/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/amsfonts/cm/cmti10.pfb><C:/Users/au672776/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Users/au672776/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/au672776/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/doublestroke/dsrom10.pfb><C:/Us
-ers/au672776/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/
-msbm10.pfb>
-Output written on main.pdf (11 pages, 579439 bytes).
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (11 pages, 602965 bytes).
 PDF statistics:
- 888 PDF objects out of 1000 (max. 8388607)
+ 966 PDF objects out of 1000 (max. 8388607)
  90 named destinations out of 1000 (max. 500000)
- 152 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 183 words of extra memory for PDF output out of 10000 (max. 10000000)
 

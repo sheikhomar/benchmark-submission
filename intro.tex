@@ -31,9 +31,18 @@ While we have a good grasp of the theoretical guarantees of these algorithms, ou
 
 Due to this difficulty, a common heuristic for evaluating coresets is as follows~\cite{AckermannMRSLS12,FGSSS13}. First, compute a coreset $\Omega$ with the available algorithm(s) using some input data $A$. Then, run an optimization algorithm on $\Omega$ to compute a $k$ clustering $C$. The \emph{best} coreset algorithm is considered to be the one which yields a clustering with the smallest cost.
 
-The drawback of this evaluation method is that it conflates the two separate tasks of coreset construction and optimization.
-An algorithm may yield a good clustering (with small cost) yet fail to produce a high quality coreset (with small distortion).
-Additionally, this method is more likely to measure the performance of the underlying optimization problem, rather than evaluating the coresets themselves.
+This practice has substantial drawbacks.
+The first is that evaluation method conflates the two separate tasks of coreset construction and optimization.
+It is important to note that the first step of virtually all coreset algorithms is a low-cost (bicriteria) constant factor approximation, i.e. a solution with $\beta\cdot k$ clusters that costs at most $\alpha\cdot \opt$, where $\opt$ is the cost of an optimal $k$ clustering.
+Given that this initial solution has an $\alpha$ approximation to the cost, a routine calculation shows that the additive error of the coreset, i.e. the maximum difference
+$$ \left\vert \cost_A(C) - \cost_B(C) \right\vert $$
+over all solutions $C$ is at most $O(\alpha)\cdot \cost_A(C)$. In particular, in the case that the initial bicriteria approximation has $\alpha \ll 2$, which is not too difficult to achieve with more than $k$ centers, all known polynomial time approximation algorithms will find solutions where the additive error $O(\alpha)\cdot \cost_A(C)$ is small compared to error inherent from the approximation algorithm. Thus, it is difficult to measure coreset quality in this way. 
+
+The second drawback is that this practice will typically mainly measure the performance of the optimization algorithm, rather than the performance of the coreset algorithms. If the solution quality of the optimization algorithm is not particularly good, then any coreset algorithm might seem to do well, simply because the optimization algorithm did not encounter any solution with bad guarantees. But even if the solution quality is good, it may not be enough to distinguish solutions that are well approximated from solutions that are not.
+
+
+The third drawback of this evaluation method is that is does not consider the main use cases of coresets, nor the full power of their guarantee. Indeed, if speeding up the computation of an optimization algorithm, one would hardly need a strong coreset; approximating the cost of every candidate solution, as weaker coreset definitions (or indeed a bicriteria approximation) would be suitable as well. A coresets main and most powerful feature is \emph{composability}, i.e. given two disjoint point sets $X$ and $Y$, the union of a coreset of $X$ and a coreset of $Y$ is a coreset. Composability is what enables coresets to scale to massively parallel computation models and enables simple streaming algorithms via the merge and reduce technique. To which degree a coreset is composable is generally not a property of an optimal clustering of the point set, as optimal solutions $C_X$ of $X$ or $C_Y$ of $Y$ may have little in common with an optimal solution of $X\cup Y$. 
+
 
 The purpose of this study is to systematically evaluate the quality of various coreset algorithms for $k$-means. As such, we develop a new evaluation procedure which estimates the distortion of coreset algorithms. On real-world data sets, we observe that while the evaluated coreset algorithms are generally able to find solutions with comparable costs, there is a stark difference in their distortions. This shows that differences between optimization and compression are readily observable in practice.
 
