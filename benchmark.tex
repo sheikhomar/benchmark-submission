@@ -1,22 +1,21 @@
 \section{Benchmark Construction}
 \label{sec:benchmark}
 
-In this section, we describe our benchmark. The benchmark has a parameter $\alpha$ which controls the number of points and dimensions.
-For a given value of $k$ the benchmark consists of $n=k^\alpha$ points and $d=\alpha \cdot k$ dimensions.
-It is recursively constructed as follows.
+In this section, we describe our benchmark. The benchmark has a parameter $\alpha$ which controls the number of points and dimensions of the generated data instance.
+For a given value of $k$, the benchmark instance consists of $n=k^\alpha$ points and $d=\alpha \cdot k$ dimensions. A benchmark instance is a $n\times d$ matrix $A$ which is recursively constructed as follows.
 
-Denote by $\one_k$ 
-the $k$-dimensional all-one vector and by $v_i^1$ the $k$ dimensional vector with entries $(v_i^1)_j = \begin{cases}-\frac{1}{k} & \text{if } i\neq j\\
+Let $\one_k$ be the $k$-dimensional all-one vector and $v_i^1$ be the $k$-dimensional vector with entries $(v_i^1)_j = \begin{cases}-\frac{1}{k} & \text{if } i\neq j\\
 \frac{k-1}{k} & \text{if } i= j\end{cases}$.
 For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i^{\ell} = \begin{bmatrix}
 (v_i^{\ell-1})_1 \cdot \one_k \\
 (v_i^{\ell-1})_2 \cdot \one_k \\
 \vdots \\
 (v_i^{\ell-1})_1 \cdot \one_k
-\end{bmatrix}$. Finally, set the column $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, of $A$ to be $k^{\alpha-a+1}$  stacks of $v_b^{a+1}$.
+\end{bmatrix}$. 
+Finally, set the $t$-th column of $A$, for $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, to be $k^{\alpha-a+1}$  stacks of $v_b^{a+1}$.
 
 
-To get a better feel for the construction, we have given two small example benchmarks for $k=2$ and $k=3$ in the appendix (see \cref{fig:benchmark-small-instances}).
+To get a better feel for the construction, we have given two small example instances for $k=2$ and $k=3$ in the appendix (see \cref{fig:benchmark-small-instances}).
 
 
 \subsection{Properties of the Benchmark}
@@ -25,11 +24,15 @@ We now summarize the key properties of the benchmark.
 To this end, we require a few notions.
 Let $A$ be the input matrix. We slightly abuse notation and refer to $A_i$ as both the $i$th point as well as the $i$th row of the matrix $A$.
 For a clustering $\mathcal{C}=\{C_1,\ldots ,C_k\}$, we define that the $n\times k$ indicator matrix $\tilde X$ induced by $\mathcal{C}$ via
-$$ \tilde X_{i,j} = \begin{cases}1 & \text{if } A_i\in C_j \\
-0 & \text{else.} \end{cases}$$
+\begin{align*}
+\tilde X_{i,j} = \begin{cases}1 & \text{if } A_i\in C_j \\
+0 & \text{else.} \end{cases} 
+\end{align*}
 Furthermore, we will also use the $n\times k$ normalized clustering matrix $ X$ defined as
-$$ X_{i,j} = \begin{cases}\frac{1}{\sqrt{|C_i|}} & \text{if } A_i\in C_j \\
-0 & \text{else.} \end{cases}$$
+\begin{align*}
+X_{i,j} = \begin{cases}\frac{1}{\sqrt{|C_i|}} & \text{if } A_i\in C_j \\
+0 & \text{else.} \end{cases}    
+\end{align*}
 We also recall the following lemma which will allow us to express the $k$-means cost of a clustering $\mathcal{C}$ with optimally chosen centers in terms of the cost of $X$ and $A$.
 \begin{lemma}[Folklore]
 \label{lem:magic}
