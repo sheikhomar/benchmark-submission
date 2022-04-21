@@ -10,7 +10,7 @@ Reallocating 'global_strs' (item size: 1) to 4000000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: references.bib
-Repeated entry---line 678 of file references.bib
+Repeated entry---line 695 of file references.bib
  : @inproceedings{HuangJV19
  :                         ,
 I'm skipping whatever remains of this entry
@@ -32,45 +32,45 @@ Warning--I didn't find a database entry for "DBLP:conf/soda/2007"
 Warning--I didn't find a database entry for "DBLP:conf/stoc/2018"
 Warning--I didn't find a database entry for "DBLP:conf/wea/2015"
 Warning--I didn't find a database entry for "DBLP:conf/focs/2018"
-You've used 41 entries,
+You've used 42 entries,
             2882 wiz_defined-function locations,
-            950 strings with 16466 characters,
-and the built_in function-call counts, 24671 in all, are:
-= -- 2648
-> -- 860
+            958 strings with 16688 characters,
+and the built_in function-call counts, 25157 in all, are:
+= -- 2700
+> -- 885
 < -- 32
-+ -- 307
-- -- 260
-* -- 1441
-:= -- 3274
-add.period$ -- 159
-call.type$ -- 41
-change.case$ -- 235
++ -- 316
+- -- 268
+* -- 1474
+:= -- 3346
+add.period$ -- 163
+call.type$ -- 42
+change.case$ -- 242
 chr.to.int$ -- 0
-cite$ -- 41
-duplicate$ -- 848
-empty$ -- 2277
-format.name$ -- 260
-if$ -- 6406
+cite$ -- 42
+duplicate$ -- 860
+empty$ -- 2317
+format.name$ -- 268
+if$ -- 6530
 int.to.chr$ -- 0
-int.to.str$ -- 41
-missing$ -- 41
-newline$ -- 233
-num.names$ -- 108
-pop$ -- 463
+int.to.str$ -- 42
+missing$ -- 42
+newline$ -- 239
+num.names$ -- 110
+pop$ -- 473
 preamble$ -- 1
-purify$ -- 194
+purify$ -- 200
 quote$ -- 0
-skip$ -- 1708
+skip$ -- 1743
 stack$ -- 0
-substring$ -- 1423
-swap$ -- 409
+substring$ -- 1428
+swap$ -- 412
 text.length$ -- 32
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 164
+type$ -- 168
 warning$ -- 0
-while$ -- 200
-width$ -- 43
-write$ -- 522
+while$ -- 202
+width$ -- 44
+write$ -- 536
 (There were 7 error messages)

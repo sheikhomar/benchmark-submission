@@ -65,6 +65,14 @@ Michael~B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina
   Theory of Computing, {STOC} 2015, Portland, OR, USA, June 14-17, 2015}, pages
   163--172, 2015.
 
+\bibitem{CLSS22}
+Vincent Cohen{-}Addad, Kasper~Green Larsen, David Saulpic, and Chris
+  Schwiegelshohn.
+\newblock Towards optimal lower bounds for k-median and k-means coresets.
+\newblock {\em CoRR}, abs/2202.12793, 2022.
+\newblock URL: \url{https://arxiv.org/abs/2202.12793}, \href
+  {http://arxiv.org/abs/2202.12793} {\path{arXiv:2202.12793}}.
+
 \bibitem{Cohen-AddadS19}
 Vincent Cohen{-}Addad and Karthik~C. S.
 \newblock Inapproximability of clustering in lp metrics.
