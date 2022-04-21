@@ -94,8 +94,24 @@ We remark that the possible values for $\varepsilon_0$ are determined by the cur
 
 
 
-\section{Distortions}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Distortions}
+\label{sec:distortions-tables}
 
 \input{appendix_distortions_tables.tex}
 
@@ -317,17 +333,17 @@ The distortions are obtained by running BICO on the \textit{Caltech} data set.
 
 
 
-
+\newpage
 \section{Auxiliary Plots}
 
 
-\begin{figure}[h!t]
+\begin{figure}[H]
   \includegraphics[width=0.9\linewidth]{figures/explained-variance-plot.pdf}
   \caption{The cumulative proportion of explained variance by principal components on \textit{Caltech}, \textit{Covertype}, and \textit{Census}.}
   \label{fig:explained-variance-pca}
 \end{figure}
 
-\begin{figure}[!ht]
+\begin{figure}[H]
   \includegraphics[width=0.9\linewidth]{figures/cost-curves-benchmark.pdf}
   \caption{Shows the clustering costs of four instances of the benchmark framework as a function of the number of centers. In contrast to real-world data sets, the costs do not decrease rapidly as more cluster centers are added.
   }
@@ -376,4 +392,45 @@ The distortions are obtained by running BICO on the \textit{Caltech} data set.
 % \end{figure*}
 
 
+\newpage
 
+\begin{figure}[H]
+ \includegraphics[width=.67\linewidth]{figures/real-costs-Tower.pdf}
+ \newline
+ \subfloat{
+   \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
+ }
+ \subfloat{
+   \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
+ }
+ \newline\newline
+ \subfloat{
+   \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
+ }
+ \subfloat{
+   \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
+ }
+ \newline\newline
+ \subfloat{
+   \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
+ }
+ \subfloat{
+   \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
+ }
+ \newline\newline
+ \subfloat{
+   \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes.pdf}
+ }
+ \subfloat{
+   \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
+ }
+ \newline\newline
+ \subfloat{
+   \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
+   \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
+   \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
+   \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
+ }
+  \caption{The average costs of running the evaluated coreset algorithms multiple times on different data sets. In general, the five coreset algorithms are able to compute coresets which result in solutions with comparable costs on the different real-world data sets. The differences in cost is more noticeable on the benchmark instances. Here, Senstivity Sampling is the winner because it seems to be better at capturing the correct ``clusters'' inherent in the benchmark instances.}
+ \label{fig:real-costs}
+\end{figure}
