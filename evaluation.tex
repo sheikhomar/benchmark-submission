@@ -27,38 +27,7 @@ In addition, we preprocessed the data using PCA (compare Section~\ref{sec:dim_re
 % Except for BICO, which is deterministic, this experiment was repeated for each coreset algorithm $10$ times. \omar{Experiments were repeated 10 times including BICO. Although vanilla BICO is deterministic, we used BICO with heuristic speed optimizations which are stochastic.} We aggregated the reported distortions by taking the maximum over all $10$ evaluations. In addition, we also preprocessed the data using the dimension reduction techniques described in Section~\ref{sec:algorithms}.
 
 
-\subsection{Data sets}
-We conducted experiments on five real-world data sets and four instances of our benchmark. Benchmark instances were generated to match approximately the sizes of the real-world data sets. The sizes of the data sets are summarized in ~\cref{tab:real-world-datasets-overview}. 
-% We generated a set of instances with no scaling i.e., $\beta=1.0$ (referred to as \textit{Benchmark-1.0}) and with maximum scaling; $\beta = 2.0$ (\textit{Benchmark-2.0}).
-We now provide a brief description of each of the real-world data sets.
 
-The \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. 
-
-\textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{AckermannMRSLS12}.
-
-The data set with the fewest number of dimensions is \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}. This data set consists of 4,915,200 rows and 3 features as it is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. 
-
-% We used the datasets \textit{Census}, \textit{Covertype} and \textit{Tower} as these are often used to evaluate the performance of coreset algorithms. 
-
-% To include larger datasets in evaluation, we used \textit{Caltech} and \textit{NYTimes}. 
-
-Inspired by~\cite{FGSSS13}, \textit{Caltech} was created by computing SIFT features from the images in the Caltech101\footnote{\url{http://www.vision.caltech.edu/Image_Datasets/Caltech101/}} image database. This database contains pictures of objects partitioned into 101 categories. Disregarding the categories, we concatenated the 128-dimensional SIFT vectors from each image into one large data matrix with 3,680,458 rows and 128 columns. 
-
-% \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} dataset in our experiments as the number of dimensions is very large.
-\textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} is a dataset composed of the bag-of-words (BOW) representations of 300,000 news articles from The New York Times. The vocabulary size of the text collection is 102,660. Due to the BOW encoding, \textit{NYTimes} has a very large number of dimensions and is highly sparse. To make processing feasible, we reduced the number of dimensions to 100 using terminal embeddings.
-
-\subsection{Preprocessing \& Experimental Setup}
-To understand how denoising effects the quality of the outputted coresets, we applied Principal Component Analysis (PCA) on \textit{Caltech}, \textit{Census} and \textit{Covertype} by using the $k$ singular vectors corresponding to the largest singular values. For these three data sets, we preserved the dimensions of the original data.  
-The \textit{NYTimes} dataset did not permit the preservation of dimensions as the number of dimensions is very large. In this case, we used PCA to reduce the dimensions to $k$.
-We did not perform any preprocessing on \textit{Tower} due to its low dimensionality.
-
-We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{AckermannMRSLS12, FGSSS13}. For the target coreset size $T$, we experimented with $T=mk$ for $m = \{50, 100, 200, 500\}$. On \textit{Caltech}, \textit{Census},  \textit{Covertype} and \textit{NYTimes}, we used $k$ values in $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$. On the benchmark, we generated four instances ($k \in \{10, 20, 30, 40\}$) to match roughly the sizes of the real-world data sets.
-
-
-We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ in C++. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. The source code was compiled with gcc 9.3.0. The experiments were performed on a machine with 14 cores (3.3 GHz) and 256 GB of memory.
-
-
-%
 \begin{center}
 \begin{table}
 \begin{minipage}{0.5\textwidth}
@@ -141,6 +110,38 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 \label{tab:real-world-datasets-overview}
 \end{table}
 \end{center}
+\subsection{Data sets}
+We conducted experiments on five real-world data sets and four instances of our benchmark. Benchmark instances were generated to match approximately the sizes of the real-world data sets. The sizes of the data sets are summarized in ~\cref{tab:real-world-datasets-overview}. 
+% We generated a set of instances with no scaling i.e., $\beta=1.0$ (referred to as \textit{Benchmark-1.0}) and with maximum scaling; $\beta = 2.0$ (\textit{Benchmark-2.0}).
+We now provide a brief description of each of the real-world data sets.
+
+The \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. 
+
+\textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{AckermannMRSLS12}.
+
+The data set with the fewest number of dimensions is \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}. This data set consists of 4,915,200 rows and 3 features as it is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. 
+
+% We used the datasets \textit{Census}, \textit{Covertype} and \textit{Tower} as these are often used to evaluate the performance of coreset algorithms. 
+
+% To include larger datasets in evaluation, we used \textit{Caltech} and \textit{NYTimes}. 
+
+Inspired by~\cite{FGSSS13}, \textit{Caltech} was created by computing SIFT features from the images in the Caltech101\footnote{\url{http://www.vision.caltech.edu/Image_Datasets/Caltech101/}} image database. This database contains pictures of objects partitioned into 101 categories. Disregarding the categories, we concatenated the 128-dimensional SIFT vectors from each image into one large data matrix with 3,680,458 rows and 128 columns. 
+
+% \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} dataset in our experiments as the number of dimensions is very large.
+\textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} is a dataset composed of the bag-of-words (BOW) representations of 300,000 news articles from The New York Times. The vocabulary size of the text collection is 102,660. Due to the BOW encoding, \textit{NYTimes} has a very large number of dimensions and is highly sparse. To make processing feasible, we reduced the number of dimensions to 100 using terminal embeddings.
+
+\subsection{Preprocessing \& Experimental Setup}
+To understand how denoising effects the quality of the outputted coresets, we applied Principal Component Analysis (PCA) on \textit{Caltech}, \textit{Census} and \textit{Covertype} by using the $k$ singular vectors corresponding to the largest singular values. For these three data sets, we preserved the dimensions of the original data.  
+The \textit{NYTimes} dataset did not permit the preservation of dimensions as the number of dimensions is very large. In this case, we used PCA to reduce the dimensions to $k$.
+We did not perform any preprocessing on \textit{Tower} due to its low dimensionality.
+
+We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{AckermannMRSLS12, FGSSS13}. For the target coreset size $T$, we experimented with $T=mk$ for $m = \{50, 100, 200, 500\}$. On \textit{Caltech}, \textit{Census},  \textit{Covertype} and \textit{NYTimes}, we used $k$ values in $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$. On the benchmark, we generated four instances ($k \in \{10, 20, 30, 40\}$) to match roughly the sizes of the real-world data sets.
+
+
+We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ in C++. The source code can be found on GitHub\footnote{Link to repository will be provided later.}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. The source code was compiled with gcc 9.3.0. The experiments were performed on a machine with 14 cores (3.3 GHz) and 256 GB of memory.
+
+
+%
 
 
 %
@@ -217,9 +218,9 @@ Reducing noise with PCA helped boost the performance on real-world data sets wit
 
 
 \subsubsection*{Optimization versus Compression}
-While all five algorithms are equally matched when optimizing on the candidate coresets (see ~\cref{fig:real-costs}), coreset quality performance differ significantly (see \cref{fig:distortions}). 
+While all five algorithms are equally matched when optimizing on the candidate coresets (see~\cref{fig:real-costs}), coreset quality performance differ significantly (see~\cref{fig:distortions}). 
 % We omit tables and plots detailing the cost due to space restrictions. 
-For all data sets, the obtained costs differed insignificantly for all values of $k$.
+For all data sets, the obtained costs differed insignificantly for all values of $k$ (see~\cref{sec:costs-table}).
 
 The quality of the coreset itself can be closely tied to the change in cost with increasing number of centers. It is not uncommon for the $k$-means cost of real-world data sets to drop significantly for larger values of $k$.
 ~\cref{fig:cost-curves-real-world-datasets} illustrates this behavior for several real-world data sets. The more the curve bends, the less of a difference there is between computing a coreset and a clustering with low cost. For data sets with a L-shaped cost curve, a coreset algorithm adding more centers to the coreset will seem to be performing well when evaluating it based on the outcome of the optimization.
