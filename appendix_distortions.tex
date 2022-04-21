@@ -148,42 +148,56 @@ We remark that the possible values for $\varepsilon_0$ are determined by the cur
 
 
 
+\section{Generating Candidate Solutions}
+\label{sec:candidate-solution-generation}
 
 
-
-\begin{longtable}{llrlll} 
+\begin{longtable}{rrlll}
+\multicolumn{5}{c}{\textbf{Distortions of BICO on the \textit{Caltech} data set}} \\
 \toprule
-\parbox[t]{2cm}{Data set} & \parbox[t]{5mm}{$k$} & \parbox[t]{5mm}{$m$} &  \parbox[t]{2cm}{$k$-means++} &  \parbox[t]{2.5cm}{Random CH} &    \parbox[t]{2cm}{Random MEB} \\ 
-% Dataset & $k$ &                &                &                &                      &               \\
+ $k$ &   $m$ &    $k$-means++ &    Random CH &   Random MEB \\
 \midrule
-Caltech  & 10 &     50 & 5.12 (0.307) & 4.30 (0.270) &  2.63 (0.166) \\
-      &    &    100 & 4.48 (0.284) & 3.91 (0.240) &  2.54 (0.125) \\
-      &    &    200 & 4.08 (0.319) & 3.54 (0.236) &  2.46 (0.134) \\
-      &    &    500 & 3.41 (0.215) & 3.06 (0.155) &  2.18 (0.080) \\
+10  &  50 & 5.12 (0.307) & 4.30 (0.270) & 2.63 (0.166) \\
+    & 100 & 4.48 (0.284) & 3.91 (0.240) & 2.54 (0.125) \\
+    & 200 & 4.08 (0.319) & 3.54 (0.236) & 2.46 (0.134) \\
+    & 500 & 3.41 (0.215) & 3.06 (0.155) & 2.18 (0.080) \\
 \midrule
-Caltech  & 20 &     50 & 6.35 (1.173) & 4.73 (0.632) &  2.63 (0.147) \\
-      &    &    100 & 4.65 (0.283) & 3.82 (0.245) &  2.41 (0.104) \\
-      &    &    200 & 4.19 (0.384) & 3.49 (0.271) &  2.26 (0.141) \\
-      &    &    500 & 3.50 (0.404) & 3.07 (0.301) &  2.10 (0.128) \\
+20  &  50 & 6.35 (1.173) & 4.73 (0.632) & 2.63 (0.147) \\
+    & 100 & 4.65 (0.283) & 3.82 (0.245) & 2.41 (0.104) \\
+    & 200 & 4.19 (0.384) & 3.49 (0.271) & 2.26 (0.141) \\
+    & 500 & 3.50 (0.404) & 3.07 (0.301) & 2.10 (0.128) \\
 \midrule
-Caltech & 30 &     50 & 6.01 (0.335) & 4.32 (0.204) &  2.57 (0.096) \\
-      &    &    100 & 5.10 (0.628) & 3.89 (0.340) &  2.35 (0.125) \\
-      &    &    200 & 4.29 (0.659) & 3.47 (0.440) &  2.21 (0.170) \\
-      &    &    500 & 3.09 (0.138) & 2.69 (0.122) &  1.87 (0.064) \\
+30  &  50 & 6.01 (0.335) & 4.32 (0.204) & 2.57 (0.096) \\
+    & 100 & 5.10 (0.628) & 3.89 (0.340) & 2.35 (0.125) \\
+    & 200 & 4.29 (0.659) & 3.47 (0.440) & 2.21 (0.170) \\
+    & 500 & 3.09 (0.138) & 2.69 (0.122) & 1.87 (0.064) \\
 \midrule
-Caltech & 40 &     50 & 6.24 (0.524) & 4.33 (0.228) &  2.44 (0.076) \\
-      &    &    100 & 5.23 (0.874) & 3.86 (0.434) &  2.29 (0.191) \\
-      &    &    200 & 4.50 (1.085) & 3.49 (0.595) &  2.16 (0.183) \\
-      &    &    500 & 3.38 (0.398) & 2.85 (0.258) &  1.92 (0.111) \\
+40  &  50 & 6.24 (0.524) & 4.33 (0.228) & 2.44 (0.076) \\
+    & 100 & 5.23 (0.874) & 3.86 (0.434) & 2.29 (0.191) \\
+    & 200 & 4.50 (1.085) & 3.49 (0.595) & 2.16 (0.183) \\
+    & 500 & 3.38 (0.398) & 2.85 (0.258) & 1.92 (0.111) \\
 \midrule
-Caltech & 50 &     50 & 7.50 (1.013) & 4.80 (0.449) &  2.47 (0.190) \\
-      &    &    100 & 5.21 (0.968) & 3.76 (0.475) &  2.20 (0.149) \\
-      &    &    200 & 4.21 (0.296) & 3.35 (0.195) &  2.10 (0.065) \\
-      &    &    500 & 3.36 (0.429) & 2.81 (0.288) &  1.86 (0.105) \\
+50  &  50 & 7.50 (1.013) & 4.80 (0.449) & 2.47 (0.190) \\
+    & 100 & 5.21 (0.968) & 3.76 (0.475) & 2.20 (0.149) \\
+    & 200 & 4.21 (0.296) & 3.35 (0.195) & 2.10 (0.065) \\
+    & 500 & 3.36 (0.429) & 2.81 (0.288) & 1.86 (0.105) \\
 \bottomrule
-\caption{The effect of three solution generation methods on the distortions (see \cref{sec:evaluation-procedure}). We compared generating candidate solutions by running $k$-means++, randomly generating $k$ points inside the convex hull (Random CH) and inside the minimum enclosing ball (Random MEB). Our experiments show that the $k$-means++ method generates candidate solutions which consistently lead to large distortions on all algorithms. Notice that this table only shows the distortions obtained by BICO on the \textit{Caltech} data set.}
+\caption{The effect of three solution generation methods on the distortions (see \cref{sec:evaluation-procedure}). 
+We compared generating candidate solutions by running $k$-means++, randomly generating $k$ points inside
+the convex hull (Random CH) and inside the minimum enclosing ball (Random MEB).
+Our experiments show that the $k$-means++ method generates candidate solutions which consistently
+lead to large distortions on all algorithms.}
 \label{tab:comparison-solution-generation}
 \end{longtable}
+
+
+
+
+
+
+
+
+
 
 
 
