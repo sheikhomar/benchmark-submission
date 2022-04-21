@@ -97,59 +97,95 @@ We remark that the possible values for $\varepsilon_0$ are determined by the cur
 \section{Distortions}
 
 
-
-
-
-
-
-
-
-
 \input{appendix_distortions_tables.tex}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 \section{Generating Candidate Solutions}
 \label{sec:candidate-solution-generation}
+As mentioned in~\cref{sec:evaluation-procedure}, it is difficult to construct a candidate solution consisting of $k$ centers which yields a maximal distortion. We experimented with three methods for candidate solution generation; find $k$ centers via $k$-means++, randomly generate $k$ points inside the convex hull (Random CH), and randomly generate $k$ points inside the minimum enclosing ball (Random MEB). Our experiments show that the $k$-means++ method generates candidate solutions which consistently result in large distortions across all algorithms and data sets. The numerical results are presented in~\cref{tab:comparison-solution-generation-all}. Notice that the the numbers in~\cref{tab:comparison-solution-generation-all} are the maximum distortions across $k$ and $m$ because
+we are only interesting in determining which of the three methods is superior. \cref{tab:comparison-solution-generation-caltech-bico} shows all the numbers for BICO on the \textit{Caltech} data set. For all the other combinations of algorithms and data sets, the takeaway message is virtually the same; $k$-means++ is the best method for generating candidate solutions.
+
+
+% The effect of three solution generation methods on the distortions (see \cref{sec:evaluation-procedure}). 
+% We compared generating candidate solutions by running $k$-means++, randomly generating $k$ points inside the convex hull (Random CH) and inside the minimum enclosing ball (Random MEB).
+
+
+\begin{longtable}{llrrr}
+\toprule
+ Data set  & Algorithm     &        $k$-means++&        Random CH&       Random MEB\\
+\midrule
+Caltech & BICO &   7.499068 &   4.800188 &   2.629218 \\
+      & Group Sampling &   1.068441 &   1.035997 &   1.006828 \\
+      & Ray Maker &   7.053856 &   5.442665 &   3.453930 \\
+      & Sensitivity Sampling &   1.048977 &   1.016564 &   1.029646 \\
+      & StreamKM++ &   1.202426 &   1.111698 &   1.012216 \\
+\midrule
+Caltech+PCA & BICO &   2.862242 &   2.411732 &   1.825558 \\
+      & Group Sampling &   1.058707 &   1.021386 &   1.007735 \\
+      & Ray Maker &   2.941248 &   2.563131 &   2.053860 \\
+      & Sensitivity Sampling &   1.040106 &   1.012539 &   1.032113 \\
+      & StreamKM++ &   1.139141 &   1.073384 &   1.013089 \\
+\midrule
+Census & BICO &   2.502564 &   1.441889 &   1.040356 \\
+      & Group Sampling &   1.077525 &   1.032349 &   1.028025 \\
+      & Ray Maker &   2.483973 &   1.633945 &   1.236878 \\
+      & Sensitivity Sampling &   1.032978 &   1.088607 &   1.079925 \\
+      & StreamKM++ &   1.127443 &   1.044656 &   1.003459 \\
+\midrule
+Census+PCA & BICO &   2.454087 &   1.472404 &   1.030620 \\
+      & Group Sampling &   1.070332 &   1.036615 &   1.031606 \\
+      & Ray Maker &   2.456844 &   1.617594 &   1.234714 \\
+      & Sensitivity Sampling &   1.036155 &   1.086034 &   1.083994 \\
+      & StreamKM++ &   1.126928 &   1.042801 &   1.003570 \\
+\midrule
+Covertype & BICO &   1.294620 &   1.146309 &   1.037080 \\
+      & Group Sampling &   1.094779 &   1.041165 &   1.023978 \\
+      & Ray Maker &   1.388141 &   1.227148 &   1.121157 \\
+      & Sensitivity Sampling &   1.044575 &   1.115355 &   1.103073 \\
+      & StreamKM++ &   1.048912 &   1.019965 &   1.004857 \\
+\midrule
+Covertype+PCA & BICO &   1.292637 &   1.147499 &   1.037594 \\
+      & Group Sampling &   1.097391 &   1.038144 &   1.023664 \\
+      & Ray Maker &   1.385070 &   1.229436 &   1.122238 \\
+      & Sensitivity Sampling &   1.039479 &   1.097699 &   1.092900 \\
+      & StreamKM++ &   1.049769 &   1.022796 &   1.006932 \\
+\midrule
+NYTimes & BICO &  35.319657 &  31.015943 &  28.932553 \\
+      & Group Sampling &   1.089067 &   1.061821 &   1.033067 \\
+      & Ray Maker &  28.373678 &  24.930933 &  19.520125 \\
+      & Sensitivity Sampling &   1.050988 &   1.027549 &   1.012441 \\
+      & StreamKM++ &   2.039047 &   1.861497 &   1.674643 \\
+\midrule
+Tower & BICO &   1.199658 &   1.040606 &   1.005894 \\
+      & Group Sampling &   1.113305 &   1.043449 &   1.030855 \\
+      & Ray Maker &   1.490978 &   1.286890 &   1.234467 \\
+      & Sensitivity Sampling &   1.044464 &   1.103949 &   1.075281 \\
+      & StreamKM++ &   1.051491 &   1.009577 &   1.000630 \\
+\bottomrule
+\caption{Distortions across experiments on different algorithms and data sets.}
+\label{tab:comparison-solution-generation-all}
+\end{longtable}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \begin{longtable}{rrlll}
@@ -182,13 +218,15 @@ We remark that the possible values for $\varepsilon_0$ are determined by the cur
     & 200 & 4.21 (0.296) & 3.35 (0.195) & 2.10 (0.065) \\
     & 500 & 3.36 (0.429) & 2.81 (0.288) & 1.86 (0.105) \\
 \bottomrule
-\caption{The effect of three solution generation methods on the distortions (see \cref{sec:evaluation-procedure}). 
-We compared generating candidate solutions by running $k$-means++, randomly generating $k$ points inside
-the convex hull (Random CH) and inside the minimum enclosing ball (Random MEB).
-Our experiments show that the $k$-means++ method generates candidate solutions which consistently
-lead to large distortions on all algorithms.}
-\label{tab:comparison-solution-generation}
+\caption{The effect of different solution generation approaches on the distortions (see \cref{sec:candidate-solution-generation}).
+The distortions are obtained by running BICO on the \textit{Caltech} data set.
+}
+\label{tab:comparison-solution-generation-caltech-bico}
 \end{longtable}
+
+
+
+
 
 
 
