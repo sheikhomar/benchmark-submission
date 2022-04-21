@@ -73,18 +73,18 @@ $A_i\in C_j^a$ if and only if $A_{i,j} > 0$. Let $\tilde X^a$ and $X^{a}$ denote
 
 \subsection{Benchmark Evaluation}
 
-We now describe how we use the benchmark to measure the distortion of a coreset. Assume that the coresets only consists of input points\footnote{It is not necessary for coreset constructions in general to consists of input points. One can adjust the evaluation in to account for this. But since all algorithms considered in this paper have the property and it makes the evaluation simpler, we will only consider coresets that are subsets of the original point set.}.
+We now describe how we use the benchmark to measure the distortion of a coreset. Assume that the coresets are subsets of the original input points\footnote{It is not necessary for coreset constructions in general to consists of input points. One can adjust the evaluation to account for this by snapping the coreset points to the closest input point.}.
 
 Consider the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ for some $a$ and let $\Omega$ with weights $w:\Omega\rightarrow \mathbb{R}_{\geq 0}$ be the coreset. 
 Note that there are $\alpha$ many such clusterings, for each value of $a$.
 We use $w(C_i^a \cap \Omega):=\sum_{p\in C_i^a \cap \Omega} w(p)$ to denote the mass of points of $C_i^a$ in $\Omega$.
-For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\varepsilon)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)< |C_i^a| (1-\varepsilon)$, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the total number of thus placed centers.
+For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\varepsilon)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)< |C_i^a| (1-\varepsilon)$, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the centers of the these deficient clusters.
 
 We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and the fact that all clusters have equal cost, we may write for any deficient cluster $C_i^a$
 $\cost_{C_i^a}(\calS) = \cost_{C_j^a}(\{\mu(C_j^a)\}) + k^{\alpha-1}\|\mu(C_j^a)-\mu(C_h^a)\|_2^2$, where $C_h^a$ is a non-deficient cluster.
 Thus, the cost is 
 \begin{eqnarray*}
-\cost_{C_i^a}(\calS) &\approx & (1+\frac{2}{\alpha})\cdot \cost_{C_j^a}(\{\mu(C_j^a)\}).
+\cost_{C_i^a}(\calS) &\approx & \left(1+\frac{2}{\alpha}\right)\cdot \cost_{C_j^a}(\{\mu(C_j^a)\}).
 \end{eqnarray*}
 
 Conversely, the cost on the coreset is
