@@ -192,7 +192,7 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 \subsubsection*{Outcome of Experiments}
 % We summarized the distortions for $T=200k$ in \cref{fig:distortions}.
 We observed that in the majority of our experiments, varying the coreset sizes does not significantly change the performance profiles of individual algorithms when comparing them against each other. Therefore, in the following sections, we focus on a cross-section of the experiments where $m=200$ i.e., $T=200k$.
-For numerical results including variances of all the experiments and tables containing distortion, cost and running times, we refer to \cref{sec:distortions-tables} in the appendix. 
+For numerical results including variances of all the experiments and tables containing distortions, costs and running times, we refer to \cref{sec:distortions-tables}, \cref{sec:costs-tables} and \cref{sec:running-times-tables}. 
 
 In~\cref{fig:distortions}, we summarized the distortions of the experiments with coreset sizes $T=200k$. All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO and Group Sampling while Sensitivity Sampling and StreamKM++ perform the best. Differences in performance are more noticeable on \textit{Census}, \textit{Caltech}, and \textit{NYTimes}  where methods based on importance sampling perform much better. Sensitivity Sampling and Group Sampling perform the best, StreamKM++ come in second while BICO and Ray Maker perform the worst across these data sets.
 On the \textit{Benchmark}, Ray Maker is the worst while Sensitivity Sampling and Group Sampling are the best. StreamKM++ performs also very well compared to BICO.
@@ -207,7 +207,7 @@ On the \textit{Benchmark}, Ray Maker is the worst while Sensitivity Sampling and
 {\bf Optimization versus Compression:}
 While all five algorithms are equally matched when optimizing on the candidate coresets, coreset quality performance differ significantly (see~\cref{fig:distortions}). 
 % We omit tables and plots detailing the cost due to space restrictions. 
-For all data sets, the obtained costs differed insignificantly for all values of $k$ (see~\cref{sec:costs-table} and \cref{fig:real-costs} in the appendix), irrespective of the coreset algorithm used, while distortions varied strongly, depending on the coreset algorithm.
+For all data sets, the obtained costs differed insignificantly for all values of $k$ (see~\cref{sec:costs-tables} and \cref{fig:real-costs} in the appendix), irrespective of the coreset algorithm used, while distortions varied strongly, depending on the coreset algorithm.
 
 Nevertheless, the cost drop with increasing values of $k$ is a predictor for the quality of certain coresets. It is not uncommon for the $k$-means cost of real-world data sets to drop significantly for larger values of $k$.
 ~\cref{fig:cost-curves-real-world-datasets} illustrates this behavior for several real-world data sets. The more the curve bends, the less of a difference there is between computing a coreset and a clustering with low cost. For data sets with an L-shaped cost curve, a coreset algorithm adding more centers to the coreset will seem to be performing well when evaluating it based on the outcome of the optimization.

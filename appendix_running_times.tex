@@ -1,0 +1,335 @@
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{Benchmark} data set}} \\
+\toprule
+\parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &     BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  &   Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &    StreamKM++ \\
+\midrule
+10 & 50  &    19 (3) &       117 (10) &    138 (15) &             106 (10) &      736 (60) \\
+   & 100 &    20 (4) &        120 (7) &    143 (17) &              107 (8) &     1460 (87) \\
+   & 200 &    25 (3) &       118 (10) &    151 (19) &              108 (8) &    2889 (139) \\
+   & 500 &    31 (7) &        125 (9) &    188 (10) &             105 (14) &  \\
+ \midrule
+20 & 50  &   104 (7) &      1016 (74) &    904 (68) &             933 (81) &    7233 (555) \\
+   & 100 &  124 (14) &      1021 (77) &    918 (72) &            913 (112) &   14546 (528) \\
+   & 200 &  176 (12) &      1004 (73) &    960 (77) &             933 (89) &  28532 (1115) \\
+   & 500 &  298 (52) &      1014 (54) &  1040 (128) &            930 (101) &  \\
+ \midrule
+30 & 50  &    36 (3) &       440 (36) &    356 (30) &             420 (29) &    3344 (306) \\
+   & 100 &    41 (3) &       440 (37) &    362 (30) &             418 (45) &    6433 (464) \\
+   & 200 &    49 (3) &       442 (30) &    371 (30) &             423 (37) &   12431 (969) \\
+   & 500 &    70 (2) &       445 (43) &    410 (28) &             424 (43) &  \\
+ \midrule
+40 & 50  &   124 (7) &     2064 (157) &  1480 (124) &           1917 (200) &   18387 (918) \\
+   & 100 &  154 (13) &     2032 (181) &  1513 (120) &           1931 (189) &  36296 (1090) \\
+   & 200 &  175 (15) &     2079 (160) &  1534 (120) &           1919 (202) &  64835 (2254) \\
+   & 500 &  240 (18) &      2068 (80) &  1596 (128) &            2005 (97) &            \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{Benchmark} data set. Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-benchmark}
+\end{longtable}
+
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{Caltech} data set}} \\
+\toprule
+\parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &     BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  &   Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &     StreamKM++ \\
+\midrule
+10 & 50  &   133 (9) &      1039 (33) &  1146 (134) &             940 (98) &     5799 (309) \\
+   & 100 &  151 (12) &      1020 (55) &   1202 (49) &             949 (92) &    11026 (675) \\
+   & 200 &  180 (22) &      1029 (53) &  1218 (118) &             974 (34) &    21922 (952) \\
+   & 500 &  233 (17) &       933 (65) &   1302 (39) &             877 (61) &   \\
+ \midrule
+20 & 50  &  144 (16) &     1549 (113) &   1400 (85) &           1447 (106) &    11418 (441) \\
+   & 100 &  191 (18) &      1566 (72) &   1439 (37) &            1458 (90) &    22963 (649) \\
+   & 200 &  195 (13) &      1561 (65) &   1466 (82) &            1472 (92) &   44830 (1023) \\
+   & 500 &  373 (55) &      1428 (80) &   1475 (91) &            1349 (49) &   \\
+ \midrule
+30 & 50  &   170 (8) &     2060 (125) &  1633 (113) &           1943 (141) &    16920 (715) \\
+   & 100 &  171 (11) &      2071 (98) &   1664 (80) &           1946 (142) &   33911 (1532) \\
+   & 200 &  233 (36) &     2051 (152) &  1675 (120) &            1980 (81) &   66665 (2266) \\
+   & 500 &  393 (46) &      1861 (97) &   1701 (92) &            1814 (63) &   \\
+ \midrule
+40 & 50  &  177 (19) &     2566 (180) &  1846 (169) &           2442 (202) &   22409 (1109) \\
+   & 100 &  193 (18) &     2588 (168) &  1860 (154) &           2445 (124) &   43943 (1369) \\
+   & 200 &  266 (49) &     2605 (145) &  1898 (173) &            2478 (62) &   88300 (2367) \\
+   & 500 &  492 (63) &     2466 (111) &  1946 (127) &           2296 (109) &   \\
+ \midrule
+50 & 50  &  163 (12) &     3149 (126) &  2095 (156) &           2887 (197) &   27940 (1348) \\
+   & 100 &  206 (18) &     3084 (214) &  2137 (134) &           2916 (137) &   55743 (1457) \\
+   & 200 &  320 (36) &     3110 (155) &  2169 (158) &           2935 (138) &  111393 (2884) \\
+   & 500 &  556 (74) &      2930 (95) &   2098 (61) &           2664 (100) &             \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{Caltech} data set. Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-caltech}
+\end{longtable}
+
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{Caltech} data set (with PCA preprocessing)}} \\
+\toprule
+\parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &     BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  &   Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &    StreamKM++ \\
+\midrule
+10 & 50  &  325 (16) &     1452 (112) &  1569 (174) &           1357 (153) &    6156 (268) \\
+   & 100 &  326 (25) &     1449 (118) &  1596 (135) &           1360 (114) &   11401 (454) \\
+   & 200 &  334 (27) &     1425 (161) &  1568 (222) &           1383 (113) &  21289 (1324) \\
+   & 500 &  386 (27) &      1386 (91) &   1685 (94) &            1357 (77) &  \\
+ \midrule
+20 & 50  &  362 (26) &     1934 (179) &  1753 (166) &           1783 (223) &   10751 (914) \\
+   & 100 &  379 (29) &     1895 (222) &  1796 (128) &           1833 (143) &  20680 (1273) \\
+   & 200 &  403 (39) &     1951 (143) &  1855 (143) &           1784 (216) &  40903 (3138) \\
+   & 500 &  489 (28) &     1833 (162) &  1898 (154) &            1800 (71) &  \\
+ \midrule
+30 & 50  &  346 (24) &     2401 (234) &  1999 (135) &           2257 (182) &   16026 (865) \\
+   & 100 &  373 (25) &     2443 (185) &  2011 (139) &           2276 (192) &   31501 (995) \\
+   & 200 &  422 (26) &     2430 (186) &  2019 (178) &           2277 (185) &  60330 (4284) \\
+   & 500 &  571 (35) &      2361 (97) &   2131 (89) &            2235 (61) &  \\
+ \midrule
+40 & 50  &  355 (22) &     2870 (270) &  2144 (184) &           2748 (202) &   21992 (620) \\
+   & 100 &  399 (33) &     2904 (211) &  2204 (157) &           2710 (255) &  41273 (1086) \\
+   & 200 &  432 (35) &     2892 (273) &  2213 (177) &           2744 (215) &  79148 (6325) \\
+   & 500 &  595 (55) &     2852 (103) &   2337 (78) &            2593 (94) &  \\
+ \midrule
+50 & 50  &  363 (23) &     3320 (323) &  2369 (200) &           3126 (316) &   26609 (600) \\
+   & 100 &  392 (33) &     3354 (293) &  2405 (195) &           3163 (287) &  51562 (2479) \\
+   & 200 &  432 (33) &     3405 (261) &  2445 (210) &           3156 (285) &  98934 (4995) \\
+   & 500 &  657 (47) &     3306 (122) &  2531 (111) &           3041 (162) &            \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{Caltech} data set (with PCA preprocessing). Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-caltech-pca}
+\end{longtable}
+
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{Census} data set}} \\
+\toprule
+\parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &     BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  & Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &    StreamKM++ \\
+\midrule
+10 & 50  &    47 (6) &       265 (33) &  300 (34) &             239 (37) &    1866 (176) \\
+   & 100 &    57 (2) &       318 (27) &  400 (15) &             291 (23) &    4080 (273) \\
+   & 200 &    61 (4) &       329 (18) &  438 (26) &             286 (29) &    8203 (231) \\
+   & 500 &    69 (4) &       314 (35) &  534 (36) &             281 (42) &  \\
+ \midrule
+20 & 50  &    48 (5) &       444 (61) &  373 (49) &             401 (54) &    3584 (239) \\
+   & 100 &    55 (5) &       512 (40) &  474 (28) &             469 (12) &    8107 (529) \\
+   & 200 &    62 (4) &       498 (27) &  505 (25) &             450 (15) &   15862 (582) \\
+   & 500 &    83 (4) &       538 (26) &  624 (55) &             450 (37) &  \\
+ \midrule
+30 & 50  &    47 (3) &       599 (73) &  448 (75) &             523 (79) &    4877 (259) \\
+   & 100 &    60 (4) &       698 (28) &  522 (27) &             607 (28) &   12061 (765) \\
+   & 200 &    66 (7) &       700 (23) &  593 (24) &             611 (35) &  23266 (1072) \\
+   & 500 &    99 (8) &       660 (67) &  684 (42) &             638 (38) &  \\
+ \midrule
+40 & 50  &    50 (5) &      772 (103) &  503 (40) &             662 (85) &    6507 (372) \\
+   & 100 &    62 (4) &       881 (20) &  616 (35) &             783 (47) &   15837 (759) \\
+   & 200 &    73 (4) &       863 (32) &  655 (29) &             784 (59) &  31133 (1827) \\
+   & 500 &  135 (13) &       858 (87) &  779 (45) &             802 (51) &  \\
+ \midrule
+50 & 50  &    51 (7) &       934 (84) &  574 (87) &             803 (98) &    7680 (467) \\
+   & 100 &    66 (3) &      1051 (32) &  694 (24) &             936 (76) &   19651 (747) \\
+   & 200 &    81 (3) &      1054 (37) &  730 (29) &             922 (74) &  38624 (1771) \\
+   & 500 &  172 (20) &      1062 (86) &  845 (39) &             977 (50) &            \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{Census} data set. Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-census}
+\end{longtable}
+
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{Census} data set (with PCA preprocessing)}} \\
+\toprule
+\parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &     BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  &  Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &    StreamKM++ \\
+\midrule
+10 & 50  &   103 (8) &       529 (38) &   535 (87) &             479 (40) &    2089 (224) \\
+   & 100 &   105 (8) &       505 (61) &   593 (49) &             481 (37) &    4153 (376) \\
+   & 200 &   106 (6) &       517 (40) &   630 (62) &             477 (45) &    7587 (443) \\
+   & 500 &  114 (10) &       483 (38) &   706 (54) &             463 (28) &  \\
+ \midrule
+20 & 50  &   107 (7) &       702 (62) &   646 (48) &             635 (74) &    4037 (384) \\
+   & 100 &   110 (7) &       694 (71) &   667 (46) &             642 (58) &    8010 (410) \\
+   & 200 &   113 (7) &       701 (57) &   694 (58) &             647 (57) &   14984 (979) \\
+   & 500 &   140 (8) &       690 (30) &   775 (42) &             626 (29) &  \\
+ \midrule
+30 & 50  &   112 (8) &       870 (94) &   701 (71) &             813 (62) &    5947 (492) \\
+   & 100 &   115 (7) &       879 (95) &   731 (64) &             815 (61) &   11560 (493) \\
+   & 200 &   122 (8) &       880 (96) &   761 (69) &             820 (62) &   22705 (935) \\
+   & 500 &   164 (6) &       891 (23) &   854 (45) &             800 (24) &  \\
+ \midrule
+40 & 50  &   113 (6) &      1073 (92) &  769 (100) &             982 (72) &    8021 (395) \\
+   & 100 &  120 (10) &     1068 (108) &   816 (54) &             982 (74) &   15201 (854) \\
+   & 200 &  127 (12) &      1075 (91) &   824 (87) &             995 (75) &  29927 (2012) \\
+   & 500 &  199 (11) &      1063 (47) &   904 (57) &             938 (37) &  \\
+ \midrule
+50 & 50  &  114 (11) &      1257 (96) &   861 (66) &            1155 (83) &    9655 (578) \\
+   & 100 &   121 (9) &     1244 (155) &   887 (70) &            1144 (91) &  19140 (1164) \\
+   & 200 &  134 (11) &      1266 (92) &   922 (68) &            1152 (87) &  36861 (2182) \\
+   & 500 &  243 (14) &      1225 (54) &  1007 (32) &            1113 (55) &            \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{Census} data set (with PCA preprocessing). Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-census-pca}
+\end{longtable}
+
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{Covertype} data set}} \\
+\toprule
+\parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &   BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  & Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &  StreamKM++ \\
+\midrule
+10 & 50  &   8 (1) &         58 (9) &    60 (8) &               50 (8) &    275 (37) \\
+   & 100 &   8 (1) &         61 (7) &    67 (9) &               48 (9) &    597 (69) \\
+   & 200 &   9 (1) &         57 (7) &    85 (9) &               51 (9) &  1322 (214) \\
+   & 500 &  12 (1) &         67 (7) &  123 (18) &               55 (5) &\\
+ \midrule
+20 & 50  &   9 (1) &        93 (13) &   70 (10) &              77 (12) &    580 (80) \\
+   & 100 &   9 (1) &         88 (8) &   81 (11) &              74 (12) &  1038 (183) \\
+   & 200 &  10 (1) &         93 (9) &   90 (11) &              79 (13) &  2603 (385) \\
+   & 500 &  19 (1) &        108 (7) &   131 (9) &               84 (9) &\\
+ \midrule
+30 & 50  &   8 (1) &       125 (15) &   84 (11) &             104 (18) &   888 (148) \\
+   & 100 &  10 (1) &       125 (13) &   87 (11) &             105 (19) &  1593 (211) \\
+   & 200 &  12 (2) &       125 (14) &   99 (14) &             105 (20) &  3755 (463) \\
+   & 500 &  25 (2) &       146 (10) &  139 (14) &              122 (8) &\\
+ \midrule
+40 & 50  &   8 (1) &       156 (19) &   97 (10) &             132 (23) &   1146 (89) \\
+   & 100 &  10 (1) &       158 (19) &  101 (19) &             132 (21) &  2251 (239) \\
+   & 200 &  14 (2) &       159 (20) &  120 (15) &             132 (21) &  5308 (681) \\
+   & 500 &  38 (4) &       189 (10) &  157 (15) &             147 (12) &\\
+ \midrule
+50 & 50  &   9 (1) &       191 (24) &  109 (20) &             153 (27) &  1467 (184) \\
+   & 100 &  11 (1) &       187 (20) &  114 (22) &             157 (27) &  2491 (318) \\
+   & 200 &  16 (3) &       186 (16) &  128 (20) &             163 (30) &  6057 (672) \\
+   & 500 &  48 (5) &       231 (10) &   181 (9) &             185 (12) &          \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{Covertype} data set. Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-covertype}
+\end{longtable}
+
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{Covertype} data set (with PCA preprocessing)}} \\
+\toprule
+\parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &   BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  & Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &  StreamKM++ \\
+\midrule
+10 & 50  &  19 (2) &        100 (8) &  101 (10) &               86 (8) &    417 (45) \\
+   & 100 &  18 (1) &         99 (7) &   111 (9) &              84 (10) &    797 (58) \\
+   & 200 &  19 (1) &         98 (7) &  118 (14) &               87 (8) &   1579 (63) \\
+   & 500 &  22 (1) &        90 (10) &  148 (14) &               84 (7) &\\
+ \midrule
+20 & 50  &  19 (1) &       141 (10) &  116 (10) &              119 (9) &    781 (91) \\
+   & 100 &  19 (2) &       137 (13) &   122 (8) &             116 (11) &  1452 (186) \\
+   & 200 &  21 (2) &       136 (13) &   134 (7) &             115 (11) &  2958 (238) \\
+   & 500 &  29 (1) &       136 (12) &  160 (12) &              113 (8) &\\
+ \midrule
+30 & 50  &  19 (1) &       175 (18) &  132 (12) &             149 (15) &   1170 (97) \\
+   & 100 &  20 (2) &       175 (20) &  138 (13) &             154 (11) &  2198 (312) \\
+   & 200 &  23 (2) &       180 (15) &  146 (17) &             150 (13) &  4430 (307) \\
+   & 500 &  37 (3) &        174 (7) &  170 (14) &             145 (14) &\\
+ \midrule
+40 & 50  &  19 (1) &       214 (20) &  147 (12) &             181 (17) &  1455 (192) \\
+   & 100 &  22 (2) &       220 (18) &  149 (12) &             185 (12) &  2890 (301) \\
+   & 200 &  25 (2) &       222 (18) &  165 (13) &             185 (13) &  5686 (644) \\
+   & 500 &  47 (4) &       212 (11) &  196 (13) &             179 (16) &\\
+ \midrule
+50 & 50  &  20 (1) &       254 (29) &  160 (12) &             214 (18) &  1866 (180) \\
+   & 100 &  22 (2) &       264 (20) &  168 (13) &             211 (16) &  3840 (157) \\
+   & 200 &  29 (2) &       260 (20) &  177 (16) &             214 (17) &  7186 (493) \\
+   & 500 &  60 (4) &       254 (13) &  203 (13) &             203 (24) &          \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{Covertype} data set (with PCA preprocessing). Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-covertype-pca}
+\end{longtable}
+
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{NYTimes} data set}} \\
+\toprule
+\parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &       BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  & Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &  StreamKM++ \\
+\midrule
+10 & 50  &      12 (2) &         58 (6) &    68 (3) &               56 (1) &    369 (19) \\
+   & 100 &      16 (5) &         54 (2) &    65 (4) &               49 (3) &    708 (42) \\
+   & 200 &      33 (7) &         51 (2) &    64 (2) &               49 (3) &  1373 (173) \\
+   & 500 &    107 (24) &         52 (6) &    76 (8) &               52 (4) &\\
+ \midrule
+20 & 50  &      20 (5) &         92 (5) &    84 (2) &               88 (3) &    670 (70) \\
+   & 100 &     36 (12) &         85 (6) &    75 (5) &               79 (6) &  1338 (112) \\
+   & 200 &    101 (29) &         79 (5) &    76 (4) &               78 (4) &  2681 (228) \\
+   & 500 &   374 (139) &         83 (9) &   86 (10) &               80 (8) &\\
+ \midrule
+30 & 50  &      25 (6) &        124 (4) &    97 (3) &              117 (4) &   1023 (89) \\
+   & 100 &     61 (21) &       111 (10) &    88 (4) &             109 (13) &  2032 (176) \\
+   & 200 &    178 (53) &        108 (5) &    90 (3) &             108 (14) &  3775 (342) \\
+   & 500 &   715 (456) &        110 (9) &   106 (8) &             112 (11) &\\
+ \midrule
+40 & 50  &     29 (15) &        156 (4) &   112 (4) &              149 (4) &   1432 (46) \\
+   & 100 &     86 (26) &       138 (10) &   100 (6) &             139 (17) &  2771 (168) \\
+   & 200 &    294 (65) &       135 (17) &   103 (2) &             137 (16) &  5548 (351) \\
+   & 500 &  1110 (401) &       140 (18) &  119 (10) &             138 (12) &\\
+ \midrule
+50 & 50  &     46 (15) &       180 (25) &   125 (4) &              181 (7) &  1689 (190) \\
+   & 100 &    114 (37) &       162 (20) &   115 (7) &             165 (15) &   3537 (48) \\
+   & 200 &   375 (136) &        168 (3) &   117 (7) &             163 (15) &  6464 (573) \\
+   & 500 &   886 (547) &       174 (11) &  131 (12) &             166 (17) &          \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{NYTimes} data set. Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-nytimes}
+\end{longtable}
+
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{NYTimes} data set (with PCA preprocessing)}} \\
+\toprule
+\parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &     BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  & Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &  StreamKM++ \\
+\midrule
+10 & 50  &    18 (0) &         28 (1) &    28 (0) &               26 (0) &      71 (3) \\
+   & 100 &    18 (0) &         28 (2) &    30 (1) &               25 (1) &    109 (17) \\
+   & 200 &    19 (0) &         28 (1) &    33 (1) &               26 (0) &    199 (19) \\
+   & 500 &    20 (0) &         29 (0) &    47 (4) &               26 (1) &\\
+ \midrule
+20 & 50  &    30 (0) &         51 (4) &    50 (1) &               49 (2) &     203 (3) \\
+   & 100 &    31 (0) &         54 (2) &    50 (3) &               50 (2) &     375 (6) \\
+   & 200 &    32 (0) &         55 (1) &    55 (1) &               50 (3) &    610 (74) \\
+   & 500 &    40 (1) &         54 (2) &    69 (2) &               51 (2) &\\
+ \midrule
+30 & 50  &    40 (0) &         79 (7) &    72 (4) &               77 (3) &    403 (14) \\
+   & 100 &    42 (0) &         83 (2) &    75 (3) &               78 (3) &   690 (107) \\
+   & 200 &    45 (1) &        80 (10) &    78 (3) &               77 (4) &  1258 (141) \\
+   & 500 &    68 (3) &         87 (3) &    92 (7) &               81 (3) &\\
+ \midrule
+40 & 50  &    49 (1) &       109 (11) &    94 (5) &              105 (6) &    624 (77) \\
+   & 100 &    52 (1) &       110 (12) &    93 (5) &              110 (3) &   1225 (75) \\
+   & 200 &    60 (1) &       109 (17) &    99 (4) &              104 (8) &  2055 (148) \\
+   & 500 &   114 (6) &       118 (10) &   118 (6) &              116 (3) &\\
+ \midrule
+50 & 50  &    61 (1) &       136 (23) &   123 (5) &             143 (10) &    995 (21) \\
+   & 100 &    66 (1) &       147 (20) &   121 (6) &              152 (9) &  1846 (151) \\
+   & 200 &    78 (3) &       133 (18) &   125 (5) &             145 (10) &  2980 (262) \\
+   & 500 &  183 (11) &       156 (19) &   150 (6) &              153 (7) &          \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{NYTimes} data set (with PCA preprocessing). Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-nytimes-pca}
+\end{longtable}
+
+\begin{longtable}{llrrrrr}
+\multicolumn{7}{c}{\textbf{Running times on the \textit{Tower} data set}} \\
+\toprule
+ \parbox[t]{5mm}{\ \\$k$} & \parbox[t]{5mm}{\ \\$m$} &   BICO &  \parbox[t]{1.5cm}{Group\\Sampling}  & Ray Maker & \parbox[t]{1.5cm}{Sensitivity\\Sampling} &   StreamKM++ \\
+\midrule
+20  & 50  &   8 (2) &       266 (12) &    66 (3) &               68 (2) &     685 (11) \\
+    & 100 &   8 (2) &       268 (13) &    91 (5) &               71 (4) &    1373 (14) \\
+    & 200 &   7 (1) &       268 (12) &  135 (12) &               71 (4) &    2746 (14) \\
+    & 500 &   8 (2) &        265 (8) &  268 (11) &               70 (2) & \\
+ \midrule
+40  & 50  &   8 (2) &       546 (10) &    92 (2) &              133 (5) &    1368 (21) \\
+    & 100 &   7 (1) &       552 (14) &   112 (2) &              134 (4) &    2747 (21) \\
+    & 200 &   8 (1) &       548 (14) &   155 (3) &              136 (5) &    5478 (35) \\
+    & 500 &  10 (2) &       547 (16) &   269 (7) &              136 (2) & \\
+ \midrule
+60  & 50  &   6 (1) &       831 (19) &   120 (3) &              195 (8) &    2050 (38) \\
+    & 100 &   7 (1) &       832 (14) &   139 (2) &              199 (6) &    4121 (88) \\
+    & 200 &   7 (1) &       842 (13) &   183 (2) &              201 (5) &   8162 (253) \\
+    & 500 &  14 (4) &       835 (17) &   306 (8) &              202 (5) & \\
+ \midrule
+80  & 50  &   7 (2) &      1125 (20) &   148 (3) &              261 (6) &    2730 (89) \\
+    & 100 &   8 (2) &      1125 (12) &   167 (4) &              263 (6) &   5354 (281) \\
+    & 200 &   9 (2) &      1129 (21) &   211 (6) &              267 (5) &  10819 (514) \\
+    & 500 &  20 (4) &      1122 (14) &  340 (11) &              269 (5) & \\
+ \midrule
+100 & 50  &   7 (2) &      1419 (22) &   175 (6) &              324 (8) &    3403 (36) \\
+    & 100 &   8 (1) &      1434 (21) &   198 (3) &              327 (7) &   6859 (120) \\
+    & 200 &  10 (1) &      1428 (15) &   241 (7) &              330 (7) &  13530 (475) \\
+    & 500 &  28 (7) &       1444 (9) &  384 (10) &              338 (5) &           \\
+\bottomrule
+\caption{Running times (in seconds) of the evaluated algorithms on the \textit{Tower} data set. Each cell specify the mean along with the standard deviation in parenthesis of 10 repetitions of the experiment.}
+\label{tab:running-time-mean-tower}
+\end{longtable}
+
