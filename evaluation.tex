@@ -115,7 +115,7 @@ It is important to not aggregate the distortions here by taking that maximum ove
 We conducted experiments on five real-world data sets \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}}, \textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}}, \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}, Caltech101\footnote{\url{http://www.vision.caltech.edu/Image_Datasets/Caltech101/}}, \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} and four instances of our benchmark. Benchmark instances were generated to match approximately the sizes of the real-world data sets. The sizes of the data sets are summarized in ~\cref{tab:real-world-datasets-overview}. 
 The size of the considered data sets are given in Table \ref{tab:real-world-datasets-overview}.
 % We generated a set of instances with no scaling i.e., $\beta=1.0$ (referred to as \textit{Benchmark-1.0}) and with maximum scaling; $\beta = 2.0$ (\textit{Benchmark-2.0}).
-We provide a brief description of the data sets in the appendix.
+We provide a brief description of the data sets in \cref{sec:real-world-datasets-details}.
 
 
 \subsubsection*{Preprocessing \& Experimental Setup}
@@ -239,7 +239,7 @@ We observed that BICO and Ray Maker have the highest distortions across all data
 
 In practice as well as in theory, the distortion of movement-based algorithms are affected by the dimension. By comparison, sampling-based algorithms are affected very little. Theoretically, there should not exist a difference, as the sampling bounds are independent of the dimension. What little effect can be observed is likely due to PCA making it easier to find low cost solutions that form the backbone of all coreset constructions. StreamKM++ is an interesting case, as it is still affected by the dimension, though less than the other movement based methods.
 
-At notable exception is the benchmark. Here, sensitivity sampling generally found the lowest cost clustering, with BICO finding the second lowest cost clustering. This happens \emph{despite} BICO generally having a worse distortion than for example Group Sampling or StreamKM++.
+A notable exception is the benchmark. Here, sensitivity sampling generally found the lowest cost clustering, with BICO finding the second lowest cost clustering. This happens \emph{despite} BICO generally having a worse distortion than for example Group Sampling or StreamKM++.
 % , due its performance without dimension reduction being significantly better than the worst-case bounds would suggest. 
 
 
