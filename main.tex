@@ -1,97 +1,87 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%  ltexpprt_twocolumn.tex  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% This is ltexpprt_twocolumn.tex, an example file for use with the SIAM LaTeX2E
-% Preprint Series macros. It is designed to provide two-column output.
-% Please take the time to read the following comments, as they document
-% how to use these macros. This file can be composed and printed out for
-% use as sample output.
+\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate]{lipicsv2021}
+%This is a template for producing LIPIcs articles. 
+%See lipics-v2021-authors-guidelines.pdf for further information.
+%for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+%for british hyphenation rules use option "UKenglish", for american hyphenation rules use option "USenglish"
+%for section-numbered lemmas etc., use "numberwithinsect"
+%for enabling cleveref support, use "cleveref"
+%for enabling autoref support, use "autoref"
+%for anonymousing the authors (e.g. for double-blind review), add "anonymous"
+%for enabling thm-restate support, use "thm-restate"
+%for enabling a two-column layout for the author/affilation part (only applicable for > 6 authors), use "authorcolumns"
+%for producing a PDF according the PDF/A standard, add "pdfa"
 
-% Any comments or questions regarding these macros should be directed to:
-%
-%                 Donna Witzleben
-%                 SIAM
-%                 3600 University City Science Center
-%                 Philadelphia, PA 19104-2688
-%                 USA
-%                 Telephone: (215) 382-9800
-%                 Fax: (215) 386-7999
-%                 e-mail: witzleben@siam.org
+%\pdfoutput=1 %uncomment to ensure pdflatex processing (mandatatory e.g. to submit to arXiv)
+%\hideLIPIcs  %uncomment to remove references to LIPIcs series (logo, DOI, ...), e.g. when preparing a pre-final version to be uploaded to arXiv or another public repository
 
+%\graphicspath{{./graphics/}}%helpful if your graphic files are in another directory
 
-% This file is to be used as an example for style only. It should not be read
-% for content.
+\bibliographystyle{plainurl}% the mandatory bibstyle
 
-%%%%%%%%%%%%%%% PLEASE NOTE THE FOLLOWING STYLE RESTRICTIONS %%%%%%%%%%%%%%%
+\title{An Empirical Evaluation of $k$-Means Coresets} %TODO Please add
 
-%%  1. There are no new tags.  Existing LaTeX tags have been formatted to match
-%%     the Preprint series style.
-%%
-%%  2. Do not change the margins or page size!  Do not change from the default
-%%     text font!
-%%
-%%  3. You must use \cite in the text to mark your reference citations and
-%%     \bibitem in the listing of references at the end of your chapter. See
-%%     the examples in the following file. If you are using BibTeX, please
-%%     supply the bst file with the manuscript file.
-%%
-%%  4. This macro is set up for two levels of headings (\section and
-%%     \subsection). The macro will automatically number the headings for you.
-%%
-%%  5. No running heads are to be used for this volume.
-%%
-%%  6. Theorems, Lemmas, Definitions, Equations, etc. are to be double numbered,
-%%     indicating the section and the occurrence of that element
-%%     within that section. (For example, the first theorem in the second
-%%     section would be numbered 2.1. The macro will
-%%     automatically do the numbering for you.
-%%
-%%  7. Figures and Tables must be single-numbered.
-%%     Use existing LaTeX tags for these elements.
-%%     Numbering will be done automatically.
-%%
-%%  8. Page numbering is no longer included in this macro.
-%%     Pagination will be set by the program committee.
-%%
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
+
+\author{Chris Schwiegelshohn}{Department of Computer Science, Aarhus University, Denmark }{schwiegelshohn@cs.au.dk}{[orcid]}{\textcolor{red}{(Optional) author-specific funding acknowledgements}}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
+
+\author{Omar Ali Sheikh-Omar
+% \footnote{Optional footnote, e.g. to mark corresponding author}
+}{Department of Computer Science, Aarhus University, Denmark}{omar@cs.au.dk}{https://orcid.org/0000-0002-0042-5231}{Innovation Fund Denmark under grant agreement No 0153-00233A.}
+
+\authorrunning{C. Schwiegelshohn and O.A. Sheikh-Omar} %TODO mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
+
+\Copyright{Chris Schwiegelshohn and Omar Ali Sheikh-Omar} %TODO mandatory, please use full first names. LIPIcs license is "CC-BY";  http://creativecommons.org/licenses/by/3.0/
+
+\ccsdesc[500]{Theory of computation~Data compression}
+\ccsdesc[300]{Information systems~Clustering}
+%TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
+
+\keywords{coresets, $k$-means coresets, evaluation, benchmark} %TODO mandatory; please add comma-separated list of keywords
+
+\category{} %optional, e.g. invited paper
+
+\relatedversion{} %optional, e.g. full version hosted on arXiv, HAL, or other respository/website
+%\relatedversiondetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93]{Classification (e.g. Full Version, Extended Version, Previous Version}{URL to related version} %linktext and cite are optional
+
+%\supplement{}%optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
+%\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
+
+%\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
+
+% \acknowledgements{I want to thank \dots}%optional
+
+%\nolinenumbers %uncomment to disable line numbering
 
 
 
-\documentclass[twoside,leqno,twocolumn]{article}
-
-% Comment out the line below if using A4 paper size
-\usepackage[letterpaper]{geometry}
-
-\usepackage{ltexpprt}
-\usepackage{hyperref}
-
-%\usepackage{amsthm}
-\usepackage{amsfonts}           % \mathbb
-\usepackage{amssymb}             % proof
-\usepackage{xspace}             % \xspace
-\usepackage{graphicx}
-\usepackage{adjustbox}          % \adjustbox 
-\usepackage{multicol}            
-\usepackage{url}
-\usepackage{enumerate, enumitem}  %enumerate environment with optional argument
-\usepackage{subcaption}
-\usepackage[usenames]{xcolor} % for coordinating edits
-\newcommand{\sout}[1]{\st{#1}}
-%% \usepackage{hyperref}
-\usepackage{amsmath, hyperref, nicefrac}
-\usepackage[capitalize]{cleveref}
-\usepackage{thm-restate}
-\usepackage{parskip}
-\usepackage{mathtools}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{dsfont}
-\newcommand\dsone{\mathds{1}}
-
-\usepackage{booktabs}
+%Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\EventEditors{John Q. Open and Joan R. Access}
+\EventNoEds{2}
+\EventLongTitle{The European Symposium on Algorithms (ESA)}
+\EventShortTitle{ESA 2022}
+\EventAcronym{ESA}
+\EventYear{2022}
+\EventDate{September 2--9, 2022}
+\EventLocation{Potsdam, Germany}
+\EventLogo{}
+\SeriesVolume{42}
+\ArticleNo{23}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\colorlet{darkgreen}{green!45!black}
+
+
+% Custom packages
+
+\usepackage{booktabs} % need for table rules
+\usepackage{dsfont} % needed for blackboard numbers e.g 11
+\usepackage{longtable}
+\usepackage{float}
+
+
+% Custom commands
+
+\newtheorem{fact}[theorem]{Fact}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\set}[1]{\{#1\}}
@@ -139,64 +129,34 @@
 \newcommand{\size}{\Gamma}
 \newcommand{\polylog}{\text{polylog}}
 
+
+
+\newcommand{\one}{\mathds{1}}
+
 \newcommand{\valuedelta}{\frac{\log^2 1/\eps}{2^{O(z\log z)}\min(\eps^2, \eps^z)}\left(k \log |\cand| + \log \log (1/\eps) + \log(1/\pi)\right)}
 
 \newcommand\chris[1]{\textcolor{blue}{Chris: #1}}
 \newcommand\omar[1]{\textcolor{green!60!black}{Omar: #1}}
 \newcommand\jesper[1]{\textcolor{yellow!60!black}{Jesper: #1}}
 
-%\newtheorem{claim}{Claim}[theorem]
 
 
 \begin{document}
 
-%
-\newcommand\relatedversion{}
-\renewcommand\relatedversion{\thanks{The full version of the paper can be accessed at \protect\url{https://arxiv.org/abs/1902.09310}}} % Replace URL with link to full paper or comment out this line
 
 
-%\setcounter{chapter}{2} % If you are doing your chapter as chapter one,
-%\setcounter{section}{3} % comment these two lines out.
-
-\title{\Large An Empirical Evaluation of $k$-Means Coresets\relatedversion}
-\author{
-%Chris Schwiegelshohn \and Omar Ali Sheikh-Omar\thanks{Aarhus University, Denmark.}
-}
-
-\date{}
 
 \maketitle
 
-% Copyright Statement
-% When submitting your final paper to a SIAM proceedings, it is requested that you include
-% the appropriate copyright in the footer of the paper.  The copyright added should be
-% consistent with the copyright selected on the copyright form submitted with the paper.
-% Please note that "20XX" should be changed to the year of the meeting.
+%TODO mandatory: add short abstract of the document
+\begin{abstract}
+Coresets are among the most popular paradigms for summarizing data. In particular, there exist many high performance coresets for clustering problems such as $k$-means in both theory and practice. Curiously, there exists no work on comparing the quality of available $k$-means coresets. 
 
-% Default Copyright Statement
-\fancyfoot[R]{\scriptsize{Copyright \textcopyright\ 20XX by SIAM\\
-Unauthorized reproduction of this article is prohibited}}
-
-% Depending on which copyright you agree to when you sign the copyright form, the copyright
-% can be changed to one of the following after commenting out the default copyright statement
-% above.
-
-%\fancyfoot[R]{\scriptsize{Copyright \textcopyright\ 20XX\\
-%Copyright for this paper is retained by authors}}
-
-%\fancyfoot[R]{\scriptsize{Copyright \textcopyright\ 20XX\\
-%Copyright retained by principal author's organization}}
-
-%\pagenumbering{arabic}
-%\setcounter{page}{1}%Leave this line commented out.
-
-\begin{abstract}  
-Coresets are among the most popular paradigms for summarizing data. In particular, there exist many high performance coresets for clustering problems such as $k$-means in both theory and practice. Curiously, there exists little work on comparing the quality of available $k$-means coresets. 
-
-In this paper we perform such an evaluation. First, we show that it is computationally hard to compare the quality of not only two different coreset algorithms, but also of two different output of a (randomized) coreset algorithm.
-In order to perform an empirical evaluation, we therefore have to work with heuristics. 
-To this end, we propose and analyse a benchmark for coreset comparison. Using this benchmark and real-world data sets, we conduct an exhaustive evaluation of the most commonly used coreset implementations.
+In this paper we perform such an evaluation. There currently is no algorithm known to measure the distortion of a candidate coreset. We provide some evidence as to why this might be computationally difficult.
+To complement this, we propose a benchmark for which we argue that computing coresets is challenging and which also allows us an easy (heuristic) evaluation of coresets. Using this benchmark and real-world data sets, we conduct an exhaustive evaluation of the most commonly used coreset algorithms from theory and practice.
 \end{abstract}
+
+\newpage
 
 \input{intro}
 
@@ -209,66 +169,20 @@ To this end, we propose and analyse a benchmark for coreset comparison. Using th
 \input{evaluation}
 
 \input{conclusion}
+\newpage
 
-\bibliographystyle{plain}
 \bibliography{references}
+\newpage
+\appendix
+\input{appendix_distortions}
+
+%%
+%% Bibliography
+%%
+
+%% Please use bibtex, 
 
 
-%\begin{thebibliography}{99}
-%
-%%\bibitem{GUIDE}
-%%R.~E. Bank, {\em PLTMG  users' guide, edition 5.0}, tech. report,
-%%  Department of Mathematics, University of California, San Diego, CA, 1988.
-%
-%%\bibitem{HBMG}
-%%R.~E. Bank, T.~F. Dupont, and H.~Yserentant, {\em The hierarchical basis
-%%  multigrid method}, Numer. Math., 52 (1988), pp.~427--458.
-%
-%\bibitem{BANKSMITH}
-%R.~E. Bank and R.~K. Smith, {\em General sparse elimination requires no
-%  permanent integer storage}, SIAM J. Sci. Stat. Comput., 8 (1987),
-%  pp.~574--584.
-%
-%\bibitem{EISENSTAT}
-%S.~C. Eisenstat, M.~C. Gursky, M.~Schultz, and A.~Sherman, {\em
-%  Algorithms and data structures for sparse symmetric gaussian elimination},
-%  SIAM J. Sci. Stat. Comput., 2 (1982), pp.~225--237.
-%
-%\bibitem{GEORGELIU}
-%A.~George and J.~Liu, {\em Computer Solution of Large Sparse Positive
-%  Definite Systems}, Prentice Hall, Englewood Cliffs, NJ, 1981.
-%
-%\bibitem{LAW}
-%K.~H. Law and S.~J. Fenves, {\em A node addition model for symbolic
-%  factorization}, ACM TOMS, 12 (1986), pp.~37--50.
-%
-%\bibitem{LIU}
-%J.~W.~H. Liu, {\em A compact row storage scheme for cholesky factors
-%  using elimination trees}, ACM TOMS, 12 (1986), pp.~127--148.
-%
-%\bibitem{LIU2}
-%\sameauthor , {\em The role of
-%  elimination trees in sparse factorization}, Tech. Report CS-87-12,Department
-%  of Computer Science, York University, Ontario, Canada, 1987.
-%
-%\bibitem{ROSE72}
-%D.~J. Rose, {\em A graph theoretic study of the numeric solution of
-%  sparse positive definite systems}, in Graph Theory and Computing, Academic  Press, New
-%York, 1972.
-%
-%\bibitem{ROSE76}
-%D.~J. Rose, R.~E. Tarjan, and G.~S. Lueker, {\em Algorithmic aspects of
-%  vertex elimination on graphs}, SIAM J. Comput., 5 (1976), pp.~226--283.
-%
-%\bibitem{ROSEWHITTEN}
-%D.~J. Rose and G.~F. Whitten, {\em A recursive analysis of disection
-%  strategies}, in Sparse Matrix Computations, Academic Press, New York, 1976.
-%
-%\bibitem{SCHREIBER}
-%R.~Schrieber, {\em A new implementation of sparse gaussian elimination},
-%  ACM TOMS, 8 (1982), pp.~256--276.
-%
-%\end{thebibliography}
+
+
 \end{document}
-
-% End of ltexpprt.tex 
