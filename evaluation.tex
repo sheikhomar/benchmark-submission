@@ -18,16 +18,6 @@ Every randomized coreset construction was repeated $10$ times. We aggregated the
 It is important to not aggregate the distortions here by taking the maximum over all runs: If one run of the coreset algorithm fails but the others succeed, then such an aggregation predicts far worse distortion than what we could typically expect.
 
 
-
-% We now present the empirical evaluation of these coresets.
-% We ran two kinds of experiments. On real-world data sets, we merely computed a coreset $\Omega$, followed by running $k$-means++ on $\Omega$. 
-% The $k$-means++ algorithm was repeated 5 times, each yielding a solution $\calS_i$, and as the best lower bound on the distortion we used the largest ratio $\max_i\left(\max\left(\frac{\cost_A(\calS_i)}{\cost_{\Omega}(\calS_i)},\frac{\cost_{\Omega}(\calS_i)}{\cost_A(\calS_i)}\right)\right)$.
-% For the benchmark, we used the evaluation as proposed in Section~\ref{sec:benchmark}. In addition, we also determined the distortion via simply running the $k$-means++ algorithm. 
-
-% Except for BICO, which is deterministic, this experiment was repeated for each coreset algorithm $10$ times. \omar{Experiments were repeated 10 times including BICO. Although vanilla BICO is deterministic, we used BICO with heuristic speed optimizations which are stochastic.} We aggregated the reported distortions by taking the maximum over all $10$ evaluations. In addition, we also preprocessed the data using the dimension reduction techniques described in Section~\ref{sec:algorithms}.
-
-
-
 \begin{center}
 \begin{table}
 \begin{minipage}{0.5\textwidth}
@@ -96,11 +86,6 @@ It is important to not aggregate the distortions here by taking the maximum over
     		& 2,560,000
     		& 160
     		\\
-    %     50
-    % 		& 4
-    % 		& 6,250,000
-    % 		& 200
-    % 		\\
 		\bottomrule
 	\end{tabular}\\
 %	\end{center}
@@ -131,12 +116,6 @@ We followed the same experimental procedure with respect to the choice of parame
 
 
 We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ in C++. The source code can be found on GitHub\footnote{\url{https://github.com/sheikhomar/eval-k-means-coresets}}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. The source code was compiled with gcc 9.3.0. The experiments were performed on a machine with Intel Core i9 10940X 3.3GHz 14-Core and 2x DDR4 PC3200 128GB RAM.
-
-
-%
-
-
-%
 
 
 
@@ -171,19 +150,12 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
     \includegraphics[width=.5\linewidth]{figures/distortions-mean-NYTimes+PCA.pdf}
   }
   \newline \newline
-%   \subfloat{
-%     \\[1ex]
-%     \includegraphics[width=0.5\textwidth]{figures/distortions-mean-Benchmark.pdf}
-%   }
   \subfloat{
     \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k10.pdf}
     \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k20.pdf}
     \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k30.pdf}
     \includegraphics[width=0.331\textwidth]{figures/distortions-mean-Benchmark-k40.pdf}
   }
-%   \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/boxplot-Benchmark-GS-SS-StreamKM.pdf}
-%   }
   \caption{The distortions of the evaluated coreset algorithms with coreset size $T=200k$ on five real-world data sets and on four benchmark instances.  Notice that the axis is non-linear as otherwise the bars for Sensitivity Sampling and Group Sampling would disappear on the plots as their distortions are close to 1.}
   \label{fig:distortions}
 \end{figure*}
@@ -195,14 +167,11 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 
 
 \subsubsection*{Outcome of Experiments}
-% We summarized the distortions for $T=200k$ in \cref{fig:distortions}.
 We observed that in the majority of our experiments, varying the coreset sizes does not significantly change the performance profiles of individual algorithms when comparing them against each other. Therefore, in the following sections, we focus on a cross-section of the experiments where $m=200$ i.e., coreset sizes $T=200k$.
 For numerical results including variances of all the experiments and tables containing distortions, costs and running times, we refer to \cref{sec:distortions-tables}, \cref{sec:costs-tables} and \cref{sec:running-times-tables}. 
 
 In~\cref{fig:distortions}, we summarized the distortions of the experiments with coreset sizes $T=200k$. All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO and Group Sampling while Sensitivity Sampling and StreamKM++ perform the best. Differences in performance are more noticeable on \textit{Census}, \textit{Caltech}, and \textit{NYTimes}  where methods based on importance sampling perform much better. Sensitivity Sampling and Group Sampling perform the best, StreamKM++ come in second while BICO and Ray Maker perform the worst across these data sets.
 On the \textit{Benchmark}, Ray Maker is the worst while Sensitivity Sampling and Group Sampling are the best. StreamKM++ performs also very well compared to BICO.
-
-%Reducing noise with PCA helped boost the performance on real-world data sets with large number of dimensions. On \textit{Covertype}, PCA does not change the performance numbers by much. On \textit{Census} ($d=68$), the preprocessing step with PCA improves the performance of BICO and Ray Maker slightly for lower values of $k$. The distortions of BICO and Ray Maker are reduced markedly on \textit{Caltech} ($d=128$) after applying PCA. 
 
 
 \subsubsection*{Interpretation of Experimental Results}
@@ -231,7 +200,6 @@ On data sets where the curve is less steep, we observed higher distortions. The 
   \centering
   \includegraphics[width=1\linewidth]{figures/cost-curves-real-world-datasets.pdf}
   \caption{Depicts how clustering costs of five real-world data sets decrease as the number of centers increase. 
-  % The most widely used data sets for evaluating coresets are \textit{Tower}, \textit{Covertype}, and \textit{Census}, while \textit{Caltech} is rarely used and \textit{NYTimes} has never been used before.
   Plotting the cost curve allows us to study whether we can observe a difference between coreset construction and optimization in a data set when evaluating a coreset based on cost.
   }
   \label{fig:cost-curves-real-world-datasets}
@@ -246,7 +214,7 @@ We observed that BICO and Ray Maker have the highest distortions across all data
 In practice as well as in theory, the distortion of movement-based algorithms are affected by the dimension. By comparison, sampling-based algorithms are affected very little. Theoretically, there should not exist a difference, as the sampling bounds are independent of the dimension. What little effect can be observed is likely due to PCA making it easier to find low cost solutions that form the backbone of all coreset constructions. StreamKM++ is an interesting case, as it is still affected by the dimension, though less than the other movement based methods.
 
 A notable exception is the benchmark. Here, sensitivity sampling generally found the lowest cost clustering, with BICO finding the second lowest cost clustering (see \cref{tab:real-cost-mean-std-benchmark} in the appendix). This happens \emph{despite} BICO generally having a worse distortion than for example Group Sampling or StreamKM++ (see \cref{tab:distortions-mean-std-benchmark} in the appendix).
-% , due its performance without dimension reduction being significantly better than the worst-case bounds would suggest. 
+
 
 
 

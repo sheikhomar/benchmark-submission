@@ -13,17 +13,6 @@ $$
 \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} &-\frac{1}{2} & \frac{1}{2} \\
 -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  & -\frac{1}{2} & \frac{1}{2} \\
 \end{bmatrix} ~~~~~~~~
-% \begin{bmatrix}
-% \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
-% \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
-% \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
-%  -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
-% -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
-% -\frac{1}{3} & \frac{2}{3} &  -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
-% -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3}\\
-% -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3}\\
-% -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{2}{3}\\
-% \end{bmatrix} 
 \begin{bmatrix}
  \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
  -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
@@ -110,13 +99,8 @@ The \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Cen
 
 The data set with the fewest number of dimensions is \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}. This data set consists of 4,915,200 rows and 3 features as it is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. 
 
-% We used the datasets \textit{Census}, \textit{Covertype} and \textit{Tower} as these are often used to evaluate the performance of coreset algorithms. 
-
-% To include larger datasets in evaluation, we used \textit{Caltech} and \textit{NYTimes}. 
-
 Inspired by~\cite{FGSSS13}, \textit{Caltech} was created by computing SIFT features from the images in the Caltech101\footnote{\url{http://www.vision.caltech.edu/Image_Datasets/Caltech101/}} image database. This database contains pictures of objects partitioned into 101 categories. Disregarding the categories, we concatenated the 128-dimensional SIFT vectors from each image into one large data matrix with 3,680,458 rows and 128 columns. 
 
-% \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} dataset in our experiments as the number of dimensions is very large.
 \textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} is a dataset composed of the bag-of-words (BOW) representations of 300,000 news articles from The New York Times. The vocabulary size of the text collection is 102,660. Due to the BOW encoding, \textit{NYTimes} has a very large number of dimensions and is highly sparse. To make processing feasible, we reduced the number of dimensions to 100 using terminal embeddings.
 
 
@@ -166,10 +150,6 @@ We note that terminal embeddings, combined with an iterative application of the 
 \label{sec:candidate-solution-generation}
 As mentioned in~\cref{sec:evaluation-procedure}, it is difficult to construct a candidate solution consisting of $k$ centers which yields a maximal distortion. We experimented with three methods for candidate solution generation; find $k$ centers via $k$-means++, randomly generate $k$ points inside the convex hull (Random CH), and randomly generate $k$ points inside the minimum enclosing ball (Random MEB). Our experiments show that the $k$-means++ method generates candidate solutions which consistently result in large distortions across all algorithms and data sets. The numerical results are presented in~\cref{tab:comparison-solution-generation-all}. Notice that the the numbers in~\cref{tab:comparison-solution-generation-all} are the maximum distortions across $k$ and $m$ because
 we are only interesting in determining which of the three methods is superior. \cref{tab:comparison-solution-generation-caltech-bico} shows all the numbers for BICO on the \textit{Caltech} data set. For all the other combinations of algorithms and data sets, the takeaway message is virtually the same; $k$-means++ is the best method for generating candidate solutions.
-
-
-% The effect of three solution generation methods on the distortions (see \cref{sec:evaluation-procedure}). 
-% We compared generating candidate solutions by running $k$-means++, randomly generating $k$ points inside the convex hull (Random CH) and inside the minimum enclosing ball (Random MEB).
 
 
 \begin{longtable}{llrrr}
@@ -300,75 +280,6 @@ The distortions are obtained by running BICO on the \textit{Caltech} data set.
 
 
 
-% \begin{longtable}{p{.20\textwidth}llllll} 
-% \toprule
-% \parbox[t]{2cm}{\ \\Data set}  & \parbox[t]{5mm}{\ \\$k$} &           BICO & \parbox[t]{1cm}{Group\\Sampling} &      Ray Maker & \parbox[t]{1cm}{Sensitivity\\Sampling} &    StreamKM++ \\
-% % Dataset & $k$ &                &                &                &                      &               \\
-% \midrule % light
-% Benchmark & 10  &   2.93 (0.144) &   1.01 (0.002) &   3.49 (0.055) &         1.02 (0.003) &  1.04 (0.002) \\
-%       & 20  &   2.87 (0.137) &   1.01 (0.002) &   3.90 (0.112) &         1.02 (0.003) &  1.11 (0.002) \\
-%       & 30  &   2.34 (0.070) &   1.02 (0.001) &   4.19 (0.137) &         1.02 (0.002) &  1.10 (0.002) \\
-%       & 40  &   2.68 (0.230) &   1.02 (0.001) &   3.83 (0.172) &         1.02 (0.002) &  1.17 (0.004) \\
-% \midrule % light
-% Caltech & 10  &   4.15 (0.485) &   1.02 (0.003) &   4.99 (0.124) &         1.01 (0.004) &  1.10 (0.004) \\
-%       & 20  &   4.16 (0.708) &   1.02 (0.003) &   4.86 (0.134) &         1.01 (0.003) &  1.12 (0.004) \\
-%       & 30  &   4.15 (0.416) &   1.02 (0.001) &   4.78 (0.117) &         1.01 (0.002) &  1.13 (0.003) \\
-%       & 40  &   4.18 (0.486) &   1.02 (0.002) &   4.73 (0.068) &         1.01 (0.002) &  1.13 (0.001) \\
-%       & 50  &   3.99 (0.560) &   1.02 (0.002) &   4.72 (0.090) &         1.01 (0.002) &  1.13 (0.002) \\
-% \midrule % light
-% Census & 10  &   1.65 (0.082) &   1.03 (0.011) &   1.74 (0.044) &         1.02 (0.006) &  1.05 (0.005) \\
-%       & 20  &   1.74 (0.054) &   1.02 (0.004) &   1.75 (0.038) &         1.01 (0.005) &  1.06 (0.003) \\
-%       & 30  &   1.77 (0.063) &   1.02 (0.003) &   1.79 (0.032) &         1.01 (0.005) &  1.07 (0.002) \\
-%       & 40  &   1.83 (0.038) &   1.02 (0.002) &   1.81 (0.021) &         1.01 (0.005) &  1.08 (0.003) \\
-%       & 50  &   1.87 (0.088) &   1.02 (0.002) &   1.85 (0.044) &         1.01 (0.003) &  1.10 (0.059) \\
-% \midrule % light
-% Covertype & 10  &   1.10 (0.002) &   1.03 (0.011) &   1.18 (0.016) &         1.02 (0.007) &  1.01 (0.002) \\
-%       & 20  &   1.11 (0.004) &   1.03 (0.010) &   1.21 (0.015) &         1.01 (0.007) &  1.01 (0.002) \\
-%       & 30  &   1.10 (0.003) &   1.03 (0.005) &   1.22 (0.008) &         1.01 (0.005) &  1.01 (0.002) \\
-%       & 40  &   1.09 (0.001) &   1.03 (0.005) &   1.22 (0.012) &         1.01 (0.005) &  1.01 (0.001) \\
-%       & 50  &   1.07 (0.001) &   1.03 (0.003) &   1.22 (0.008) &         1.01 (0.002) &  1.01 (0.001) \\
-% \midrule % light
-% NYTimes & 10  &  18.59 (5.356) &   1.04 (0.003) &  15.37 (0.740) &         1.02 (0.004) &  1.75 (0.105) \\
-%       & 20  &   9.98 (1.559) &   1.04 (0.003) &  12.71 (0.448) &         1.01 (0.004) &  1.69 (0.024) \\
-%       & 30  &   8.03 (2.156) &   1.04 (0.002) &  12.18 (0.974) &         1.02 (0.003) &  1.66 (0.030) \\
-%       & 40  &   6.31 (0.436) &   1.03 (0.003) &  11.20 (0.742) &         1.01 (0.002) &  1.63 (0.024) \\
-%       & 50  &   5.97 (0.381) &   1.03 (0.002) &  10.81 (0.571) &         1.01 (0.002) &  1.63 (0.026) \\
-% \midrule % light
-% Tower & 20  &   1.07 (0.003) &   1.02 (0.007) &   1.06 (0.004) &         1.03 (0.009) &  1.02 (0.001) \\
-%       & 40  &   1.06 (0.004) &   1.02 (0.006) &   1.06 (0.002) &         1.02 (0.007) &  1.02 (0.001) \\
-%       & 60  &   1.06 (0.001) &   1.03 (0.004) &   1.05 (0.004) &         1.01 (0.003) &  1.02 (0.001) \\
-%       & 80  &   1.05 (0.001) &   1.03 (0.005) &   1.05 (0.002) &         1.01 (0.006) &  1.02 (0.001) \\
-%       & 100 &   1.04 (0.002) &   1.03 (0.004) &   1.05 (0.001) &         1.01 (0.004) &  1.02 (0.001) \\
-% \midrule % light
-% Caltech+PCA & 10  &   1.16 (0.004) &   1.01 (0.002) &   1.19 (0.009) &         1.00 (0.001) &  1.02 (0.002) \\
-%       & 20  &   1.42 (0.016) &   1.01 (0.002) &   1.51 (0.008) &         1.01 (0.001) &  1.04 (0.002) \\
-%       & 30  &   1.73 (0.045) &   1.02 (0.001) &   1.83 (0.014) &         1.01 (0.001) &  1.06 (0.002) \\
-%       & 40  &   2.13 (0.083) &   1.02 (0.002) &   2.16 (0.016) &         1.01 (0.002) &  1.07 (0.002) \\
-%       & 50  &   2.38 (0.139) &   1.02 (0.001) &   2.49 (0.017) &         1.01 (0.002) &  1.09 (0.002) \\
-% \midrule % light
-% Census+PCA & 10  &   1.18 (0.012) &   1.01 (0.005) &   1.20 (0.016) &         1.02 (0.009) &  1.01 (0.002) \\
-%       & 20  &   1.44 (0.046) &   1.02 (0.003) &   1.45 (0.019) &         1.02 (0.010) &  1.04 (0.002) \\
-%       & 30  &   1.64 (0.044) &   1.02 (0.004) &   1.63 (0.021) &         1.01 (0.007) &  1.06 (0.003) \\
-%       & 40  &   1.77 (0.035) &   1.02 (0.002) &   1.76 (0.028) &         1.01 (0.004) &  1.07 (0.002) \\
-%       & 50  &   1.87 (0.068) &   1.02 (0.002) &   1.82 (0.017) &         1.01 (0.004) &  1.08 (0.002) \\
-% \midrule % light
-% Covertype+PCA & 10  &   1.11 (0.003) &   1.03 (0.012) &   1.19 (0.011) &         1.02 (0.010) &  1.02 (0.002) \\
-%       & 20  &   1.11 (0.003) &   1.03 (0.006) &   1.21 (0.010) &         1.02 (0.007) &  1.02 (0.002) \\
-%       & 30  &   1.10 (0.002) &   1.03 (0.007) &   1.22 (0.011) &         1.01 (0.005) &  1.01 (0.002) \\
-%       & 40  &   1.09 (0.002) &   1.03 (0.006) &   1.23 (0.010) &         1.01 (0.005) &  1.01 (0.001) \\
-%       & 50  &   1.07 (0.001) &   1.03 (0.003) &   1.23 (0.008) &         1.01 (0.003) &  1.01 (0.001) \\
-% \midrule % light
-% NYTimes+PCA & 10  &   1.01 (0.000) &   1.00 (0.000) &   1.01 (0.001) &         1.00 (0.000) &  1.00 (0.000) \\
-%       & 20  &   1.02 (0.000) &   1.00 (0.000) &   1.02 (0.001) &         1.00 (0.000) &  1.01 (0.000) \\
-%       & 30  &   1.03 (0.000) &   1.00 (0.000) &   1.03 (0.001) &         1.00 (0.000) &  1.01 (0.000) \\
-%       & 40  &   1.04 (0.001) &   1.00 (0.000) &   1.04 (0.001) &         1.00 (0.002) &  1.01 (0.000) \\
-%       & 50  &   1.04 (0.002) &   1.00 (0.000) &   1.05 (0.001) &         1.00 (0.000) &  1.02 (0.000) \\
-% \bottomrule
-% \caption{Distortions of the evaluation algorithms on all data sets with and without PCA preprocessing. Each cell specify the mean distortion along with the standard deviation in brackets of 10 repetition of the experiment.}
-% \label{tab:distortions-mean-std}
-% \end{longtable}
-
-
 
 
 
@@ -394,46 +305,6 @@ The distortions are obtained by running BICO on the \textit{Caltech} data set.
   \label{fig:cost-curves-benchmark}
 \end{figure}
 
-% \begin{figure*}
-%  \includegraphics[width=.67\linewidth]{figures/real-costs-Tower.pdf}
-%  \newline
-%  \subfloat{
-%     \includegraphics[width=0.5\textwidth]{figures/real-costs-Covertype.pdf}
-%  }
-%  \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/real-costs-Covertype+PCA.pdf}
-%  }
-%  \newline\newline
-%  \subfloat{
-%     \includegraphics[width=0.5\textwidth]{figures/real-costs-Census.pdf}
-%  }
-%  \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/real-costs-Census+PCA.pdf}
-%  }
-%  \newline\newline
-%  \subfloat{
-%     \includegraphics[width=0.5\textwidth]{figures/real-costs-Caltech.pdf}
-%  }
-%  \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/real-costs-Caltech+PCA.pdf}
-%  }
-%  \newline\newline
-%  \subfloat{
-%     \includegraphics[width=0.5\textwidth]{figures/real-costs-NYTimes.pdf}
-%  }
-%  \subfloat{
-%     \includegraphics[width=.5\linewidth]{figures/real-costs-NYTimes+PCA.pdf}
-%  }
-%  \newline\newline
-%  \subfloat{
-%     \includegraphics[width=0.15\textwidth]{figures/real-costs-Benchmark-k10.pdf}
-%     \includegraphics[width=0.165\textwidth]{figures/real-costs-Benchmark-k20.pdf}
-%     \includegraphics[width=0.16\textwidth]{figures/real-costs-Benchmark-k30.pdf}
-%     \includegraphics[width=0.31\textwidth]{figures/real-costs-Benchmark-k40.pdf}
-%  }
-%  \caption{The average costs of running the evaluated coreset algorithms multiple times on different data sets. In general, the five coreset algorithms are able to compute coresets which result in solutions with comparable costs on the different real-world data sets. The differences in cost is more noticeable on the benchmark instances. Here, Senstivity Sampling is the winner because it seems to be better at capturing the correct ``clusters'' inherent in the benchmark instances.}
-%  \label{fig:real-costs}
-% \end{figure*}
 
 
 \newpage
