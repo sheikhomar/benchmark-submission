@@ -18,11 +18,86 @@ Every randomized coreset construction was repeated $10$ times. We aggregated the
 It is important to not aggregate the distortions here by taking the maximum over all runs: If one run of the coreset algorithm fails but the others succeed, then such an aggregation predicts far worse distortion than what we could typically expect.
 
 
-\begin{center}
+% \begin{center}
+% \begin{table}
+% \begin{minipage}{0.49\textwidth}
+% 	%\begin{center}%\centering
+% % 	\resizebox{\textwidth}{!}{
+% 	\begin{tabular}{lrr}
+% 		\toprule
+% 		    & Data points
+% 		    & Dimensions
+%             \\
+% 		\midrule
+% 		\textit{Caltech}
+%     		& 3,680,458
+%     		& 128
+%     		\\
+% 		\textit{Census}
+%     		& 2,458,285
+%     		& 68
+%     		\\
+% 	    \textit{Covertype}
+%     	    & 581,012
+%     		& 54
+%     		\\
+% 	    \textit{NYTimes}
+%     	    & 500,000
+%     		& 102,660
+%     		\\
+%         \textit{Tower}
+%             & 4,915,200
+%     		& 3
+%     		\\
+% 		\bottomrule
+% 	\end{tabular}\\
+% %	\end{center}
+% % 	}
+% \end{minipage}
+% \begin{minipage}{0.49\textwidth}
+% %	\begin{center}%\centering
+% % 	\resizebox{\textwidth}{!}{
+% 	\begin{tabular}{rrrr}
+% 		\toprule
+%         $k$
+% 		    & $\alpha$
+% 		    & Data points
+% 		    & Dimensions
+%             \\
+% 		\midrule
+%         10
+%     		& 6
+%     		& 1,000,000
+%     		& 60
+%     		\\
+%         20
+%     		& 5
+%     		& 3,200,000
+%     		& 100
+%     		\\
+%         30
+%     		& 4
+%     		& 810,000
+%     		& 120
+%     		\\
+%         40
+%     		& 4
+%     		& 2,560,000
+%     		& 160
+%     		\\
+% 		\bottomrule
+% 	\end{tabular}\\
+% %	\end{center}
+% % 	}
+% \end{minipage}
+% \caption{Size of real world data sets (left) and evaluated benchmarks (right).}
+% \label{tab:real-world-datasets-overview}
+% \end{table}
+% \end{center}
+
+
 \begin{table}
-\begin{minipage}{0.49\textwidth}
-	%\begin{center}%\centering
-% 	\resizebox{\textwidth}{!}{
+	\begin{center}%\centering
 	\begin{tabular}{lrr}
 		\toprule
         
@@ -52,12 +127,15 @@ It is important to not aggregate the distortions here by taking the maximum over
     		\\
 		\bottomrule
 	\end{tabular}\\
-%	\end{center}
-% 	}
-\end{minipage}
-\begin{minipage}{0.49\textwidth}
-%	\begin{center}%\centering
-% 	\resizebox{\textwidth}{!}{
+	\caption{The sizes of the real-world datasets used for the experimental evaluation}
+	\label{tab:real-world-datasets-overview}
+	\end{center}
+\end{table}
+
+
+
+\begin{table}
+	\begin{center}
 	\begin{tabular}{rrrr}
 		\toprule
         $k$
@@ -88,13 +166,10 @@ It is important to not aggregate the distortions here by taking the maximum over
     		\\
 		\bottomrule
 	\end{tabular}\\
-%	\end{center}
-% 	}
-\end{minipage}
-\caption{Size of real world data sets (left) and evaluated benchmarks (right).}
-\label{tab:real-world-datasets-overview}
+	\end{center}
+    \caption{The parameter values and the sizes of the benchmark instances used for the experimental evaluation.}
+	\label{tab:benchmark-instances-overview}
 \end{table}
-\end{center}
 
 
 
