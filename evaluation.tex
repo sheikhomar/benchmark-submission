@@ -20,7 +20,7 @@ It is important to not aggregate the distortions here by taking the maximum over
 
 \begin{center}
 \begin{table}
-\begin{minipage}{0.5\textwidth}
+\begin{minipage}{0.49\textwidth}
 	%\begin{center}%\centering
 % 	\resizebox{\textwidth}{!}{
 	\begin{tabular}{lrr}
@@ -55,7 +55,7 @@ It is important to not aggregate the distortions here by taking the maximum over
 %	\end{center}
 % 	}
 \end{minipage}
-\begin{minipage}{0.5\textwidth}
+\begin{minipage}{0.49\textwidth}
 %	\begin{center}%\centering
 % 	\resizebox{\textwidth}{!}{
 	\begin{tabular}{rrrr}
@@ -95,7 +95,9 @@ It is important to not aggregate the distortions here by taking the maximum over
 \label{tab:real-world-datasets-overview}
 \end{table}
 \end{center}
-\vspace{-1.5cm}
+
+
+
 \subsubsection*{Data sets}
 We conducted experiments on five real-world data sets
 \textit{Census},
@@ -120,34 +122,34 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
 
 
 \begin{figure*}
-  \includegraphics[width=.69\linewidth]{figures/distortions-mean-Tower.pdf}
+  \includegraphics[width=.65\linewidth]{figures/distortions-mean-Tower.pdf}
   \newline \newline
   \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/distortions-mean-Covertype.pdf}
+    \includegraphics[width=.48\textwidth]{figures/distortions-mean-Covertype.pdf}
   }
   \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/distortions-mean-Covertype+PCA.pdf}
-  }
-  \newline \newline
-  \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/distortions-mean-Census.pdf}
-  }
-  \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/distortions-mean-Census+PCA.pdf}
+    \includegraphics[width=.48\linewidth]{figures/distortions-mean-Covertype+PCA.pdf}
   }
   \newline \newline
   \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/distortions-mean-Caltech.pdf}
+    \includegraphics[width=.48\textwidth]{figures/distortions-mean-Census.pdf}
   }
   \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/distortions-mean-Caltech+PCA.pdf}
+    \includegraphics[width=.48\linewidth]{figures/distortions-mean-Census+PCA.pdf}
   }
   \newline \newline
   \subfloat{
-    \includegraphics[width=0.5\textwidth]{figures/distortions-mean-NYTimes.pdf}
+    \includegraphics[width=.48\textwidth]{figures/distortions-mean-Caltech.pdf}
   }
   \subfloat{
-    \includegraphics[width=.5\linewidth]{figures/distortions-mean-NYTimes+PCA.pdf}
+    \includegraphics[width=.48\linewidth]{figures/distortions-mean-Caltech+PCA.pdf}
+  }
+  \newline \newline
+  \subfloat{
+    \includegraphics[width=.48\textwidth]{figures/distortions-mean-NYTimes.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.48\linewidth]{figures/distortions-mean-NYTimes+PCA.pdf}
   }
   \newline \newline
   \subfloat{
@@ -156,7 +158,7 @@ We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ i
     \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k30.pdf}
     \includegraphics[width=0.331\textwidth]{figures/distortions-mean-Benchmark-k40.pdf}
   }
-  \caption{The distortions of the evaluated coreset algorithms with coreset size $T=200k$ on five real-world data sets and on four benchmark instances.  Notice that the axis is non-linear as otherwise the bars for Sensitivity Sampling and Group Sampling would disappear on the plots as their distortions are close to 1.}
+  \caption{The average distortions of the evaluated coreset algorithms with coreset size $T=200k$ on five real-world data sets and on four benchmark instances. Black bars indicate standard deviations. Notice that the axis is non-linear as otherwise the bars for Sensitivity Sampling and Group Sampling would disappear on the plots as their distortions are close to 1.}
   \label{fig:distortions}
 \end{figure*}
 
