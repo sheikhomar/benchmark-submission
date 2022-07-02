@@ -1,4 +1,4 @@
-\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate]{lipicsv2021}
+\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate]{lipics-v2021}
 %This is a template for producing LIPIcs articles. 
 %See lipics-v2021-authors-guidelines.pdf for further information.
 %for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
@@ -23,7 +23,7 @@
 
 %\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
 
-\author{Chris Schwiegelshohn}{Department of Computer Science, Aarhus University, Denmark }{schwiegelshohn@cs.au.dk}{[orcid]}{\textcolor{red}{(Optional) author-specific funding acknowledgements}}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
+\author{Chris Schwiegelshohn}{Department of Computer Science, Aarhus University, Denmark }{schwiegelshohn@cs.au.dk}{[orcid]}{Independent Research Fund Denmark (DFF) Sapere Aude Research Leader grant No 1051-00106B.}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
 
 \author{Omar Ali Sheikh-Omar
 % \footnote{Optional footnote, e.g. to mark corresponding author}
@@ -51,7 +51,7 @@
 
 % \acknowledgements{I want to thank \dots}%optional
 
-%\nolinenumbers %uncomment to disable line numbering
+\nolinenumbers %uncomment to disable line numbering
 
 
 
@@ -157,7 +157,6 @@ In this paper we perform such an evaluation. There currently is no algorithm kno
 To complement this, we propose a benchmark for which we argue that computing coresets is challenging and which also allows us an easy (heuristic) evaluation of coresets. Using this benchmark and real-world data sets, we conduct an exhaustive evaluation of the most commonly used coreset algorithms from theory and practice.
 \end{abstract}
 
-\newpage
 
 \input{intro}
 
@@ -168,12 +167,12 @@ To complement this, we propose a benchmark for which we argue that computing cor
 \input{evaluation}
 
 \input{conclusion}
-\newpage
+
 
 \bibliography{references}
-\newpage
-\appendix
-\input{appendix_distortions}
+%\newpage
+%\appendix
+%\input{appendix_distortions}
 
 %%
 %% Bibliography

@@ -23,7 +23,36 @@ For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i
 Finally, set the $t$-th column of $A$, for $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, to be $\one_{k^{\alpha-a+1}}\otimes v_b^{a+1}$.
 
 
-To get a better feel for the construction, we have given two small example instances for $k=2$ and $k=3$ in the appendix (see \cref{fig:benchmark-small-instances}).
+To get a better feel for the construction, we have given two small example instances for $k=2$ and $k=3$ in Figue \cref{fig:benchmark-small-instances}.
+\begin{figure*}[h]
+\begin{center}
+$$ 
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} &-\frac{1}{2} & \frac{1}{2} \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  & -\frac{1}{2} & \frac{1}{2} \\
+\end{bmatrix} ~~~~~~~~
+\begin{bmatrix}
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & \frac{2}{3}   &  -\frac{1}{3}  \\
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+\end{bmatrix} 
+$$
+\end{center}
+\caption{Benchmark construction for $k=2$ and $\alpha=3$ (left) and $k=3$ and $\alpha=2$ (right).}
+\label{fig:benchmark-small-instances}
+\end{figure*}
 
 
 \paragraph*{Properties of the Benchmark}
@@ -59,16 +88,15 @@ These clusterings satisfy the properties we stated at the beginning of this sect
 \item The clusterings have equal cost and the centers in each clustering have equal cost.
 \item The clusterings are induced by a set of centers in $\mathbb{R}^d$.
 \end{enumerate}
-A formal verification of these properties can be found in the appendix.
-
 
 
 
 \paragraph*{Benchmark Evaluation}
 
-We now describe how we use the benchmark to measure the distortion of a coreset. Assume that the coresets are subsets of the original input points\footnote{It is not necessary for coreset constructions in general to consist of input points. We can adjust the evaluation by snapping coreset points to their closest input points.
+We now describe how we use the benchmark to measure the distortion of a coreset. Assume for now that the coresets are subsets of the original input points. The extension to coresets that do not consist of input points is described at the end of this section.
+%\footnote{While for sampling based methods the coreset points are always subset of the input, it is not necessary for coreset constructions in general to consist of input points. For all movement-based coreset constructions, one can reduce to this case by snapping coreset points to their closest input points. For all movement-based coresets the coreset guarantee still holds with a small loss in distortion that can be countered with rescaling after this operation.
 % We can adjust the evaluation to account for this. But since all algorithms considered in this paper have the property and it makes the evaluation simpler, we will only consider coresets that are subsets of the original point set.
-}.
+%}.
 
 Consider the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ for some $a$ and let $\Omega$ with weights $w:\Omega\rightarrow \mathbb{R}_{\geq 0}$ be the coreset and let $\delta>0$ be a parameter. 
 Note that there are $\alpha$ many such clusterings, for each value of $a$.
@@ -89,5 +117,6 @@ Thus for each deficient clustering individually, the distortion will be close to
 If there are many deficient clusters, then this will also be the overall distortion.
 For all possible (suitably discretized) thresholds for deficiency, i.e. all values of $\delta$, we can now identify the clustering $\mathcal{C}^a$ with a maximum number of deficient clusters and use the aforementioned construction to get a lower bound on the distortion.
 
+To extend this evaluation to coresets where the points are not part of the input, we consider a point $p\in \Omega$ to be in $C_i^a$ if it is closer to $\mu(C_i^a)$ than to to $\mu(C_j^a)$.
 
 
