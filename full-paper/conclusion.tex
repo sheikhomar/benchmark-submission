@@ -1,0 +1,14 @@
+\section{Conclusion} \label{sec:conclusion}
+In this work, we studied how to assess the quality of $k$-means coresets computed by state-of-the-art algorithms. 
+Previous work generally measured the quality of optimization algorithms run on the coreset, which we empirically observed to be a poor indicator of coreset quality.
+For real-world data sets, we sampled candidate clusterings and evaluated the worst case distortion on them. Complementing this, we also proposed a benchmark framework which generates hard instances for known $k$-means coreset algorithms. Our experiments indicate a general advantage for algorithms based on importance sampling over movement-based methods. Despite movement-based methods running on very efficient code, it is necessary to complement them with rather expensive dimension reduction methods, rendering what efficiency they might have over importance sampling somewhat moot.
+
+Two results bear further investigation. First, the currently known provable coreset sizes for Sensitivity Sampling are worse than those provable via Group Sampling. Empirically, we observed the opposite: While Group Sampling is competitive, Sensitivity Sampling always outperforms it. Since Group Sampling requires somewhat cumbersome computational overhead, practical applications should prefer Sensitivity Sampling. In light of these results, a theoretical analysis for Sensitivity Sampling matching the performance of Group Sampling would be welcome.
+
+The second point of interest focuses on the performance of StreamKM++. The distortion of this algorithm is significantly better than what one would expect from its theoretical analysis.
+Empirically, StreamKM++ is notably better than the other movement-based constructions across all data sets, and especially on high dimensional data.
+While it is not competitive to the pure importance sampling algorithms, there are several reasons for investigating it further. It essentially only requires running $k$-means++ for additional iterations, which is already a nearly ubiquitous algorithm for the $k$-means problem. Although the other sampling-based coreset algorithms can also be readily implemented, doing so might be cumbersome. In particular, the theoretically (but not empirically) best algorithm Group Sampling requires extensive preprocessing steps.
+This begs the question whether there exist a better theoretical analysis for StreamKM++.
+
+In addition, StreamKM++ currently weighs each point by the number of points assigned to it. It may also be possible to improve the performance of the algorithm in both theory and practice by using a different weighting scheme. 
+We leave this as an open problem for future research.

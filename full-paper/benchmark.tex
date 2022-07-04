@@ -1,0 +1,122 @@
+\section{Benchmark Construction}
+\label{sec:benchmark}
+
+In this section, we describe our benchmark. We start by describing the aims of the benchmark, followed by giving the construction. Our aim is to generate a data set containing many clusterings with the following properties. 
+\begin{enumerate}
+\item The benchmark has many clusterings that, in a well defined sense, are highly dissimilar. Specifically, we want the overlap between any two clusters of different clusterings to be small.
+\item The different clusterings have very similar and low cost. This ensures that despite the solutions being different in terms of composition and center placement, a good coreset has to consider them equally regarding distortion.
+\item The clusterings are induced by a minimal cost assignment of input points to a set of centers in $\mathbb{R}^d$. This final property ensures that the coreset guarantee has to apply to these clusterings.
+\end{enumerate} 
+
+
+To generate the benchmark, we now use the following construction. The benchmark has a parameter $\alpha$ which controls the number of points and dimensions of the generated data instance.
+For a given value of $k$, the benchmark instance consists of $n=k^\alpha$ points and $d=\alpha \cdot k$ dimensions, i.e. we will construct and $n\times d$ matrix $A$ where every row corresponds to an input point and every column corresponds to one of the dimensions.
+
+Let $\one_k$ be the $k$-dimensional all-one vector and $v_i^1$ be the $k$-dimensional vector with entries $(v_i^1)_j = \begin{cases}-\frac{1}{k} & \text{if } i\neq j\\
+\frac{k-1}{k} & \text{if } i= j\end{cases}$.
+For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i^{\ell} = v_i^{\ell-1}\otimes \one_k $, where $\otimes$ denotes the Kronecker product, i.e. $ v_i^{\ell-1}\otimes \one_k= \begin{bmatrix}
+(v_i^{\ell-1})_1 \cdot \one_k \\
+(v_i^{\ell-1})_2 \cdot \one_k \\
+\vdots \\
+(v_i^{\ell-1})_1 \cdot \one_k
+\end{bmatrix}$. 
+Finally, set the $t$-th column of $A$, for $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, to be $\one_{k^{\alpha-a+1}}\otimes v_b^{a+1}$.
+
+
+To get a better feel for the construction, we have given two small example instances for $k=2$ and $k=3$ in Figue \cref{fig:benchmark-small-instances}.
+\begin{figure*}[h]
+\begin{center}
+$$ 
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} &-\frac{1}{2} & \frac{1}{2} \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  & -\frac{1}{2} & \frac{1}{2} \\
+\end{bmatrix} ~~~~~~~~
+\begin{bmatrix}
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & \frac{2}{3}   &  -\frac{1}{3}  \\
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+\end{bmatrix} 
+$$
+\end{center}
+\caption{Benchmark construction for $k=2$ and $\alpha=3$ (left) and $k=3$ and $\alpha=2$ (right).}
+\label{fig:benchmark-small-instances}
+\end{figure*}
+
+
+\paragraph*{Properties of the Benchmark}
+
+We now summarize the key properties of the benchmark.
+To this end, we require a few notions.
+Let $A$ be the input matrix. We slightly abuse notation and refer to $A_i$ as both the $i$th point as well as the $i$th row of the matrix $A$.
+For a clustering $\mathcal{C}=\{C_1,\ldots ,C_k\}$, we define that the $n\times k$ indicator matrix $\tilde X$ induced by $\mathcal{C}$ via $\tilde X_{i,j} = \begin{cases}1 & \text{if } A_i\in C_j \\
+0 & \text{else.} \end{cases}$
+Furthermore, we will also use the $n\times k$ normalized clustering matrix $ X$ defined as
+$X_{i,j} = \begin{cases}\frac{1}{\sqrt{|C_i|}} & \text{if } A_i\in C_j \\
+0 & \text{else.} \end{cases}$
+We also recall the following lemma which will allow us to express the $k$-means cost of a clustering $\mathcal{C}$ with optimally chosen centers in terms of the cost of $X$ and $A$.
+\begin{lemma}[Folklore]
+\label{lem:magic}
+Let $A$ be an arbitrary set of points and let $\mu(A) = \frac{1}{|A|}\sum_{p\in A} p$ be the mean. Then $ \sum_{p\in A} \|p-c\|^2 = |A|\cdot \|\mu(A)-c\|^2 + \sum_{p\in A} \|p-\mu(A)\|^2$ for any point $c$.
+\end{lemma}
+This lemma proves that for any given cluster $C_j$, the mean is the optimal choice of center. 
+We also note that any two distinct columns of $X$ are orthogonal. Furthermore $\frac{1}{n}\mathbf{1}\mathbf{1}^TA$ copies the mean into every entry of $A$. Combining these two observations, we see that the matrix $XX^TA$ maps the $i$th row of $A$ onto the mean of the cluster it is assigned to. Finally, define the Frobenius norm of an $n\times d$ $A$ by $\|A\|_F = \sqrt{\sum_{i=1}^n\sum_{j=1}^d A_{i,j}^2}$. Then the $k$-means cost of the clustering $\mathcal{C}$ is precisely
+$\|A-XX^TA\|_F^2.$
+
+We also require the following distance measure on clusterings as proposed by Meila~\cite{Meila05,Meila06}. Given two clusterings $\mathcal{C}$ and $\mathcal{C'}$, the $k\times k$ confusion matrix $M$ is defined as
+$ M_{i,j} = |C_i\cap C'_j|.$
+Furthermore for the indicator matrices $\tilde X$ and $\tilde X'$ induced by $\mathcal{C}$ and $\mathcal{C'}$ we have the identity $M=\tilde X^T {\tilde X'}$.
+Denote by $\Pi_k$ the set of all permutations over $k$ elements. Then the distance between  $\mathcal{C}$ and $\mathcal{C'}$ is defined as $d(\mathcal{C},\mathcal{C'}) = 1-\frac{1}{n}\underset{\pi\in \Pi_k}{\max} \sum_{i=1}^k M_{i,\pi(i)}.$
+Observe that for clusters that are identical, their distance is $0$. The maximum distance between any two $k$ clusterings is always $\frac{k-1}{k}$.
+
+The solutions we consider are given as follows. For the columns $a\cdot k+1,\ldots (a+1)\cdot k$, we define the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ with 
+$A_i\in C_j^a$ if and only if $A_{i,j} > 0$. Let $\tilde X^a$ and $X^{a}$ denote the indicator matrix and clustering matrix, respectively, as induced by $\mathcal{C}^{a}$.
+These clusterings satisfy the properties we stated at the beginning of this section, that is:
+\begin{enumerate}
+\item The distance between these clustering is $1-\frac{1}{k}$, i.e. it is maximized.
+\item The clusterings have equal cost and the centers in each clustering have equal cost.
+\item The clusterings are induced by a set of centers in $\mathbb{R}^d$.
+\end{enumerate}
+
+
+
+\paragraph*{Benchmark Evaluation}
+
+We now describe how we use the benchmark to measure the distortion of a coreset. Assume for now that the coresets are subsets of the original input points. The extension to coresets that do not consist of input points is described at the end of this section.
+%\footnote{While for sampling based methods the coreset points are always subset of the input, it is not necessary for coreset constructions in general to consist of input points. For all movement-based coreset constructions, one can reduce to this case by snapping coreset points to their closest input points. For all movement-based coresets the coreset guarantee still holds with a small loss in distortion that can be countered with rescaling after this operation.
+% We can adjust the evaluation to account for this. But since all algorithms considered in this paper have the property and it makes the evaluation simpler, we will only consider coresets that are subsets of the original point set.
+%}.
+
+Consider the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ for some $a$ and let $\Omega$ with weights $w:\Omega\rightarrow \mathbb{R}_{\geq 0}$ be the coreset and let $\delta>0$ be a parameter. 
+Note that there are $\alpha$ many such clusterings, for each value of $a$.
+We use $w(C_i^a \cap \Omega):=\sum_{p\in C_i^a \cap \Omega} w(p)$ to denote the mass of points of $C_i^a$ in $\Omega$.
+For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\delta)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)< |C_i^a| (1-\delta)$, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the centers of these deficient clusters.
+
+We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and the fact that all clusters have equal cost, we may write for any deficient cluster $C_i^a$
+$\cost_{C_i^a}(\calS) = \cost_{C_j^a}(\{\mu(C_j^a)\}) + k^{\alpha-1}\|\mu(C_j^a)-\mu(C_h^a)\|_2^2$, where $C_h^a$ is a non-deficient cluster.
+Thus, the cost is $\cost_{C_i^a}(\calS) \approx \left(1+\frac{2}{\alpha}\right)\cdot \cost_{C_j^a}(\{\mu(C_j^a)\}).$
+
+Conversely, the cost on the coreset is 
+\begin{align*}
+\cost_{\Omega\cap C_i^a}(\calS)  
+%&= &w(C_i^a \cap \Omega)\left((\alpha-1)\cdot \left(\left(\frac{k-1}{k}\right)^2 + (k-1)\left(\frac{1}{k}\right)^2\right) + 2\right) \\
+ \approx  \frac{w(C_i^a \cap \Omega)}{ \cost_{C_j^a}(\{\mu(C_j^a)\})}\left(1+\frac{2}{\alpha}\right)\cdot \cost_{C_j^a}(\{\mu(C_j^a)\}).
+\end{align*}
+Thus for each deficient clustering individually, the distortion will be close to $\frac{k^{\alpha-1}}{w(C_i^a \cap \Omega)} \geq \frac{1}{1-\varepsilon}$.
+If there are many deficient clusters, then this will also be the overall distortion.
+For all possible (suitably discretized) thresholds for deficiency, i.e. all values of $\delta$, we can now identify the clustering $\mathcal{C}^a$ with a maximum number of deficient clusters and use the aforementioned construction to get a lower bound on the distortion.
+
+To extend this evaluation to coresets where the points are not part of the input, we consider a point $p\in \Omega$ to be in $C_i^a$ if it is closer to $\mu(C_i^a)$ than to to $\mu(C_j^a)$.
+
+
