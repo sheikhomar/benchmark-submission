@@ -158,28 +158,492 @@ To complement this, we propose a benchmark for which we argue that computing cor
 \end{abstract}
 
 
-\input{intro}
+\section{Introduction}
 
-\input{algorithms}
+The design and analysis of scalable algorithms has become an important research area over the past two decades. This is particularly important in data analysis, where even polynomial running time might not be enough to handle proverbial \emph{big data} sets.
+One of the main approaches to deal with the scalability issue is to compress or sketch large data sets into smaller, more manageable ones. The aim of such compression methods is to preserve the properties of the original data, up to some small error, while significantly reducing the number of data points.
 
-\input{benchmark}
+Among the most popular and successful paradigms in this line of research are \emph{coresets} \cite{MunteanuS18}. Informally, given a data set $A$, a coreset $\Omega \subset A$ with respect to a given set of queries $Q$ and query function $f: A\times Q \rightarrow \mathbb{R}_{\geq 0}$ approximates the behaviour of $A$ for all queries up to some multiplicative distortion $D$ via $\sup_{q\in Q} \max\left( \frac{f(\Omega,q)}{f(A,q)},\frac{f(A,q)}{f(\Omega,q)}\right) \leq D.$
+Coresets have been applied to a number of problems such as computational geometry \cite{AHV05,Chan09}, linear algebra \cite{IndykMGR20,maalouf2019fast}, and machine learning \cite{MMR21,MunteanuSSW18}. But the by far most intensively studied and arguably most successful applications of the coreset framework is the $k$-clustering problem.
 
-\input{evaluation}
+Here we are given $n$ points $A$ with (potential unit) weights $w:A\rightarrow \mathbb{R}_{\geq 0}$ in some metric space with distance function $\dist$ and aim to find a set of $k$ centers $C$ such that 
+\begin{equation*}
+\cost_A(C):= \frac{1}{n} \sum_{p\in A}  \min_{c\in C} w(p)\cdot \dist^z(p,c)
+\end{equation*}
+is minimized. The most popular variant of this problem is probably the $k$-means problem in $d$-dimensional Euclidean space where $z=2$ and $\dist(x,y) = \sqrt{\sum_{i=1}^d (x_i-y_i)^2}$.
 
-\input{conclusion}
+A $(k,\varepsilon)$-coreset is now a subset $\Omega\subset A$ with weights $w:\Omega\rightarrow \mathbb{R}_{\geq 0}$ such that for any set of $k$ centers $C$
+\begin{equation}
+\label{eq:coreset}
+\sup_{C} \max\left( \frac{\cost_A(C)}{\cost_{\Omega}(C)},\frac{\cost_{\Omega}(C)}{\cost_{A}(C)}\right) \leq 1+\varepsilon.
+\end{equation}
+The coreset definition in \cref{eq:coreset} provides an upper bound for the distortion of all candidate solutions i.e., all possible sets of $k$ centers. 
+A \emph{weak coreset} is a relaxed guarantee that holds for optimal or nearly optimal clusterings of $A$ instead of all clusterings.
+
+In a long line of work spanning the last 20 years
+\cite{BecchettiBC0S19,BravermanJKW21,Chen09,Cohen-AddadSS21b,Cohen-AddadSS21,FeldmanL11,FeldmanSS20,
+HaM04,HaK07,HuangJLW18,huang2020coresets,BravermanJKW21,
+LangbergS10,SohlerW18}, the size of coresets has been steadily improved with the current state of the art yielding a coreset with $\tilde{O}(k \varepsilon^{-2} \cdot \min(d,k,\varepsilon^{-2}))$ points for a distortion $D\leq (1+\varepsilon)$ due to \cite{CLSS22}\footnote{We use $\tilde O(x)$ to hide $\log^c x$ terms for any constant $c$.}.
+
+While we have a good grasp of the theoretical guarantees of these algorithms, our understanding of the empirical performance is somewhat lacking. There exist a number of coreset implementations, but it is usually difficult to assess which implementation summarizes the data best. To accurately evaluate a given coreset, we would need to come up with a $k$ clustering $C$ which results in a maximal distortion. Solving this problem is likely difficult: related questions such as deciding whether a 3-dimensional point set $A$ is an $\varepsilon$-net of a set $B$ with respect to convex ranges is co-NP hard \cite{GiannopoulosKWW12}. 
+%It is similarly co-NP hard to decide whether a point set $A$ is a \emph{weak coreset} of a point set $B$ (see \cref{prop:hardness} in the appendix). 
+
+Due to this difficulty, a common heuristic for evaluating coresets is as follows~\cite{AckermannMRSLS12,FGSSS13}. First, compute a coreset $\Omega$ with the available algorithm(s) using some input data $A$. Then, run an optimization algorithm on $\Omega$ to compute a $k$ clustering. The \emph{best} coreset algorithm is considered to be the one which yields a clustering with the smallest cost.
+
+This practice has substantial drawbacks.
+The first is that this evaluation method conflates the two separate tasks of coreset construction and optimization.
+It is important to note that the first step of virtually all coreset algorithms is a low-cost (bicriteria) constant factor approximation, i.e. a solution with $\beta\cdot k$ clusters that costs at most $\alpha\cdot \opt$, where $\opt$ is the cost of an optimal $k$ clustering.
+Given that this initial solution has an $\alpha$ approximation to the cost, a routine calculation shows that the additive error of the coreset, i.e. the maximum difference
+$ \left\vert \cost_A(C) - \cost_B(C) \right\vert $
+over all solutions $C$ is at most $O(\alpha)\cdot \cost_A(C)$. 
+In particular, in the case that the initial bicriteria approximation has $\alpha \ll 2$, which is not too difficult to achieve with more than $k$ centers, any $\gamma$ approximation algorithm will find solutions with approximation factor $O(\gamma + \alpha) \cdot\opt$. In particular, the distortion may be unbounded, for example if $B$ only consists of the $k$ centers, while simply returning $B$ itself yields a low cost clustering. Thus, it is difficult to measure coreset quality in this way.
+
+The second drawback is that this practice will mainly measure the performance of the optimization algorithm, rather than the performance of the coreset algorithms. During its execution it might simply not consider any solution with high distortion. For example, if the approximation factor $\gamma$ of the solution returned by the algorithm is large then this solution (as well as any even higher cost solution considered during the algorithm’s execution) will have a low distortion. 
+
+The third drawback of this evaluation method is that it does not consider the main use cases of coresets, nor the full power of their guarantee. Indeed, if speeding up the computation of an optimization algorithm, one would hardly need a strong coreset; approximating the cost of every candidate solution, as weaker coreset definitions (or indeed a bicriteria approximation) would be suitable as well. A coreset's main and most powerful feature is \emph{composability}, i.e. given two disjoint point sets $X$ and $Y$, the union of a coreset of $X$ and a coreset of $Y$ is a coreset. Composability is what enables coresets to scale to massively parallel computation models and enables simple streaming algorithms via the merge and reduce technique. To which degree a coreset is composable is generally not a property of an optimal clustering of the point set, as optimal solutions $C_X$ of $X$ or $C_Y$ of $Y$ may have little in common with an optimal solution of $X\cup Y$. 
 
 
-\bibliography{references}
-%\newpage
-%\appendix
-%\input{appendix_distortions}
+The purpose of this study is to systematically evaluate the quality of various coreset algorithms for $k$-means. As such, we develop a new evaluation procedure which estimates the distortion of coreset algorithms. On real-world data sets, we observe that while the evaluated coreset algorithms are generally able to find solutions with comparable costs, there is a stark difference in their distortions. This shows that differences between optimization and compression are readily observable in practice.
 
-%%
-%% Bibliography
-%%
+As a complement to our evaluation procedure on real-world data sets, we propose a benchmark framework for generating synthetic data sets. We argue why this benchmark has properties that results in hard instances for all known coreset constructions. We also show how to efficiently estimate the distortion of a candidate coreset on the benchmark.
 
-%% Please use bibtex, 
 
+
+
+\section{Coreset Algorithms}
+\label{sec:algorithms}
+
+Though the algorithms vary in details, coreset constructions come in one of the following two flavours:
+
+\begin{enumerate}
+\item {\bf Movement-based constructions:} Such algorithms compute a coreset $\Omega$ with $T$ points given some input point set $A$ such that $\cost_{\Omega}(C)\ll \opt$, where $\opt$ is the cost of an optimal $k$-means clustering of $A$. 
+The coreset guarantee then follows as a consequence of the triangle inequality. These algorithms all have an exponential dependency on the dimension $d$, and therefore have been overtaken by sampling-based methods. Nevertheless, these constructions are more robust to various constrained clustering formulations~\cite{HuangJV19,SSS19} and continue to be popular. Examples from theory include~\cite{FrahlS2005,HaM04}. 
+
+\item {\bf Importance sampling:} Points are sampled proportionate to their impact on the cost of any given candidate solution. The idealized distribution samples proportionate to the sensitivity which for a point $p$ is defined as $sens(p):=\sup_{C} \frac{\min_{c\in C} \dist^2(p,c)}{\cost_A(C)}$ and weighted by their inverse sampling probability. The sensitivities are hard to compute exactly but much work exists on how to find other distributions with very similar properties. In terms of theoretical performance, sensitivity sampling has largely replaced movement-based constructions, see for example~\cite{FeldmanL11,LangbergS10}.  
+\end{enumerate}
+
+Of course, there exist algorithms that draw on techniques from both, see for example~\cite{Cohen-AddadSS21}. In what follows, we will survey implementations of various coreset constructions that we will evaluate later.
+
+
+{\bf StreamKM++~\cite{AckermannMRSLS12}:} The popular $k$-means++ algorithm~\cite{ArV07} computes a set of centers $K$ by iteratively sampling a point $p$ in $A$ proportionate to $\min_{q\in K} \dist^2(p,q)$ and adding it to $K$. The procedure terminates once the desired number of centers has been reached. The first center is typically picked uniformly at random.
+The StreamKM++ paper runs the $k$-means++ algorithms for $T$ iterations, where $T$ is the desired coreset size. At the end, every point $q$ in $K$ is weighted by the number of points in $A$ closest to it. While the construction has elements of importance sampling, the analysis is largely movement-based. The provable bound required for the algorithm to compute a coreset is $O\left(\frac{k\log n}{\delta^{d/2}\varepsilon^d}\cdot \log^{d/2} \frac{k\log n}{\delta^{d/2}\varepsilon^d}\right)$. Despite its simplicity, its running time compares unfavourably to all other constructions.
+
+{\bf BICO~\cite{FGSSS13}:} BICO combines the very fast, but poor quality clustering algorithm BIRCH~\cite{ZRL97} with the movement-based analysis from~\cite{FrahlS2005,HaM04}. The clustering is organized by way of a hierarchical decomposition: When adding a point $p$ to one of the coreset points $\Omega$ at level $i$, it first finds the closest point $q$ in $\Omega$. If $p$ is too far away from $q$, a new cluster is opened with center at $p$. Otherwise $p$ is either added to the same cluster as $q$, or, if adding $p$ to $q$'s cluster increases the clustering cost beyond a certain threshold, the algorithm attempts to add $p$ to the child-clusters of $q$. The procedure then continues recursively. The provable bound required for the algorithm to compute a coreset is $O\left(k\varepsilon^{-d-2}\log n\right)$.
+
+{\bf Ray Maker~\cite{HaK07}:} The algorithm computes an initial solution with $k$ centers which is a constant factor approximation of the optimal clustering. Around each center, $O(1/\epsilon^{d-1})$ random rays are created which span the hyperplane. Next, each point $p \in A$ is snapped to its closest ray resulting in a set of one-dimensional points associated with each ray. Afterwards, a coreset is created for each ray by computing an optimal 1D clustering with $k^2/\epsilon^2$ centers and weighing each center by the number of points in each cluster. The final coreset is composed of the coresets computed for all the rays.
+The provable bound required for the algorithm to compute a coreset is $O(k^3 \cdot \varepsilon^{-d-1})$. The algorithm has recently received some attention due to its applicability to the fair clustering problem~\cite{HuangJV19}.
+
+
+{\bf Sensitivity Sampling~\cite{FeldmanL11}:} The simplest implementation of sensitivity sampling first computes an $(O(1),O(1))$ bicriteria approximation\footnote{An $(\alpha,\beta)$ bicriteria approximation computes an $\alpha$ approximation using $\beta\cdot k$ many centers.}, for example by running $k$-means++ for $2k$ iterations~\cite{Wei16}. Let $K$ be the $2k$ clustering thus computed and let $K_i$ be an arbitrary cluster of $K$ with center $q_i$. Subsequently, the algorithm picks points proportionate to $\frac{\dist^2(p,q)}{\cost_{K_i}(\{q_i\})} + \frac{1}{|K_i|}$ and weighs any point by its inverse sampling probability. Let $|\hat{K_i}|$ be the estimated number of points in the sample. Finally, the algorithm weighs each $q_i$ by $(1+\eps)\cdot |K_i| - |\hat{K_i}|$. The provable bound required for the algorithm to compute a coreset is $\tilde O\left(kd\varepsilon^{-4}\right)$ (\cite{FeldmanL11}),
+$\tilde O\left(k\varepsilon^{-6}\right)$ (\cite{huang2020coresets}), or $\tilde O\left(k^2\varepsilon^{-4}\right)$ (\cite{BravermanJKW21}).
+
+{\bf Group Sampling~\cite{Cohen-AddadSS21}:} First, the algorithm computes an $O(1)$ approximation (or a bicriteria approximation) $K$. Subsequently, the algorithm preprocesses the input into groups such that (1) for any two points $p,p'\in K_i$, their cost is identical up to constant factors and (2) for any two clusters $K_i,K_j$, their cost is identical up to constant factors. In every group, Group Sampling now samples points proportionate to their cost. The authors of~\cite{Cohen-AddadSS21} show that there always exist a partitioning into $\log^2 1/\varepsilon$ groups. Points not contained in a group are snapped to their closest center $q$ in $K$. $q$ is weighted by the number of points snapped to it. The provable bound required for the algorithm to compute a coreset is $\tilde O\left(k\varepsilon^{-2}\min(d,k,\varepsilon^{-2})\right)$ (\cite{CLSS22}). While this improves over sensitivity sampling, it is generally slower and not as easy to implement.
+
+Finally, we note that some of the more popular algorithms in theory have not been mentioned here. For example, Chen's \cite{Chen09} construction is particularly popular among theoreticians. The Group Sampling algorithm by \cite{Cohen-AddadSS21} is an extension and improvement of Chen's method. Thus, the performance of Group Sampling is also indicative of Chen's algorithm.
+
+
+\paragraph*{Dimension Reduction}
+%\label{sec:dim_reduction}
+Finally, we also combine coreset constructions with a variety of dimension reduction techniques. Starting with~\cite{DrineasFKVV04}, a series of results \cite{BecchettiBC0S19,BoutsidisMD09,BoutsidisZD10,BoutsidisZMD15,CEMMP15,Cohen-AddadS17,FeldmanSS20,FKW19,KuK10,MakarychevMR19,SohlerW18} explored the possibility of using dimension reduction methods for $k$-clustering, with a particular focus on principal component analysis (PCA) and random projections. The seminal paper by Feldman, Schmidt, and Sohler~\cite{FeldmanSS20} was the first to use dimension reduction to obtain smaller coresets for $k$-means. Movement-based coresets in particular often have an exponential dependency on the dimension, which can be alleviated with some form of dimension reduction, both in theory~\cite{SSS19} and in practice~\cite{KappmeierS015}.
+There are essentially two main dimension reduction techniques for coresets.
+
+{\bf Principal Component Analysis:} Feldman, Schmidt, and Sohler~\cite{FeldmanSS20} showed that projecting an input $A$ onto the first $O(k/\varepsilon^2)$ principal components is a coreset. This coreset still consists of $n$ points, but they now lie in low dimension. The analysis was subsequently tightened by~\cite{CEMMP15} and extended to other center-based cost functions by~\cite{SohlerW18}. Although its target dimension is generally worse than those based on random projections and terminal embeddings, there is nevertheless reasons for using PCA regardless: It removes noise and thus may make it easier to compute a high quality coreset. For more applications of PCA to $k$-means clustering, we refer to
+
+{\bf Terminal Embeddings:} Given a set of points $A$ in $\mathbb{R}^D$, a terminal embedding $f:\mathbb{R}^D\rightarrow \mathbb{R}^d$ preserves the pairwise distance between any point $p\in A$ and any point $q\in \mathbb{R}^D$ up to a $(1\pm \varepsilon)$ factor. The statement is related to the famous Johnson-Lindenstrauss lemma but it is stronger as it does not apply to only the pairwise distances of $A$. Nevertheless, the same target dimension is sufficient. Terminal embeddings were studied by~\cite{CherapanamjeriN21,ElkinFN17,MahabadiMMR18,NaN18}, with Narayanan and Nelson \cite{NaN18} achieving an optimal target dimension of $O(\varepsilon^{-2}\log n)$, where $n$ is the number of points. We note that terminal embeddings, combined with an iterative application of the coreset construction from \cite{BravermanJKW21}, can reduce the target dimension to a factor $\tilde{O}(\varepsilon^{-2} \log k)$. This is mainly of theoretical interest, as in practice the deciding factor wrt the target dimension is the precision, rather than dependencies on $\log n$ and $\log k$. For applications to coresets, we refer to \cite{BecchettiBC0S19,Cohen-AddadSS21,huang2020coresets}. For an empirical evaluation of random projections, which form the basis of all known terminal embeddings, we refer to Venkatsubramanian and Wang~\cite{VenkatasubramanianW11}.
+
+
+
+
+\section{Benchmark Construction}
+\label{sec:benchmark}
+
+In this section, we describe our benchmark. We start by describing the aims of the benchmark, followed by giving the construction. Our aim is to generate a data set containing many clusterings with the following properties. 
+\begin{enumerate}
+\item The benchmark has many clusterings that, in a well defined sense, are highly dissimilar. Specifically, we want the overlap between any two clusters of different clusterings to be small.
+\item The different clusterings have very similar and low cost. This ensures that despite the solutions being different in terms of composition and center placement, a good coreset has to consider them equally regarding distortion.
+\item The clusterings are induced by a minimal cost assignment of input points to a set of centers in $\mathbb{R}^d$. This final property ensures that the coreset guarantee has to apply to these clusterings.
+\end{enumerate} 
+
+
+To generate the benchmark, we now use the following construction. The benchmark has a parameter $\alpha$ which controls the number of points and dimensions of the generated data instance.
+For a given value of $k$, the benchmark instance consists of $n=k^\alpha$ points and $d=\alpha \cdot k$ dimensions, i.e. we will construct and $n\times d$ matrix $A$ where every row corresponds to an input point and every column corresponds to one of the dimensions.
+
+Let $\one_k$ be the $k$-dimensional all-one vector and $v_i^1$ be the $k$-dimensional vector with entries $(v_i^1)_j = \begin{cases}-\frac{1}{k} & \text{if } i\neq j\\
+\frac{k-1}{k} & \text{if } i= j\end{cases}$.
+For $\ell\leq \alpha$, recursively define the $k^{\ell}$ dimensional vector $v_i^{\ell} = v_i^{\ell-1}\otimes \one_k $, where $\otimes$ denotes the Kronecker product, i.e. $ v_i^{\ell-1}\otimes \one_k= \begin{bmatrix}
+(v_i^{\ell-1})_1 \cdot \one_k \\
+(v_i^{\ell-1})_2 \cdot \one_k \\
+\vdots \\
+(v_i^{\ell-1})_1 \cdot \one_k
+\end{bmatrix}$. 
+Finally, set the $t$-th column of $A$, for $t = a\cdot k + b$, $a\in \{0,\ldots \alpha-1\}$ and $b \in \{1,\ldots k\}$, to be $\one_{k^{\alpha-a+1}}\otimes v_b^{a+1}$.
+
+
+To get a better feel for the construction, we have given two small example instances for $k=2$ and $k=3$ in Figue \cref{fig:benchmark-small-instances}.
+\begin{figure*}[h]
+\begin{center}
+$$ 
+\begin{bmatrix}
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+-\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  \\
+\frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} &-\frac{1}{2} & \frac{1}{2} \\
+-\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2}  & -\frac{1}{2} & \frac{1}{2} \\
+\end{bmatrix} ~~~~~~~~
+\begin{bmatrix}
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3}   \\
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3}   \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & \frac{2}{3}   &  -\frac{1}{3}  \\
+ \frac{2}{3}   & -\frac{1}{3}  & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+ -\frac{1}{3}  & \frac{2}{3}   & -\frac{1}{3} & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+ -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}  & -\frac{1}{3}  & -\frac{1}{3}  & \frac{2}{3}    \\
+\end{bmatrix} 
+$$
+\end{center}
+\caption{Benchmark construction for $k=2$ and $\alpha=3$ (left) and $k=3$ and $\alpha=2$ (right).}
+\label{fig:benchmark-small-instances}
+\end{figure*}
+
+
+\paragraph*{Properties of the Benchmark}
+
+We now summarize the key properties of the benchmark.
+To this end, we require a few notions.
+Let $A$ be the input matrix. We slightly abuse notation and refer to $A_i$ as both the $i$th point as well as the $i$th row of the matrix $A$.
+For a clustering $\mathcal{C}=\{C_1,\ldots ,C_k\}$, we define that the $n\times k$ indicator matrix $\tilde X$ induced by $\mathcal{C}$ via $\tilde X_{i,j} = \begin{cases}1 & \text{if } A_i\in C_j \\
+0 & \text{else.} \end{cases}$
+Furthermore, we will also use the $n\times k$ normalized clustering matrix $ X$ defined as
+$X_{i,j} = \begin{cases}\frac{1}{\sqrt{|C_i|}} & \text{if } A_i\in C_j \\
+0 & \text{else.} \end{cases}$
+We also recall the following lemma which will allow us to express the $k$-means cost of a clustering $\mathcal{C}$ with optimally chosen centers in terms of the cost of $X$ and $A$.
+\begin{lemma}[Folklore]
+\label{lem:magic}
+Let $A$ be an arbitrary set of points and let $\mu(A) = \frac{1}{|A|}\sum_{p\in A} p$ be the mean. Then $ \sum_{p\in A} \|p-c\|^2 = |A|\cdot \|\mu(A)-c\|^2 + \sum_{p\in A} \|p-\mu(A)\|^2$ for any point $c$.
+\end{lemma}
+This lemma proves that for any given cluster $C_j$, the mean is the optimal choice of center. 
+We also note that any two distinct columns of $X$ are orthogonal. Furthermore $\frac{1}{n}\mathbf{1}\mathbf{1}^TA$ copies the mean into every entry of $A$. Combining these two observations, we see that the matrix $XX^TA$ maps the $i$th row of $A$ onto the mean of the cluster it is assigned to. Finally, define the Frobenius norm of an $n\times d$ $A$ by $\|A\|_F = \sqrt{\sum_{i=1}^n\sum_{j=1}^d A_{i,j}^2}$. Then the $k$-means cost of the clustering $\mathcal{C}$ is precisely
+$\|A-XX^TA\|_F^2.$
+
+We also require the following distance measure on clusterings as proposed by Meila~\cite{Meila05,Meila06}. Given two clusterings $\mathcal{C}$ and $\mathcal{C'}$, the $k\times k$ confusion matrix $M$ is defined as
+$ M_{i,j} = |C_i\cap C'_j|.$
+Furthermore for the indicator matrices $\tilde X$ and $\tilde X'$ induced by $\mathcal{C}$ and $\mathcal{C'}$ we have the identity $M=\tilde X^T {\tilde X'}$.
+Denote by $\Pi_k$ the set of all permutations over $k$ elements. Then the distance between  $\mathcal{C}$ and $\mathcal{C'}$ is defined as $d(\mathcal{C},\mathcal{C'}) = 1-\frac{1}{n}\underset{\pi\in \Pi_k}{\max} \sum_{i=1}^k M_{i,\pi(i)}.$
+Observe that for clusters that are identical, their distance is $0$. The maximum distance between any two $k$ clusterings is always $\frac{k-1}{k}$.
+
+The solutions we consider are given as follows. For the columns $a\cdot k+1,\ldots (a+1)\cdot k$, we define the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ with 
+$A_i\in C_j^a$ if and only if $A_{i,j} > 0$. Let $\tilde X^a$ and $X^{a}$ denote the indicator matrix and clustering matrix, respectively, as induced by $\mathcal{C}^{a}$.
+These clusterings satisfy the properties we stated at the beginning of this section, that is:
+\begin{enumerate}
+\item The distance between these clustering is $1-\frac{1}{k}$, i.e. it is maximized.
+\item The clusterings have equal cost and the centers in each clustering have equal cost.
+\item The clusterings are induced by a set of centers in $\mathbb{R}^d$.
+\end{enumerate}
+
+
+
+\paragraph*{Benchmark Evaluation}
+
+We now describe how we use the benchmark to measure the distortion of a coreset. Assume for now that the coresets are subsets of the original input points. The extension to coresets that do not consist of input points is described at the end of this section.
+%\footnote{While for sampling based methods the coreset points are always subset of the input, it is not necessary for coreset constructions in general to consist of input points. For all movement-based coreset constructions, one can reduce to this case by snapping coreset points to their closest input points. For all movement-based coresets the coreset guarantee still holds with a small loss in distortion that can be countered with rescaling after this operation.
+% We can adjust the evaluation to account for this. But since all algorithms considered in this paper have the property and it makes the evaluation simpler, we will only consider coresets that are subsets of the original point set.
+%}.
+
+Consider the clustering $\mathcal{C}^{a} = \{C_1^a,\ldots C_k^a\}$ for some $a$ and let $\Omega$ with weights $w:\Omega\rightarrow \mathbb{R}_{\geq 0}$ be the coreset and let $\delta>0$ be a parameter. 
+Note that there are $\alpha$ many such clusterings, for each value of $a$.
+We use $w(C_i^a \cap \Omega):=\sum_{p\in C_i^a \cap \Omega} w(p)$ to denote the mass of points of $C_i^a$ in $\Omega$.
+For every cluster $C_i^a$ with $w(C_i^a \cap \Omega)\geq |C_i| (1-\delta)$, we place a center at $\mu(C_i^a)$. Conversely, if $w(C_i^a \cap \Omega)< |C_i^a| (1-\delta)$, we do not place a center at $\mu(C_i^a)$. We call such clusters \emph{deficient}. Let $\calS$ be the centers of these deficient clusters.
+
+We now compare the cost as computed on the coreset and the true cost of $\calS$. Due to \cref{lem:magic} and the fact that all clusters have equal cost, we may write for any deficient cluster $C_i^a$
+$\cost_{C_i^a}(\calS) = \cost_{C_j^a}(\{\mu(C_j^a)\}) + k^{\alpha-1}\|\mu(C_j^a)-\mu(C_h^a)\|_2^2$, where $C_h^a$ is a non-deficient cluster.
+Thus, the cost is $\cost_{C_i^a}(\calS) \approx \left(1+\frac{2}{\alpha}\right)\cdot \cost_{C_j^a}(\{\mu(C_j^a)\}).$
+
+Conversely, the cost on the coreset is 
+\begin{align*}
+\cost_{\Omega\cap C_i^a}(\calS)  
+%&= &w(C_i^a \cap \Omega)\left((\alpha-1)\cdot \left(\left(\frac{k-1}{k}\right)^2 + (k-1)\left(\frac{1}{k}\right)^2\right) + 2\right) \\
+ \approx  \frac{w(C_i^a \cap \Omega)}{ \cost_{C_j^a}(\{\mu(C_j^a)\})}\left(1+\frac{2}{\alpha}\right)\cdot \cost_{C_j^a}(\{\mu(C_j^a)\}).
+\end{align*}
+Thus for each deficient clustering individually, the distortion will be close to $\frac{k^{\alpha-1}}{w(C_i^a \cap \Omega)} \geq \frac{1}{1-\varepsilon}$.
+If there are many deficient clusters, then this will also be the overall distortion.
+For all possible (suitably discretized) thresholds for deficiency, i.e. all values of $\delta$, we can now identify the clustering $\mathcal{C}^a$ with a maximum number of deficient clusters and use the aforementioned construction to get a lower bound on the distortion.
+
+To extend this evaluation to coresets where the points are not part of the input, we consider a point $p\in \Omega$ to be in $C_i^a$ if it is closer to $\mu(C_i^a)$ than to to $\mu(C_j^a)$.
+
+
+
+
+
+
+
+\section{Experiments} \label{sec:experiments}
+In this section, we present how we evaluated different algorithms. First, we propose our evaluation procedure which gauges the quality of coresets. Then, we describe the data sets used for the empirical evaluation and our experimental setup. Finally, we detail the outcome of the experiments and our interpretation of the results.
+
+\subsubsection*{Evaluation Procedure}
+\label{sec:evaluation-procedure}
+Accurately evaluating a $k$-means coreset of a real-world data set requires constructing a solution (a set of $k$ centers) which results in a maximal distortion. Finding such a solution, however, is difficult. Instead, we can estimate the quality of a given coreset by finding meaningful candidate solutions. 
+
+A first attempt can be to randomly generate candidate solutions. It is not readily apparent how to define a distribution of meaningful solutions from which to sample. One could, for instance, generate $k$ random points inside the convex hull or the minimum enclosing ball (MEB) of a coreset $\Omega$. Convex hulls in high dimensions are infeasible to compute, so we sample a center by choosing random convex combination of the centers of the initial bicriteria approximation computed for every coreset. 
+A better way to generate candidate solutions turns out to be $k$-means++, where we sample $k$ points with respect to the $k$-means++ distribution and use the resulting centers as a solution. The main advantage of this approach is that $k$-means++ can uncover natural cluster structures in the data, which uniform sampling generally does not.
+For all variants, we generated $5$ candidate solutions, where the candidate solution with the largest distortion being a lower bound for the true distortion of the coreset.
+
+Given the usefulness of evaluating coresets on real-world data sets, it can be tricky to gauge the general performance of coreset algorithms using only a small selection of data sets. For this reason, we used our benchmark to complement the evaluation on real-world data sets. The benchmark accomplishes two important tasks. First, the benchmark allows us to quickly find a bad solution because both good and bad clusterings are known a priori. It is unclear how to find bad clusterings for real-world data sets. Second, it is easier to make a fair comparison of different coreset constructions because the benchmark is known to generate hard instances for all known coreset algorithms. This cannot be said for real-world data sets. For the benchmark, we computed the distortion following the evaluation procedure described in~\cref{sec:benchmark}. 
+
+Every randomized coreset construction was repeated $10$ times. We aggregated the reported maximum distortions for every run by taking the average over all $10$ evaluations. 
+It is important to not aggregate the distortions here by taking the maximum over all runs: If one run of the coreset algorithm fails but the others succeed, then such an aggregation predicts far worse distortion than what we could typically expect.
+
+
+
+\begin{table}
+	\begin{center}%\centering
+	\begin{tabular}{lrr}
+		\toprule
+        
+		    & Data points
+		    & Dimensions
+            \\
+		\midrule
+		\textit{Caltech}
+    		& 3,680,458
+    		& 128
+    		\\
+		\textit{Census}
+    		& 2,458,285
+    		& 68
+    		\\
+	    \textit{Covertype}
+    	    & 581,012
+    		& 54
+    		\\
+	    \textit{NYTimes}
+    	    & 500,000
+    		& 102,660
+    		\\
+        \textit{Tower}
+            & 4,915,200
+    		& 3
+    		\\
+		\bottomrule
+	\end{tabular}\\
+	\caption{The sizes of the real-world datasets used for the experimental evaluation}
+	\label{tab:real-world-datasets-overview}
+	\end{center}
+\end{table}
+
+
+
+\begin{table}
+	\begin{center}
+	\begin{tabular}{rrrr}
+		\toprule
+        $k$
+		    & $\alpha$
+		    & Data points
+		    & Dimensions
+            \\
+		\midrule
+        10
+    		& 6
+    		& 1,000,000
+    		& 60
+    		\\
+        20
+    		& 5
+    		& 3,200,000
+    		& 100
+    		\\
+        30
+    		& 4
+    		& 810,000
+    		& 120
+    		\\
+        40
+    		& 4
+    		& 2,560,000
+    		& 160
+    		\\
+		\bottomrule
+	\end{tabular}\\
+	\end{center}
+    \caption{The parameter values and the sizes of the benchmark instances used for the experimental evaluation.}
+	\label{tab:benchmark-instances-overview}
+\end{table}
+
+
+
+\subsubsection*{Data sets}
+We conducted experiments on five real-world data sets
+\textit{Census},
+\textit{Covertype},
+\textit{Tower},
+\textit{Caltech},
+\textit{NYTimes},
+and four instances of our benchmark. Benchmark instances were generated to match approximately the sizes of the real-world data sets. 
+The sizes of the considered data sets are given in Table \ref{tab:real-world-datasets-overview}.
+
+The \textit{Census}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/US+Census+Data+(1990)}} dataset is a small subset of the Public Use Microdata Samples from 1990 US census. It consists of demographic information encoded as 68 categorical attributes of 2,458,285 individuals. 
+
+\textit{Covertype}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/covertype}} is comprised of cartographic descriptions and forest cover type of four wilderness areas in the Roosevelt National Forest of Northern Colorado in the US. It consists of 581,012 records, 54 cartographic variables and one class variable. Although \textit{Covertype} was originally made for classification tasks, it is often used for clustering tasks by removing the class variable~\cite{AckermannMRSLS12}.
+
+The data set with the fewest number of dimensions is \textit{Tower}\footnote{\url{http://homepages.uni-paderborn.de/frahling/coremeans.html}}. This data set consists of 4,915,200 rows and 3 features as it is a 2,560 by 1,920 picture of a tower on a hill where each pixel is represented by a RGB color value. 
+
+Inspired by~\cite{FGSSS13}, \textit{Caltech} was created by computing SIFT features from the images in the Caltech101\footnote{\url{http://www.vision.caltech.edu/Image_Datasets/Caltech101/}} image database. This database contains pictures of objects partitioned into 101 categories. Disregarding the categories, we concatenated the 128-dimensional SIFT vectors from each image into one large data matrix with 3,680,458 rows and 128 columns. 
+
+\textit{NYTimes}\footnote{\url{https://archive.ics.uci.edu/ml/datasets/bag+of+words}} is a dataset composed of the bag-of-words (BOW) representations of 300,000 news articles from The New York Times. The vocabulary size of the text collection is 102,660. Due to the BOW encoding, \textit{NYTimes} has a very large number of dimensions and is highly sparse. To make processing feasible, we reduced the number of dimensions to 100 using terminal embeddings.
+
+
+
+\subsubsection*{Preprocessing \& Experimental Setup}
+To understand how denoising effects the quality of the outputted coresets, we applied Principal Component Analysis (PCA) on \textit{Caltech}, \textit{Census}, \textit{Covertype}, and \textit{NYTimes} by using the $k$ singular vectors corresponding to the largest singular values. 
+We did not perform any preprocessing on \textit{Tower} due to its low dimensionality.
+
+We followed the same experimental procedure with respect to the choice of parameter values for the algorithms as prior works~\cite{AckermannMRSLS12, FGSSS13}. For the target coreset size $T$, we experimented with $T=mk$ for $m = \{50, 100, 200, 500\}$. On \textit{Caltech}, \textit{Census},  \textit{Covertype}, and \textit{NYTimes}, we used values $k$ in $\{10, 20, 30, 40, 50\}$, while for \textit{Tower} we used larger cluster sizes $k \in \{20, 40, 60, 80, 100\}$. On the benchmark, we used  $k \in \{10, 20, 30, 40\}$.
+
+
+We implemented Sensitivity Sampling, Group Sampling, Ray Maker, and StreamKM++ in C++. The source code can be found on GitHub\footnote{\url{https://github.com/sheikhomar/eval-k-means-coresets}}. For BICO, we used the authors' reference implementation\footnote{\url{https://ls2-www.cs.tu-dortmund.de/grav/en/bico}}. The source code was compiled with gcc 9.3.0. The experiments were performed on a machine with Intel Core i9 10940X 3.3GHz 14-Core and 2x DDR4 PC3200 128GB RAM.
+
+
+
+\begin{figure*}
+  \includegraphics[width=.65\linewidth]{figures/distortions-mean-Tower.pdf}
+  \newline \newline
+  \subfloat{
+    \includegraphics[width=.48\textwidth]{figures/distortions-mean-Covertype.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.48\linewidth]{figures/distortions-mean-Covertype+PCA.pdf}
+  }
+  \newline \newline
+  \subfloat{
+    \includegraphics[width=.48\textwidth]{figures/distortions-mean-Census.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.48\linewidth]{figures/distortions-mean-Census+PCA.pdf}
+  }
+  \newline \newline
+  \subfloat{
+    \includegraphics[width=.48\textwidth]{figures/distortions-mean-Caltech.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.48\linewidth]{figures/distortions-mean-Caltech+PCA.pdf}
+  }
+  \newline \newline
+  \subfloat{
+    \includegraphics[width=.48\textwidth]{figures/distortions-mean-NYTimes.pdf}
+  }
+  \subfloat{
+    \includegraphics[width=.48\linewidth]{figures/distortions-mean-NYTimes+PCA.pdf}
+  }
+  \newline \newline
+  \subfloat{
+    \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k10.pdf}
+    \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k20.pdf}
+    \includegraphics[width=0.165\textwidth]{figures/distortions-mean-Benchmark-k30.pdf}
+    \includegraphics[width=0.331\textwidth]{figures/distortions-mean-Benchmark-k40.pdf}
+  }
+  \caption{The average distortions of the evaluated coreset algorithms with coreset size $T=200k$ on five real-world data sets and on four benchmark instances. Black bars indicate standard deviations. Notice that the axis is non-linear as otherwise the bars for Sensitivity Sampling and Group Sampling would disappear on the plots as their distortions are close to 1.}
+  \label{fig:distortions}
+\end{figure*}
+
+
+
+
+
+
+
+\subsubsection*{Outcome of Experiments}
+We observed that in the majority of our experiments, varying the coreset sizes does not significantly change the performance profiles of individual algorithms when comparing them against each other. Therefore, in the following sections, we focus on a cross-section of the experiments where $m=200$ i.e., coreset sizes $T=200k$.
+For numerical results including variances of all the experiments and tables containing distortions, costs and running times, we refer to the full version of this paper.
+% \cref{sec:distortions-tables}, \cref{sec:costs-tables} and \cref{sec:running-times-tables}. 
+
+In~\cref{fig:distortions}, we summarized the distortions of the experiments with coreset sizes $T=200k$. All five algorithms are matched on the \textit{Tower} dataset. The worst distortions across the algorithms are close to 1, and performance between the algorithms is negligible. The performance difference between sampling-based and movement-based methods become more pronounced as the number of dimensions increase. On \textit{Covertype} with its 54 features, Ray Maker performs the worst followed by BICO and Group Sampling while Sensitivity Sampling and StreamKM++ perform the best. Differences in performance are more noticeable on \textit{Census}, \textit{Caltech}, and \textit{NYTimes}  where methods based on importance sampling perform much better. Sensitivity Sampling and Group Sampling perform the best, StreamKM++ come in second while BICO and Ray Maker perform the worst across these data sets.
+On the \textit{Benchmark}, Ray Maker is the worst while Sensitivity Sampling and Group Sampling are the best. StreamKM++ performs also very well compared to BICO.
+
+
+\subsubsection*{Interpretation of Experimental Results}
+
+
+
+{\bf Optimization versus Compression:}
+While all five algorithms are equally matched when optimizing on the candidate coresets, coreset quality performance differ significantly (see~\cref{fig:distortions}). 
+% We omit tables and plots detailing the cost due to space restrictions. 
+For all data sets, the obtained costs differed insignificantly for all values of $k$, 
+%(see~\cref{sec:costs-tables} and \cref{fig:real-costs} in the appendix),
+irrespective of the coreset algorithm used, while distortions varied strongly, depending on the coreset algorithm.
+
+Nevertheless, the cost drop with increasing values of $k$ is a predictor for the quality of certain coresets. It is not uncommon for the $k$-means cost of real-world data sets to drop significantly for larger values of $k$.
+~\cref{fig:cost-curves-real-world-datasets} illustrates this behavior for several real-world data sets. The more the curve bends, the less of a difference there is between computing a coreset and a clustering with low cost. For data sets with an L-shaped cost curve, a coreset algorithm adding more centers to the coreset will seem to be performing well when evaluating it based on the outcome of the optimization.
+\textit{Tower} is a good example of a data set where optimization is very close to compression. Its cost curve bends the most which indicates that adding more centers help reduce the cost. One of the strengths of the benchmark is that there is no way of reducing the cost without capturing the right subclusters within a benchmark instance. This means that the cost does not decrease markedly beyond a certain value of $k$ even if more centers are added.
+%, see~\cref{fig:cost-curves-benchmark} in the appendix. 
+
+For BICO, Ray Maker, and StreamKM++, there is a correlation between the steepness of the cost curve for a data set and the distortion of the generated coreset. 
+On data sets where the curve is less steep, we observed higher distortions. The effect is more pronounced for BICO and Ray Maker than for StreamKM++. Importance sampling approaches (Group Sampling and Sensitivity Sampling) seem to be free from this behavior as they consistently generate high quality coresets irrespective of the shape of cost curve.
+
+
+
+
+
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\linewidth]{figures/cost-curves-real-world-datasets.pdf}
+  \caption{Depicts how clustering costs of five real-world data sets decrease as the number of centers increase. 
+  Plotting the cost curve allows us to study whether we can observe a difference between coreset construction and optimization in a data set when evaluating a coreset based on cost.
+  }
+  \label{fig:cost-curves-real-world-datasets}
+\end{figure}
+
+
+
+{\bf Movement-based versus Sampling-based Approaches:}
+In general, movement-based constructions perform the worst in terms of coreset quality. 
+We observed that BICO and Ray Maker have the highest distortions across all data sets including on the benchmark instances. Among the sampling-based algorithms, Sensitive Sampling performs well with Group Sampling generally being competitive. This runs contrary to theory where Group Sampling has the better (currently known) theoretical bounds. StreamKM++ is an interesting case. Like the movement-based methods, its distortion increases with the dimension. Nevertheless, it generally performs significantly better than BICO and Ray Maker. This can be attributed to the fact that the coreset produced by StreamKM++ consists entirely of $k$-means++ centers weighted by the number of points of a minimal cost assignment. This is similar to movement-based algorithms such as BICO. Nevertheless, it also retains some of the performance from pure importance schemes.
+
+In practice as well as in theory, the distortion of movement-based algorithms are affected by the dimension. By comparison, sampling-based algorithms are affected very little. Theoretically, there should not exist a difference, as the sampling bounds are independent of the dimension. What little effect can be observed is likely due to PCA making it easier to find low cost solutions that form the backbone of all coreset constructions. StreamKM++ is an interesting case, as it is still affected by the dimension, though less than the other movement based methods.
+
+A notable exception is the benchmark. Here, sensitivity sampling generally found the lowest cost clustering, with BICO finding the second lowest cost clustering. 
+%(see \cref{tab:real-cost-mean-std-benchmark} in the appendix). 
+This happens \emph{despite} BICO generally having a worse distortion than for example Group Sampling or StreamKM++.
+% (see \cref{tab:distortions-mean-std-benchmark} in the appendix).
+
+
+
+
+
+
+{\bf Impact of PCA:}
+On almost all our data sets, the performance improves when input data is preprocessed with PCA, especially for the movement-based algorithms. Empirically, the more noise is removed (i.e., small $k$ value), the lower the distortion. Notice that $k$ is the number of principal components that the input data is projected on to. The rest of the low variance components are treated as noise and removed. Method utilizing sampling (Group Sampling, Sensitivity Sampling and StreamKM++) are less effected by the preprocessing step. On \textit{Covertype}, PCA does not change the distortions by much because almost all the variance in the data is explained by the first five principal components.
+% (see~\cref{fig:explained-variance-pca}). 
+On \textit{Caltech} and \textit{NYTimes}, the quality of the coresets by BICO and Ray Maker improves greatly because the noise removal is more aggressive. Even if the quality is much better for movement-based coreset constructions due to PCA, importance sampling methods are still superior when it comes to the quality of the compression. Summarizing, all methods benefit from PCA, and in case of movement-based constructions, we consider PCA a necessary preprocessing step. For the sampling-based methods, the computational expense of using PCA in preprocessing does not seem justify the comparatively meager gains in coreset distortion.
+
+
+
+
+
+\section{Conclusion} \label{sec:conclusion}
+In this work, we studied how to assess the quality of $k$-means coresets computed by state-of-the-art algorithms. 
+Previous work generally measured the quality of optimization algorithms run on the coreset, which we empirically observed to be a poor indicator of coreset quality.
+For real-world data sets, we sampled candidate clusterings and evaluated the worst case distortion on them. Complementing this, we also proposed a benchmark framework which generates hard instances for known $k$-means coreset algorithms. Our experiments indicate a general advantage for algorithms based on importance sampling over movement-based methods. Despite movement-based methods running on very efficient code, it is necessary to complement them with rather expensive dimension reduction methods, rendering what efficiency they might have over importance sampling somewhat moot.
+
+Two results bear further investigation. First, the currently known provable coreset sizes for Sensitivity Sampling are worse than those provable via Group Sampling. Empirically, we observed the opposite: While Group Sampling is competitive, Sensitivity Sampling always outperforms it. Since Group Sampling requires somewhat cumbersome computational overhead, practical applications should prefer Sensitivity Sampling. In light of these results, a theoretical analysis for Sensitivity Sampling matching the performance of Group Sampling would be welcome.
+
+The second point of interest focuses on the performance of StreamKM++. The distortion of this algorithm is significantly better than what one would expect from its theoretical analysis.
+Empirically, StreamKM++ is notably better than the other movement-based constructions across all data sets, and especially on high dimensional data.
+While it is not competitive to the pure importance sampling algorithms, there are several reasons for investigating it further. It essentially only requires running $k$-means++ for additional iterations, which is already a nearly ubiquitous algorithm for the $k$-means problem. Although the other sampling-based coreset algorithms can also be readily implemented, doing so might be cumbersome. In particular, the theoretically (but not empirically) best algorithm Group Sampling requires extensive preprocessing steps.
+This begs the question whether there exist a better theoretical analysis for StreamKM++.
+
+In addition, StreamKM++ currently weighs each point by the number of points assigned to it. It may also be possible to improve the performance of the algorithm in both theory and practice by using a different weighting scheme. 
+We leave this as an open problem for future research.
+
+
+
+\bibliography{main}
 
 
 
